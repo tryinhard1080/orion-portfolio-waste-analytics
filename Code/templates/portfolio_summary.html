@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orion Portfolio Performance Summary</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background-color: #f9fafb;
+            padding: 2rem;
+            line-height: 1.6;
+            color: #111827;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 0.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .header .subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .card {
+            background: white;
+            border-radius: 0.5rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .card h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #1f2937;
+            border-bottom: 2px solid #e5e7eb;
+            padding-bottom: 0.5rem;
+        }
+
+        .card h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin: 1.5rem 0 0.75rem 0;
+            color: #374151;
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .metric-box {
+            background: #f9fafb;
+            padding: 1.25rem;
+            border-radius: 0.5rem;
+            border-left: 4px solid;
+        }
+
+        .metric-box.green { border-color: #10b981; }
+        .metric-box.yellow { border-color: #f59e0b; }
+        .metric-box.red { border-color: #ef4444; }
+        .metric-box.blue { border-color: #3b82f6; }
+
+        .metric-label {
+            font-size: 0.875rem;
+            color: #6b7280;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-weight: 500;
+        }
+
+        .metric-value {
+            font-size: 2rem;
+            font-weight: 700;
+            margin: 0.5rem 0;
+            color: #111827;
+        }
+
+        .metric-context {
+            font-size: 0.875rem;
+            color: #6b7280;
+        }
+
+        .tier-badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+
+        .tier-badge.green {
+            background: #d1fae5;
+            color: #065f46;
+        }
+
+        .tier-badge.yellow {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .tier-badge.red {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+
+        th, td {
+            padding: 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        th {
+            background: #f9fafb;
+            font-weight: 600;
+            color: #374151;
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        tr:hover {
+            background: #f9fafb;
+        }
+
+        .benchmark-indicator {
+            display: inline-block;
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.25rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .benchmark-indicator.good {
+            background: #d1fae5;
+            color: #065f46;
+        }
+
+        .benchmark-indicator.warning {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .benchmark-indicator.poor {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .focus-area-item {
+            background: #f9fafb;
+            padding: 1rem;
+            margin: 0.75rem 0;
+            border-left: 4px solid #3b82f6;
+            border-radius: 0.25rem;
+        }
+
+        .focus-area-item h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #1f2937;
+        }
+
+        .focus-area-detail {
+            font-size: 0.875rem;
+            color: #4b5563;
+            margin: 0.25rem 0;
+        }
+
+        .focus-area-detail strong {
+            color: #1f2937;
+        }
+
+        .info-note {
+            background: #eff6ff;
+            border-left: 4px solid #3b82f6;
+            padding: 1rem;
+            margin: 1rem 0;
+            font-size: 0.875rem;
+            color: #1e40af;
+        }
+
+        .benchmark-reference {
+            background: #f9fafb;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0.25rem;
+            font-size: 0.875rem;
+        }
+
+        .footer {
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid #e5e7eb;
+            text-align: center;
+            color: #6b7280;
+            font-size: 0.875rem;
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            .card {
+                box-shadow: none;
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>Portfolio Performance Summary</h1>
+            <div class="subtitle">Orion Portfolio Waste Management Analytics</div>
+            <div class="subtitle">Generated: {{ timestamp }}</div>
+        </div>
+
+        <!-- Portfolio Overview -->
+        <div class="card">
+            <h2>Portfolio Overview</h2>
+
+            <div class="metrics-grid">
+                <div class="metric-box blue">
+                    <div class="metric-label">Performance Score</div>
+                    <div class="metric-value">{{ portfolio.avg_score }}/100</div>
+                    <div class="metric-context">
+                        <span class="tier-badge {{ portfolio.rating | replace('🟢 ', '') | replace('🟡 ', '') | replace('🔴 ', '') | lower }}">
+                            {{ portfolio.rating | replace('🟢 ', '') | replace('🟡 ', '') | replace('🔴 ', '') }}
+                        </span>
+                    </div>
+                </div>
+
+                <div class="metric-box green">
+                    <div class="metric-label">Properties Analyzed</div>
+                    <div class="metric-value">{{ portfolio.total_properties }}</div>
+                    <div class="metric-context">{{ data_coverage.properties_with_data }} with invoice data</div>
+                </div>
+
+                <div class="metric-box yellow">
+                    <div class="metric-label">Data Coverage</div>
+                    <div class="metric-value">{{ data_coverage.data_coverage }}</div>
+                    <div class="metric-context">{{ data_coverage.total_invoices }} invoices analyzed</div>
+                </div>
+
+                <div class="metric-box blue">
+                    <div class="metric-label">Focus Areas Identified</div>
+                    <div class="metric-value">{{ focus_areas_summary.total_active }}</div>
+                    <div class="metric-context">{{ focus_areas_summary.controllable }} controllable</div>
+                </div>
+            </div>
+
+            <h3>Performance Tier Distribution</h3>
+            <div class="metrics-grid">
+                <div class="metric-box green">
+                    <div class="metric-label">Good Tier (80-100)</div>
+                    <div class="metric-value">{{ portfolio.good_properties }}</div>
+                    <div class="metric-context">properties</div>
+                </div>
+
+                <div class="metric-box yellow">
+                    <div class="metric-label">Average Tier (60-79)</div>
+                    <div class="metric-value">{{ portfolio.average_properties }}</div>
+                    <div class="metric-context">properties</div>
+                </div>
+
+                <div class="metric-box red">
+                    <div class="metric-label">Poor Tier (0-59)</div>
+                    <div class="metric-value">{{ portfolio.poor_properties }}</div>
+                    <div class="metric-context">properties</div>
+                </div>
+            </div>
+
+            <div class="info-note">
+                <strong>Note:</strong> Performance scores are calculated based on three weighted metrics:
+                Volume Efficiency (YPD - 35% weight), Cost Efficiency (CPD - 40% weight), and
+                Service Reliability (Overage Frequency - 25% weight). Scores represent actual performance
+                against industry benchmarks.
+            </div>
+        </div>
+
+        <!-- Property Performance Table -->
+        <div class="card">
+            <h2>Property Performance Details</h2>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Property</th>
+                        <th>Units</th>
+                        <th>Score</th>
+                        <th>Tier</th>
+                        <th>YPD</th>
+                        <th>CPD</th>
+                        <th>Overage Freq</th>
+                        <th>Invoices</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for prop in properties %}
+                    <tr>
+                        <td><strong>{{ prop.property_name }}</strong><br>
+                            <small style="color: #6b7280;">{{ prop.city }}</small>
+                        </td>
+                        <td>{{ prop.unit_count }}</td>
+                        <td><strong>{{ "%.1f"|format(prop.property_score) if prop.property_score is not none else "N/A" }}</strong></td>
+                        <td>
+                            {% set tier = prop.property_score | tier_badge %}
+                            <span class="tier-badge {{ tier.color }}">{{ tier.label }}</span>
+                        </td>
+                        <td>
+                            {{ "%.2f"|format(prop.avg_ypd) if prop.avg_ypd is not none else "N/A" }}<br>
+                            <span class="benchmark-indicator {{ prop.ypd_status.status }}">
+                                {{ prop.ypd_status.message[:20] }}
+                            </span>
+                        </td>
+                        <td>
+                            {{ prop.avg_cpd | currency }}<br>
+                            <span class="benchmark-indicator {{ prop.cpd_status.status }}">
+                                {{ prop.cpd_status.message[:20] }}
+                            </span>
+                        </td>
+                        <td>
+                            {{ prop.overage_frequency | percent }}<br>
+                            <span class="benchmark-indicator {{ prop.overage_status.status }}">
+                                {{ prop.overage_status.message[:20] }}
+                            </span>
+                        </td>
+                        <td>{{ prop.invoice_count }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            <div class="benchmark-reference">
+                <strong>Benchmark Targets:</strong><br>
+                YPD (Yards Per Door): {{ benchmarks.ypd_target }} (threshold: {{ benchmarks.ypd_threshold }})<br>
+                CPD (Cost Per Door): {{ benchmarks.cpd_target }} (threshold: {{ benchmarks.cpd_threshold }})<br>
+                Overage Frequency: {{ benchmarks.overage_target }} (threshold: {{ benchmarks.overage_threshold }})
+            </div>
+        </div>
+
+        <!-- Focus Areas Summary -->
+        <div class="card">
+            <h2>Focus Areas for Operational Review</h2>
+
+            <p style="margin-bottom: 1rem; color: #4b5563;">
+                The following areas have been identified based on performance gap analysis against
+                established benchmarks. All impacts represent actual costs from analyzed invoices.
+            </p>
+
+            <h3>By Controllability</h3>
+            <div class="metrics-grid">
+                <div class="metric-box green">
+                    <div class="metric-label">Fully Controllable</div>
+                    <div class="metric-value">{{ focus_areas.by_controllability['Fully Controllable'] | length }}</div>
+                    <div class="metric-context">Operational decisions</div>
+                </div>
+
+                <div class="metric-box yellow">
+                    <div class="metric-label">Partially Controllable</div>
+                    <div class="metric-value">{{ focus_areas.by_controllability['Partially Controllable'] | length }}</div>
+                    <div class="metric-context">Vendor coordination</div>
+                </div>
+
+                <div class="metric-box blue">
+                    <div class="metric-label">Contract-Dependent</div>
+                    <div class="metric-value">{{ focus_areas.by_controllability['Contract-Dependent'] | length }}</div>
+                    <div class="metric-context">Renewal opportunities</div>
+                </div>
+
+                <div class="metric-box red">
+                    <div class="metric-label">Market-Constrained</div>
+                    <div class="metric-value">{{ focus_areas.by_controllability['Market-Constrained'] | length }}</div>
+                    <div class="metric-context">Limited options</div>
+                </div>
+            </div>
+
+            <h3>By Timeline</h3>
+            <div class="metrics-grid">
+                <div class="metric-box red">
+                    <div class="metric-label">Immediate Action (0-30 days)</div>
+                    <div class="metric-value">{{ focus_areas.by_timeline['Immediate Action'] | length }}</div>
+                </div>
+
+                <div class="metric-box yellow">
+                    <div class="metric-label">Contract Renewal (60-90 days)</div>
+                    <div class="metric-value">{{ focus_areas.by_timeline['Contract Renewal'] | length }}</div>
+                </div>
+
+                <div class="metric-box blue">
+                    <div class="metric-label">Long-term Strategy (6-12 months)</div>
+                    <div class="metric-value">{{ focus_areas.by_timeline['Long-term Strategy'] | length }}</div>
+                </div>
+
+                <div class="metric-box green">
+                    <div class="metric-label">Monitor Only</div>
+                    <div class="metric-value">{{ focus_areas.by_timeline['Monitor Only'] | length }}</div>
+                </div>
+            </div>
+
+            {% if focus_areas.by_priority.Critical %}
+            <h3>Critical Priority Focus Areas</h3>
+            {% for area in focus_areas.by_priority.Critical %}
+            <div class="focus-area-item">
+                <h4>{{ area.description }}</h4>
+                <div class="focus-area-detail"><strong>Type:</strong> {{ area.focus_type }}</div>
+                <div class="focus-area-detail"><strong>Controllability:</strong> {{ area.controllability }}</div>
+                <div class="focus-area-detail"><strong>Timeline:</strong> {{ area.timeline }}</div>
+                {% if area.measurable_impact %}
+                <div class="focus-area-detail"><strong>Measurable Impact:</strong> {{ area.measurable_impact }}</div>
+                {% endif %}
+                {% if area.performance_gap %}
+                <div class="focus-area-detail"><strong>Performance Gap:</strong> {{ area.performance_gap }}</div>
+                {% endif %}
+                {% if area.recommended_action %}
+                <div class="focus-area-detail"><strong>Opportunity:</strong> {{ area.recommended_action }}</div>
+                {% endif %}
+            </div>
+            {% endfor %}
+            {% endif %}
+
+            {% if focus_areas.by_priority.High %}
+            <h3>High Priority Focus Areas</h3>
+            {% for area in focus_areas.by_priority.High %}
+            <div class="focus-area-item">
+                <h4>{{ area.description }}</h4>
+                <div class="focus-area-detail"><strong>Type:</strong> {{ area.focus_type }}</div>
+                <div class="focus-area-detail"><strong>Timeline:</strong> {{ area.timeline }}</div>
+                {% if area.measurable_impact %}
+                <div class="focus-area-detail"><strong>Impact:</strong> {{ area.measurable_impact }}</div>
+                {% endif %}
+            </div>
+            {% endfor %}
+            {% endif %}
+
+            <div class="info-note">
+                <strong>Opportunity Identification Approach:</strong> Focus areas represent data-driven opportunities
+                for operational review based on performance gaps against established benchmarks. All dollar amounts
+                reflect actual costs from analyzed invoices, not projections. Review opportunities are categorized
+                by controllability level and recommended timeline for consideration.
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p><strong>Orion Portfolio Waste Management Analytics</strong></p>
+            <p>Data-focused performance analysis | Generated from live Airtable data</p>
+            <p>Report Date: {{ timestamp }}</p>
+        </div>
+    </div>
+</body>
+</html>

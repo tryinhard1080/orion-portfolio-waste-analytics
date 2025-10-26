@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ property_name }} - Performance Analysis</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background-color: #f9fafb;
+            padding: 2rem;
+            line-height: 1.6;
+            color: #111827;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 0.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .header h1 {
+            font-size: 2.25rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .header .subtitle {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        .card {
+            background: white;
+            border-radius: 0.5rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .card h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #1f2937;
+            border-bottom: 2px solid #e5e7eb;
+            padding-bottom: 0.5rem;
+        }
+
+        .card h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin: 1.5rem 0 0.75rem 0;
+            color: #374151;
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.25rem;
+            margin: 1.5rem 0;
+        }
+
+        .metric-box {
+            background: #f9fafb;
+            padding: 1.25rem;
+            border-radius: 0.5rem;
+            border-left: 4px solid;
+        }
+
+        .metric-box.green { border-color: #10b981; }
+        .metric-box.yellow { border-color: #f59e0b; }
+        .metric-box.red { border-color: #ef4444; }
+        .metric-box.blue { border-color: #3b82f6; }
+
+        .metric-label {
+            font-size: 0.875rem;
+            color: #6b7280;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-weight: 500;
+        }
+
+        .metric-value {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin: 0.5rem 0;
+            color: #111827;
+        }
+
+        .metric-context {
+            font-size: 0.875rem;
+            color: #6b7280;
+        }
+
+        .tier-badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+
+        .tier-badge.green {
+            background: #d1fae5;
+            color: #065f46;
+        }
+
+        .tier-badge.yellow {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .tier-badge.red {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .benchmark-comparison {
+            background: #f9fafb;
+            padding: 1rem;
+            margin: 0.75rem 0;
+            border-radius: 0.5rem;
+            border-left: 4px solid;
+        }
+
+        .benchmark-comparison.good { border-color: #10b981; }
+        .benchmark-comparison.warning { border-color: #f59e0b; }
+        .benchmark-comparison.poor { border-color: #ef4444; }
+
+        .benchmark-comparison .label {
+            font-weight: 600;
+            color: #374151;
+            margin-bottom: 0.25rem;
+        }
+
+        .benchmark-comparison .value {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin: 0.25rem 0;
+        }
+
+        .benchmark-comparison .status {
+            font-size: 0.875rem;
+            color: #6b7280;
+        }
+
+        .info-note {
+            background: #eff6ff;
+            border-left: 4px solid #3b82f6;
+            padding: 1rem;
+            margin: 1rem 0;
+            font-size: 0.875rem;
+            color: #1e40af;
+            border-radius: 0.25rem;
+        }
+
+        .focus-area-item {
+            background: #f9fafb;
+            padding: 1rem;
+            margin: 0.75rem 0;
+            border-left: 4px solid #3b82f6;
+            border-radius: 0.25rem;
+        }
+
+        .focus-area-item h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #1f2937;
+        }
+
+        .focus-area-detail {
+            font-size: 0.875rem;
+            color: #4b5563;
+            margin: 0.25rem 0;
+        }
+
+        .focus-area-detail strong {
+            color: #1f2937;
+        }
+
+        .data-table {
+            width: 100%;
+            margin: 1rem 0;
+        }
+
+        .data-table th,
+        .data-table td {
+            padding: 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .data-table th {
+            background: #f9fafb;
+            font-weight: 600;
+            font-size: 0.875rem;
+            color: #374151;
+        }
+
+        .footer {
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid #e5e7eb;
+            text-align: center;
+            color: #6b7280;
+            font-size: 0.875rem;
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            .card {
+                box-shadow: none;
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>{{ property_name }}</h1>
+            <div class="subtitle">Property Performance Analysis</div>
+            <div class="subtitle">Generated: {{ timestamp }}</div>
+        </div>
+
+        <!-- Performance Summary -->
+        <div class="card">
+            <h2>Performance Summary</h2>
+
+            <div class="metrics-grid">
+                <div class="metric-box blue">
+                    <div class="metric-label">Performance Score</div>
+                    <div class="metric-value">
+                        {{ "%.1f"|format(property.property_score) if property.property_score is not none else "N/A" }}/100
+                    </div>
+                    <div class="metric-context">
+                        {% set tier = property.property_score | tier_badge %}
+                        <span class="tier-badge {{ tier.color }}">{{ tier.label }} ({{ tier.range }})</span>
+                    </div>
+                </div>
+
+                <div class="metric-box green">
+                    <div class="metric-label">Unit Count</div>
+                    <div class="metric-value">{{ property.unit_count }}</div>
+                    <div class="metric-context">apartment units</div>
+                </div>
+
+                <div class="metric-box yellow">
+                    <div class="metric-label">Invoices Analyzed</div>
+                    <div class="metric-value">{{ invoice_count }}</div>
+                    <div class="metric-context">data coverage</div>
+                </div>
+
+                <div class="metric-box blue">
+                    <div class="metric-label">Focus Areas</div>
+                    <div class="metric-value">{{ focus_areas | length }}</div>
+                    <div class="metric-context">opportunities identified</div>
+                </div>
+            </div>
+
+            <div class="info-note">
+                <strong>Performance Tier Classification:</strong> Scores are based on weighted metrics -
+                Volume Efficiency (YPD - 35%), Cost Efficiency (CPD - 40%), and Service Reliability (Overage Frequency - 25%).
+                Tier ranges: Good (80-100), Average (60-79), Poor (0-59).
+            </div>
+        </div>
+
+        <!-- Benchmark Comparisons -->
+        <div class="card">
+            <h2>Performance Metrics vs Benchmarks</h2>
+
+            <p style="margin-bottom: 1rem; color: #4b5563;">
+                The following metrics show actual performance from analyzed invoices compared to
+                established industry benchmarks.
+            </p>
+
+            <h3>Volume Efficiency (YPD - Yards Per Door)</h3>
+            <div class="benchmark-comparison {{ ypd_status.status }}">
+                <div class="label">Actual YPD</div>
+                <div class="value">{{ "%.2f"|format(property.avg_ypd) if property.avg_ypd is not none else "N/A" }}</div>
+                <div class="status">{{ ypd_status.message }}</div>
+                <div class="status" style="margin-top: 0.5rem;">
+                    <strong>Benchmark:</strong> Target range {{ benchmarks.ypd_target }}
+                </div>
+            </div>
+
+            <h3>Cost Efficiency (CPD - Cost Per Door)</h3>
+            <div class="benchmark-comparison {{ cpd_status.status }}">
+                <div class="label">Actual CPD</div>
+                <div class="value">{{ property.avg_cpd | currency }}</div>
+                <div class="status">{{ cpd_status.message }}</div>
+                <div class="status" style="margin-top: 0.5rem;">
+                    <strong>Benchmark:</strong> Target range {{ benchmarks.cpd_target }}
+                </div>
+            </div>
+
+            <h3>Service Reliability (Overage Frequency)</h3>
+            <div class="benchmark-comparison {{ overage_status.status }}">
+                <div class="label">Actual Overage Frequency</div>
+                <div class="value">{{ property.overage_frequency | percent }}</div>
+                <div class="status">{{ overage_status.message }}</div>
+                <div class="status" style="margin-top: 0.5rem;">
+                    <strong>Benchmark:</strong> Target {{ benchmarks.overage_target }}
+                </div>
+            </div>
+
+            {% if property.avg_ypd_score is not none or property.avg_cpd_score is not none or property.overage_score is not none %}
+            <h3>Component Scores</h3>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Component</th>
+                        <th>Score</th>
+                        <th>Weight</th>
+                        <th>Contribution</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% if property.avg_ypd_score is not none %}
+                    <tr>
+                        <td>YPD Score</td>
+                        <td>{{ "%.1f"|format(property.avg_ypd_score) }}/100</td>
+                        <td>35%</td>
+                        <td>{{ "%.1f"|format(property.avg_ypd_score * 0.35) }} points</td>
+                    </tr>
+                    {% endif %}
+                    {% if property.avg_cpd_score is not none %}
+                    <tr>
+                        <td>CPD Score</td>
+                        <td>{{ "%.1f"|format(property.avg_cpd_score) }}/100</td>
+                        <td>40%</td>
+                        <td>{{ "%.1f"|format(property.avg_cpd_score * 0.40) }} points</td>
+                    </tr>
+                    {% endif %}
+                    {% if property.overage_score is not none %}
+                    <tr>
+                        <td>Overage Score</td>
+                        <td>{{ "%.1f"|format(property.overage_score) }}/100</td>
+                        <td>25%</td>
+                        <td>{{ "%.1f"|format(property.overage_score * 0.25) }} points</td>
+                    </tr>
+                    {% endif %}
+                </tbody>
+            </table>
+            {% endif %}
+        </div>
+
+        <!-- Focus Areas -->
+        {% if focus_areas %}
+        <div class="card">
+            <h2>Focus Areas for Operational Review</h2>
+
+            <p style="margin-bottom: 1rem; color: #4b5563;">
+                The following opportunities have been identified based on performance gap analysis.
+                All dollar amounts represent actual costs from analyzed invoices.
+            </p>
+
+            {% for area in focus_areas %}
+            <div class="focus-area-item">
+                <h4>{{ area.description or "Focus Area" }}</h4>
+
+                <div class="focus-area-detail">
+                    <strong>Type:</strong> {{ area.focus_type or area.opportunity_type or "Not specified" }}
+                </div>
+
+                <div class="focus-area-detail">
+                    <strong>Controllability:</strong> {{ area.controllability or "Not specified" }}
+                </div>
+
+                <div class="focus-area-detail">
+                    <strong>Timeline:</strong> {{ area.action_timeline or area.timeline or "Not specified" }}
+                </div>
+
+                {% if area.priority %}
+                <div class="focus-area-detail">
+                    <strong>Priority:</strong> {{ area.priority }}
+                </div>
+                {% endif %}
+
+                {% if area.measurable_impact %}
+                <div class="focus-area-detail">
+                    <strong>Measurable Impact:</strong> {{ area.measurable_impact }}
+                </div>
+                {% endif %}
+
+                {% if area.performance_gap %}
+                <div class="focus-area-detail">
+                    <strong>Performance Gap:</strong> {{ area.performance_gap }}
+                </div>
+                {% endif %}
+
+                {% if area.recommended_action or area.action_required %}
+                <div class="focus-area-detail">
+                    <strong>Opportunity:</strong> {{ area.recommended_action or area.action_required }}
+                </div>
+                {% endif %}
+
+                {% if area.status %}
+                <div class="focus-area-detail">
+                    <strong>Status:</strong> {{ area.status }}
+                </div>
+                {% endif %}
+            </div>
+            {% endfor %}
+
+            <div class="info-note">
+                <strong>Note:</strong> Focus areas represent data-driven opportunities for operational review.
+                Controllability levels indicate the degree of operational influence:
+                Fully Controllable (operational decisions), Partially Controllable (vendor coordination),
+                Contract-Dependent (renewal negotiation), Market-Constrained (limited by regulations).
+            </div>
+        </div>
+        {% else %}
+        <div class="card">
+            <h2>Focus Areas for Operational Review</h2>
+            <div class="info-note">
+                No focus areas currently identified for this property. Performance metrics are within
+                acceptable ranges or insufficient data is available for analysis.
+            </div>
+        </div>
+        {% endif %}
+
+        <!-- Data Quality Note -->
+        <div class="card">
+            <h2>Data Analysis Notes</h2>
+
+            <table class="data-table">
+                <tbody>
+                    <tr>
+                        <td><strong>Analysis Period:</strong></td>
+                        <td>Based on {{ invoice_count }} invoices in Airtable database</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Data Source:</strong></td>
+                        <td>Live Airtable data (Base ID: appqOleg1iPppE580)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Metrics Basis:</strong></td>
+                        <td>All dollar amounts and frequencies from verified invoice data</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Report Type:</strong></td>
+                        <td>Data analysis and opportunity identification (not predictive)</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="info-note" style="margin-top: 1rem;">
+                <strong>Important:</strong> This report presents actual historical performance data and
+                identifies opportunities for review based on benchmark comparisons. It does not include
+                speculative projections, ROI calculations, or prescriptive solutions. All recommendations
+                represent opportunities for operational consideration.
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p><strong>Orion Portfolio Waste Management Analytics</strong></p>
+            <p>Data-focused performance analysis | Generated from live Airtable data</p>
+            <p>Report Date: {{ timestamp }}</p>
+        </div>
+    </div>
+</body>
+</html>

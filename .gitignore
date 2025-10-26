@@ -1,0 +1,72 @@
+# Orion Portfolio Waste Data - Backup Repository .gitignore
+
+# ========================================
+# CRITICAL: NEVER COMMIT API KEYS
+# ========================================
+.env
+
+# ========================================
+# PYTHON
+# ========================================
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.pytest_cache/
+.coverage
+*.cover
+.hypothesis/
+
+# Virtual environments
+venv/
+ENV/
+env/
+.venv
+
+# ========================================
+# IDE / EDITOR
+# ========================================
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+*.swp
+*.swo
+
+# ========================================
+# OS FILES
+# ========================================
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# ========================================
+# TEMPORARY FILES
+# ========================================
+*.tmp
+*.temp
+*.bak
+*.log
+*.old
+
+# ========================================
+# LARGE/GENERATED FILES (Optional)
+# ========================================
+# Uncomment these if files are too large for GitHub
+
+# Large Excel reports (keep source data, exclude generated reports)
+# Reports/**/*.xlsx
+
+# Large PDF reports (keep invoices, exclude generated PDFs)
+# Reports/PDF/*.pdf
+
+# ========================================
+# KEEP EVERYTHING ELSE
+# ========================================
+# This is a backup repository - we want to preserve:
+# - All invoices (PDFs)
+# - All contracts
+# - Extraction results
+# - Generated reports
+# - Documentation
+# - Complete project history
