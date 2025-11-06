@@ -1,0 +1,319 @@
+{
+  "validation_date": "2025-10-26",
+  "overall_status": "READY_FOR_EXTRACTION",
+  "validation_summary": {
+    "status": "PRE-EXTRACTION",
+    "message": "Data extraction has not been performed yet. Invoice and contract source files are ready for processing.",
+    "next_action": "Run extraction workflow to generate the required JSON files for validation"
+  },
+  "source_data_availability": {
+    "invoices": {
+      "status": "READY",
+      "total_files": 66,
+      "organized_folders": 4,
+      "properties_covered": [
+        "Orion McCord (8 invoices)",
+        "Orion McKinney (16 invoices)",
+        "Orion Prosper Lakes (10 invoices)",
+        "Orion Prosper (16 invoices)",
+        "Individual invoices (16 PDFs)"
+      ],
+      "date_range": "January 2025 - August 2025",
+      "ready_for_extraction": true
+    },
+    "contracts": {
+      "status": "READY",
+      "folder": "C:\\Users\\Richard\\Downloads\\Orion Data Part 2\\Contracts",
+      "ready_for_extraction": true
+    },
+    "properties": {
+      "status": "READY",
+      "total_properties": 6,
+      "property_list": [
+        "Bella Mirage",
+        "McCord Park FL",
+        "Orion McKinney",
+        "Orion Prosper",
+        "Orion Prosper Lakes",
+        "The Club at Millenia"
+      ],
+      "ready_for_analysis": true
+    }
+  },
+  "missing_extraction_files": {
+    "status": "NOT_YET_GENERATED",
+    "required_files": [
+      "extraction_results.json",
+      "contract_analysis.json",
+      "property_analysis.json"
+    ],
+    "reason": "Extraction agents have not been executed yet",
+    "action_required": "Run extraction workflow before validation can proceed"
+  },
+  "system_readiness": {
+    "status": "FULLY_CONFIGURED",
+    "infrastructure": {
+      "slash_commands": {
+        "status": "INSTALLED",
+        "count": 12,
+        "test_status": "ALL TESTS PASSED (5/5)",
+        "commands_available": [
+          "/extract-invoices",
+          "/extract-contracts",
+          "/batch-extract",
+          "/review-flags",
+          "/update-sheets",
+          "/generate-reports",
+          "/validate-all",
+          "/monthly-workflow",
+          "/full-analysis",
+          "/quick-report",
+          "/optimize-compactor",
+          "/convert-to-pdf"
+        ]
+      },
+      "extraction_scripts": {
+        "status": "READY",
+        "scripts": [
+          "orchestrate_extraction.py",
+          "extract_orion_prosper_invoices.py",
+          "validate_extracted_data.py"
+        ]
+      },
+      "validation_scripts": {
+        "status": "READY",
+        "scripts": [
+          "comprehensive_validation.py",
+          "validate_reports.py"
+        ]
+      },
+      "api_configuration": {
+        "status": "CONFIGURED",
+        "anthropic_api_key": "PRESENT",
+        "environment_loaded": true
+      }
+    },
+    "documentation": {
+      "status": "COMPLETE",
+      "core_docs": 9,
+      "command_docs": 12,
+      "total_coverage": "100%"
+    }
+  },
+  "extraction_workflow": {
+    "current_step": "NOT_STARTED",
+    "recommended_approach": "Use slash commands for guided extraction",
+    "workflow_steps": [
+      {
+        "step": 1,
+        "action": "Extract invoice data",
+        "command": "/extract-invoices",
+        "status": "PENDING",
+        "output": "extraction_results.json",
+        "estimated_time": "10-15 minutes for 66 invoices"
+      },
+      {
+        "step": 2,
+        "action": "Extract contract data",
+        "command": "/extract-contracts",
+        "status": "PENDING",
+        "output": "contract_analysis.json",
+        "estimated_time": "5-10 minutes for 4-6 contracts"
+      },
+      {
+        "step": 3,
+        "action": "Review extraction flags",
+        "command": "/review-flags",
+        "status": "PENDING",
+        "purpose": "Resolve any red or yellow flags from extraction"
+      },
+      {
+        "step": 4,
+        "action": "Validate extracted data",
+        "command": "Run validation_report_validator.py",
+        "status": "PENDING",
+        "purpose": "This validation (current task)"
+      },
+      {
+        "step": 5,
+        "action": "Update Google Sheets",
+        "command": "/update-sheets",
+        "status": "PENDING",
+        "purpose": "Upload validated data to spreadsheet"
+      },
+      {
+        "step": 6,
+        "action": "Generate reports",
+        "command": "/generate-reports",
+        "status": "PENDING",
+        "purpose": "Create HTML performance reports"
+      },
+      {
+        "step": 7,
+        "action": "Final validation",
+        "command": "/validate-all",
+        "status": "PENDING",
+        "purpose": "Comprehensive system validation"
+      }
+    ]
+  },
+  "data_integrity_system": {
+    "status": "OPERATIONAL",
+    "flagging_system": {
+      "status": "TESTED",
+      "test_scenarios": 5,
+      "test_results": "100% pass rate",
+      "flag_levels": {
+        "red": {
+          "severity": "CRITICAL",
+          "description": "Missing critical fields, blocks upload",
+          "action": "Manual entry required"
+        },
+        "yellow": {
+          "severity": "NEEDS_REVIEW",
+          "description": "Missing optional fields, ambiguous data",
+          "action": "User review and confirmation needed"
+        },
+        "green": {
+          "severity": "VALIDATION_SUGGESTED",
+          "description": "Inferred or calculated fields",
+          "action": "Spot-check recommended"
+        }
+      }
+    },
+    "prohibited_checks": {
+      "status": "ENFORCED",
+      "rules": [
+        "No speculative savings projections",
+        "No unrealistic optimization claims",
+        "No hallucinated frequencies or counts",
+        "All recommendations based on actual findings",
+        "No 'savings' language in reports"
+      ]
+    }
+  },
+  "validation_criteria": {
+    "critical_field_validation": {
+      "status": "AWAITING_DATA",
+      "required_fields": [
+        "property_name",
+        "invoice_date",
+        "invoice_amount",
+        "container_size",
+        "pickup_frequency"
+      ],
+      "validation_rules": [
+        "All required fields present or flagged",
+        "No hallucinated data",
+        "Dates in YYYY-MM-DD format",
+        "Amounts are numeric and reasonable",
+        "Property names consistent across files"
+      ]
+    },
+    "flag_review": {
+      "status": "AWAITING_DATA",
+      "categories": [
+        "Red flags: Count and categorize",
+        "Yellow flags: Assess severity",
+        "Green flags: Spot-check accuracy",
+        "Ensure flags have actionable messages"
+      ]
+    },
+    "data_consistency": {
+      "status": "AWAITING_DATA",
+      "checks": [
+        "Property names match across all files",
+        "Invoice amounts match between extraction and analysis",
+        "Contract terms align with invoice data",
+        "No duplicate entries",
+        "Math checks out (CPD calculations, totals)"
+      ]
+    }
+  },
+  "recommendations": [
+    {
+      "priority": "IMMEDIATE",
+      "action": "Run invoice extraction",
+      "command": "/extract-invoices or python Code/orchestrate_extraction.py",
+      "rationale": "Cannot validate data that hasn't been extracted yet"
+    },
+    {
+      "priority": "IMMEDIATE",
+      "action": "Run contract extraction",
+      "command": "/extract-contracts",
+      "rationale": "Contract data needed for comparative analysis"
+    },
+    {
+      "priority": "HIGH",
+      "action": "Review extraction flags",
+      "command": "/review-flags",
+      "rationale": "Resolve any data quality issues before proceeding"
+    },
+    {
+      "priority": "HIGH",
+      "action": "Re-run this validation after extraction",
+      "rationale": "Validate extracted data against integrity standards"
+    },
+    {
+      "priority": "MEDIUM",
+      "action": "Use slash commands for guided workflow",
+      "rationale": "Commands include built-in validation and error handling"
+    },
+    {
+      "priority": "MEDIUM",
+      "action": "Consider running /monthly-workflow",
+      "rationale": "Complete end-to-end process with all validation steps"
+    }
+  ],
+  "risk_assessment": {
+    "current_risks": [
+      {
+        "risk": "No extraction data available",
+        "severity": "LOW",
+        "mitigation": "Expected at this stage; extraction is next step",
+        "status": "NORMAL"
+      },
+      {
+        "risk": "Potential data quality issues in source PDFs",
+        "severity": "MEDIUM",
+        "mitigation": "Flagging system will catch issues during extraction",
+        "status": "MONITORED"
+      },
+      {
+        "risk": "API quota usage for 66 invoices",
+        "severity": "LOW",
+        "mitigation": "Monitor Anthropic API usage; batch processing available",
+        "status": "MANAGED"
+      }
+    ]
+  },
+  "quality_metrics": {
+    "system_configuration": {
+      "score": 100,
+      "status": "EXCELLENT",
+      "details": "All infrastructure, commands, and documentation in place"
+    },
+    "data_readiness": {
+      "score": 100,
+      "status": "EXCELLENT",
+      "details": "66 invoices organized and ready for extraction"
+    },
+    "extraction_completeness": {
+      "score": 0,
+      "status": "NOT_STARTED",
+      "details": "Extraction has not been performed yet"
+    },
+    "overall_readiness": {
+      "score": 66,
+      "status": "READY_TO_BEGIN",
+      "details": "System fully configured and ready for extraction workflow"
+    }
+  },
+  "ready_to_proceed": {
+    "status": false,
+    "reason": "Extraction must be completed before validation can proceed",
+    "blocking_issue": "Missing extraction_results.json, contract_analysis.json, property_analysis.json",
+    "next_step": "Run /extract-invoices to begin extraction workflow",
+    "estimated_time_to_ready": "20-30 minutes (extraction + flag review)"
+  }
+}

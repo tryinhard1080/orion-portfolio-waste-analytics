@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>McCord Park FL - Waste Management Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .tab-button {
+            transition: all 0.3s ease;
+        }
+        .tab-button.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .metric-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+        .data-table {
+            font-size: 0.875rem;
+        }
+        .data-table th {
+            background-color: #f3f4f6;
+            font-weight: 600;
+            padding: 0.75rem;
+            text-align: left;
+        }
+        .data-table td {
+            padding: 0.75rem;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .data-table tr:hover {
+            background-color: #f9fafb;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <div class="container mx-auto px-4 py-8 max-w-7xl">
+        <!-- Header -->
+        <div class="bg-white rounded-lg shadow-lg p-6 mb-6">
+            <div class="flex justify-between items-center">
+                <div>
+                    <h1 class="text-3xl font-bold text-gray-800">McCord Park FL</h1>
+                    <p class="text-gray-600 mt-2">Waste Management Performance Dashboard</p>
+                    <p class="text-sm text-gray-500 mt-1">Florida • 416 Units • Jan 2025 - Oct 2025</p>
+                </div>
+                <div class="text-right">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 60'%3E%3Ctext x='10' y='40' font-family='Arial, sans-serif' font-size='24' font-weight='bold' fill='%23667eea'%3EAdvantage Waste%3C/text%3E%3C/svg%3E" alt="Advantage Waste" class="h-12">
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab Navigation -->
+        <div class="bg-white rounded-lg shadow-lg mb-6 p-2">
+            <div class="flex space-x-2">
+                <button onclick="showTab('executive')" class="tab-button active flex-1 px-4 py-3 rounded-lg font-medium transition">
+                    Executive Dashboard
+                </button>
+                <button onclick="showTab('expense')" class="tab-button flex-1 px-4 py-3 rounded-lg font-medium transition text-gray-700 hover:bg-gray-100">
+                    Expense Analysis
+                </button>
+                <button onclick="showTab('service')" class="tab-button flex-1 px-4 py-3 rounded-lg font-medium transition text-gray-700 hover:bg-gray-100">
+                    Service Details
+                </button>
+                <button onclick="showTab('optimization')" class="tab-button flex-1 px-4 py-3 rounded-lg font-medium transition text-gray-700 hover:bg-gray-100">
+                    Optimization
+                </button>
+                <button onclick="showTab('contract')" class="tab-button flex-1 px-4 py-3 rounded-lg font-medium transition text-gray-700 hover:bg-gray-100">
+                    Contract Status
+                </button>
+            </div>
+        </div>
+
+        <!-- Tab 1: Executive Dashboard -->
+        <div id="executive" class="tab-content active">
+            <!-- Key Metrics -->
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
+                <div class="metric-card">
+                    <div class="text-sm opacity-90 mb-1">Average Monthly Cost</div>
+                    <div class="text-3xl font-bold">$11,017.41</div>
+                </div>
+                <div class="metric-card">
+                    <div class="text-sm opacity-90 mb-1">Cost Per Door</div>
+                    <div class="text-3xl font-bold">$26.48</div>
+                </div>
+                <div class="metric-card">
+                    <div class="text-sm opacity-90 mb-1">Total Spend</div>
+                    <div class="text-3xl font-bold">$99,156.68</div>
+                </div>
+                <div class="metric-card">
+                    <div class="text-sm opacity-90 mb-1">Total Invoices</div>
+                    <div class="text-3xl font-bold">9</div>
+                </div>
+            </div>
+
+            <!-- Charts Row 1 -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                <div class="bg-white rounded-lg shadow-lg p-6">
+                    <h3 class="text-lg font-semibold text-gray-800 mb-4">Monthly Cost Trend</h3>
+                    <canvas id="costTrendChart"></canvas>
+                </div>
+                <div class="bg-white rounded-lg shadow-lg p-6">
+                    <h3 class="text-lg font-semibold text-gray-800 mb-4">Invoice Count by Month</h3>
+                    <canvas id="invoiceCountChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Charts Row 2 -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-white rounded-lg shadow-lg p-6">
+                    <h3 class="text-lg font-semibold text-gray-800 mb-4">Cost Breakdown</h3>
+                    <canvas id="categoryPieChart"></canvas>
+                </div>
+                <div class="bg-white rounded-lg shadow-lg p-6">
+                    <h3 class="text-lg font-semibold text-gray-800 mb-4">Cost Per Door Trend</h3>
+                    <canvas id="cpdTrendChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab 2: Expense Analysis -->
+        <div id="expense" class="tab-content">
+            <div class="bg-white rounded-lg shadow-lg p-6">
+                <h2 class="text-2xl font-bold text-gray-800 mb-4">Monthly Expense Breakdown</h2>
+                <div class="overflow-x-auto">
+                    <table class="data-table w-full">
+                        <thead>
+                            <tr>
+                                <th>Month</th>
+                                <th>Monthly Cost</th>
+                                <th>Cost Per Door</th>
+                                <th>Invoice Count</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            <tr>
+                                <td class="font-medium">2025-01</td>
+                                <td>$9,734.09</td>
+                                <td>$23.40</td>
+                                <td>1</td>
+                                <td><span class="text-yellow-600 font-semibold">Average</span></td>
+                            </tr>
+
+                            <tr>
+                                <td class="font-medium">2025-02</td>
+                                <td>$11,186.23</td>
+                                <td>$26.89</td>
+                                <td>1</td>
+                                <td><span class="text-yellow-600 font-semibold">Average</span></td>
+                            </tr>
+
+                            <tr>
+                                <td class="font-medium">2025-03</td>
+                                <td>$11,186.23</td>
+                                <td>$26.89</td>
+                                <td>1</td>
+                                <td><span class="text-yellow-600 font-semibold">Average</span></td>
+                            </tr>
+
+                            <tr>
+                                <td class="font-medium">2025-04</td>
+                                <td>$11,186.23</td>
+                                <td>$26.89</td>
+                                <td>1</td>
+                                <td><span class="text-yellow-600 font-semibold">Average</span></td>
+                            </tr>
+
+                            <tr>
+                                <td class="font-medium">2025-05</td>
+                                <td>$11,186.23</td>
+                                <td>$26.89</td>
+                                <td>1</td>
+                                <td><span class="text-yellow-600 font-semibold">Average</span></td>
+                            </tr>
+
+                            <tr>
+                                <td class="font-medium">2025-06</td>
+                                <td>$11,186.23</td>
+                                <td>$26.89</td>
+                                <td>1</td>
+                                <td><span class="text-yellow-600 font-semibold">Average</span></td>
+                            </tr>
+
+                            <tr>
+                                <td class="font-medium">2025-07</td>
+                                <td>$11,279.60</td>
+                                <td>$27.11</td>
+                                <td>1</td>
+                                <td><span class="text-yellow-600 font-semibold">Average</span></td>
+                            </tr>
+
+                            <tr>
+                                <td class="font-medium">2025-08</td>
+                                <td>$11,105.92</td>
+                                <td>$26.70</td>
+                                <td>1</td>
+                                <td><span class="text-yellow-600 font-semibold">Average</span></td>
+                            </tr>
+
+                            <tr>
+                                <td class="font-medium">2025-10</td>
+                                <td>$11,105.92</td>
+                                <td>$26.70</td>
+                                <td>1</td>
+                                <td><span class="text-yellow-600 font-semibold">Average</span></td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="mt-6 p-4 bg-blue-50 rounded-lg">
+                    <h3 class="font-semibold text-gray-800 mb-2">Summary Statistics</h3>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
+                        <div>
+                            <div class="text-gray-600">Average CPD</div>
+                            <div class="text-lg font-bold text-gray-800">$26.48</div>
+                        </div>
+                        <div>
+                            <div class="text-gray-600">Average Monthly</div>
+                            <div class="text-lg font-bold text-gray-800">$11,017.41</div>
+                        </div>
+                        <div>
+                            <div class="text-gray-600">Total Period</div>
+                            <div class="text-lg font-bold text-gray-800">$99,156.68</div>
+                        </div>
+                        <div>
+                            <div class="text-gray-600">Months Analyzed</div>
+                            <div class="text-lg font-bold text-gray-800">9</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab 3: Service Details -->
+        <div id="service" class="tab-content">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-white rounded-lg shadow-lg p-6">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-4">Service Information</h2>
+                    <div class="space-y-3">
+                        <div class="flex justify-between py-2 border-b">
+                            <span class="text-gray-600">Service Type:</span>
+                            <span class="font-semibold">Front Load Refuse (FEL)</span>
+                        </div>
+                        <div class="flex justify-between py-2 border-b">
+                            <span class="text-gray-600">Vendor:</span>
+                            <span class="font-semibold">Community Waste Disposal, LP</span>
+                        </div>
+                        <div class="flex justify-between py-2 border-b">
+                            <span class="text-gray-600">Account Number:</span>
+                            <span class="font-semibold">105004</span>
+                        </div>
+                        <div class="flex justify-between py-2 border-b">
+                            <span class="text-gray-600">Container Type:</span>
+                            <span class="font-semibold">Dumpsters</span>
+                        </div>
+                        <div class="flex justify-between py-2 border-b">
+                            <span class="text-gray-600">Recycling Program:</span>
+                            <span class="font-semibold">Yes (416 units)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-lg p-6">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-4">Data Limitations</h2>
+                    <div class="space-y-3">
+                        <div class="p-3 bg-yellow-50 border-l-4 border-yellow-400 rounded">
+                            <div class="font-semibold text-gray-800">Container Specifications</div>
+                            <div class="text-sm text-gray-600 mt-1">Container count, size, and frequency not available in invoice data</div>
+                        </div>
+                        <div class="p-3 bg-yellow-50 border-l-4 border-yellow-400 rounded">
+                            <div class="font-semibold text-gray-800">Yards Per Door</div>
+                            <div class="text-sm text-gray-600 mt-1">Cannot calculate without container specifications</div>
+                        </div>
+                        <div class="p-3 bg-blue-50 border-l-4 border-blue-400 rounded">
+                            <div class="font-semibold text-gray-800">Recommendation</div>
+                            <div class="text-sm text-gray-600 mt-1">Obtain service contract for complete service specifications</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab 4: Optimization -->
+        <div id="optimization" class="tab-content">
+            <div class="bg-white rounded-lg shadow-lg p-6">
+                <h2 class="text-2xl font-bold text-gray-800 mb-4">Optimization Analysis</h2>
+
+                <div class="space-y-4">
+                    <!-- Compactor Check -->
+                    <div class="p-4 bg-gray-50 rounded-lg">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-lg font-semibold">Compactor Optimization</h3>
+                            <span class="px-3 py-1 bg-gray-200 text-gray-700 rounded-full text-sm font-medium">N/A</span>
+                        </div>
+                        <p class="text-gray-600 text-sm">Property uses dumpster service, not compactors. Optimization trigger not applicable.</p>
+                        <div class="mt-2 text-xs text-gray-500">
+                            <strong>Trigger:</strong> Avg tons/haul &lt; 6 tons (compactors only)
+                        </div>
+                    </div>
+
+                    <!-- Contamination Check -->
+                    <div class="p-4 bg-gray-50 rounded-lg">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-lg font-semibold">Contamination Reduction</h3>
+                            <span class="px-3 py-1 bg-green-100 text-green-700 rounded-full text-sm font-medium">PASS</span>
+                        </div>
+                        <p class="text-gray-600 text-sm">No contamination charges identified in invoice data. Currently operating within normal parameters.</p>
+                        <div class="mt-2 text-xs text-gray-500">
+                            <strong>Trigger:</strong> Contamination charges &gt; 3% of total spend
+                        </div>
+                        <div class="mt-2 text-sm">
+                            <strong>Status:</strong> 0% contamination charges
+                        </div>
+                    </div>
+
+                    <!-- Bulk Subscription Check -->
+                    <div class="p-4 bg-gray-50 rounded-lg">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-lg font-semibold">Bulk Subscription (Ally Waste)</h3>
+                            <span class="px-3 py-1 bg-green-100 text-green-700 rounded-full text-sm font-medium">PASS</span>
+                        </div>
+                        <p class="text-gray-600 text-sm">No bulk trash charges identified. Ally Waste subscription not recommended at this time.</p>
+                        <div class="mt-2 text-xs text-gray-500">
+                            <strong>Trigger:</strong> Average monthly bulk &gt; $500
+                        </div>
+                        <div class="mt-2 text-sm">
+                            <strong>Status:</strong> $0/month bulk charges
+                        </div>
+                    </div>
+
+                    <!-- Summary -->
+                    <div class="p-4 bg-blue-50 border-l-4 border-blue-500 rounded">
+                        <h3 class="text-lg font-semibold text-blue-900 mb-2">Overall Assessment</h3>
+                        <p class="text-blue-800">No optimization opportunities identified with current data. Property is operating within normal parameters.</p>
+                        <p class="text-sm text-blue-700 mt-2">Recommendation: Obtain service contract and container specifications for complete analysis.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab 5: Contract Status -->
+        <div id="contract" class="tab-content">
+            <div class="bg-white rounded-lg shadow-lg p-6">
+                <h2 class="text-2xl font-bold text-gray-800 mb-4">Contract Status</h2>
+
+                <div class="p-6 bg-red-50 border-2 border-red-200 rounded-lg mb-6">
+                    <div class="flex items-center mb-2">
+                        <svg class="w-6 h-6 text-red-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+                        </svg>
+                        <span class="text-lg font-semibold text-red-900">No Contract on File</span>
+                    </div>
+                    <p class="text-red-800">Service contract not available for McCord Park FL. Contract review recommended.</p>
+                </div>
+
+                <div class="mb-6">
+                    <h3 class="text-lg font-semibold text-gray-800 mb-3">Recommended Contract Review Items</h3>
+                    <ul class="space-y-2">
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-blue-600 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                            <span>Renewal terms and automatic renewal clauses</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-blue-600 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                            <span>Rate increase provisions and CPI adjustments</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-blue-600 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                            <span>Service level specifications (container count, size, frequency)</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-blue-600 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                            <span>Termination rights and notice periods</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-blue-600 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                            <span>Contamination penalty terms and thresholds</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="p-4 bg-blue-50 rounded-lg">
+                    <h3 class="font-semibold text-blue-900 mb-2">Next Steps</h3>
+                    <ol class="list-decimal list-inside space-y-1 text-blue-800">
+                        <li>Obtain executed service agreement from vendor or property management</li>
+                        <li>Review contract terms for potential optimization opportunities</li>
+                        <li>Validate that invoiced services match contracted specifications</li>
+                        <li>Re-run analysis with contract data for complete assessment</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="mt-8 text-center text-gray-500 text-sm">
+            <p>Generated by Advantage Waste Analytics • 2025-11-03 14:04:39</p>
+            <p class="mt-1">Analysis based on WasteWise Calculation Standards v2.0</p>
+        </div>
+    </div>
+
+    <script>
+        // Tab switching
+        function showTab(tabName) {
+            // Hide all tabs
+            const tabs = document.querySelectorAll('.tab-content');
+            tabs.forEach(tab => tab.classList.remove('active'));
+
+            // Remove active from all buttons
+            const buttons = document.querySelectorAll('.tab-button');
+            buttons.forEach(btn => btn.classList.remove('active'));
+
+            // Show selected tab
+            document.getElementById(tabName).classList.add('active');
+
+            // Activate button
+            event.target.classList.add('active');
+        }
+
+        // Chart data from Python
+        const chartData = {"monthly": [{"YearMonth": "2025-01", "Monthly_Cost": 9734.09, "Invoice_Count": 1, "Cost_Per_Door": 23.39925480769231}, {"YearMonth": "2025-02", "Monthly_Cost": 11186.23, "Invoice_Count": 1, "Cost_Per_Door": 26.88997596153846}, {"YearMonth": "2025-03", "Monthly_Cost": 11186.23, "Invoice_Count": 1, "Cost_Per_Door": 26.88997596153846}, {"YearMonth": "2025-04", "Monthly_Cost": 11186.23, "Invoice_Count": 1, "Cost_Per_Door": 26.88997596153846}, {"YearMonth": "2025-05", "Monthly_Cost": 11186.23, "Invoice_Count": 1, "Cost_Per_Door": 26.88997596153846}, {"YearMonth": "2025-06", "Monthly_Cost": 11186.23, "Invoice_Count": 1, "Cost_Per_Door": 26.88997596153846}, {"YearMonth": "2025-07", "Monthly_Cost": 11279.6, "Invoice_Count": 1, "Cost_Per_Door": 27.114423076923078}, {"YearMonth": "2025-08", "Monthly_Cost": 11105.92, "Invoice_Count": 1, "Cost_Per_Door": 26.696923076923078}, {"YearMonth": "2025-10", "Monthly_Cost": 11105.92, "Invoice_Count": 1, "Cost_Per_Door": 26.696923076923078}], "labels": ["2025-01", "2025-02", "2025-03", "2025-04", "2025-05", "2025-06", "2025-07", "2025-08", "2025-10"], "costs": [9734.09, 11186.23, 11186.23, 11186.23, 11186.23, 11186.23, 11279.6, 11105.92, 11105.92], "cpd": [23.39925480769231, 26.88997596153846, 26.88997596153846, 26.88997596153846, 26.88997596153846, 26.88997596153846, 27.114423076923078, 26.696923076923078, 26.696923076923078], "invoice_counts": [1, 1, 1, 1, 1, 1, 1, 1, 1], "category_breakdown": {"labels": ["Base Charges", "Taxes"], "values": [91515.45000000001, 7556.98]}};
+
+        // Chart.js configurations
+        const chartOptions = {
+            responsive: true,
+            maintainAspectRatio: true,
+            plugins: {
+                legend: {
+                    display: true,
+                    position: 'top'
+                }
+            }
+        };
+
+        // Cost Trend Chart
+        const costCtx = document.getElementById('costTrendChart').getContext('2d');
+        new Chart(costCtx, {
+            type: 'line',
+            data: {
+                labels: chartData.labels,
+                datasets: [{
+                    label: 'Monthly Cost',
+                    data: chartData.costs,
+                    borderColor: '#667eea',
+                    backgroundColor: 'rgba(102, 126, 234, 0.1)',
+                    tension: 0.4,
+                    fill: true
+                }]
+            },
+            options: {
+                ...chartOptions,
+                scales: {
+                    y: {
+                        beginAtZero: false,
+                        ticks: {
+                            callback: function(value) {
+                                return '$' + value.toLocaleString();
+                            }
+                        }
+                    }
+                },
+                plugins: {
+                    ...chartOptions.plugins,
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return 'Cost: $' + context.parsed.y.toLocaleString('en-US', {minimumFractionDigits: 2});
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        // Invoice Count Chart
+        const invCtx = document.getElementById('invoiceCountChart').getContext('2d');
+        new Chart(invCtx, {
+            type: 'bar',
+            data: {
+                labels: chartData.labels,
+                datasets: [{
+                    label: 'Invoice Count',
+                    data: chartData.invoice_counts,
+                    backgroundColor: '#764ba2',
+                    borderRadius: 6
+                }]
+            },
+            options: {
+                ...chartOptions,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            stepSize: 1
+                        }
+                    }
+                }
+            }
+        });
+
+        // Category Pie Chart
+        const catCtx = document.getElementById('categoryPieChart').getContext('2d');
+        new Chart(catCtx, {
+            type: 'doughnut',
+            data: {
+                labels: chartData.category_breakdown.labels,
+                datasets: [{
+                    data: chartData.category_breakdown.values,
+                    backgroundColor: ['#667eea', '#764ba2'],
+                    borderWidth: 2,
+                    borderColor: '#fff'
+                }]
+            },
+            options: {
+                ...chartOptions,
+                plugins: {
+                    ...chartOptions.plugins,
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                const label = context.label || '';
+                                const value = context.parsed || 0;
+                                const total = context.dataset.data.reduce((a, b) => a + b, 0);
+                                const percentage = ((value / total) * 100).toFixed(1);
+                                return label + ': $' + value.toLocaleString('en-US', {minimumFractionDigits: 2}) + ' (' + percentage + '%)';
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        // CPD Trend Chart
+        const cpdCtx = document.getElementById('cpdTrendChart').getContext('2d');
+        new Chart(cpdCtx, {
+            type: 'line',
+            data: {
+                labels: chartData.labels,
+                datasets: [{
+                    label: 'Cost Per Door',
+                    data: chartData.cpd,
+                    borderColor: '#f59e0b',
+                    backgroundColor: 'rgba(245, 158, 11, 0.1)',
+                    tension: 0.4,
+                    fill: true
+                }]
+            },
+            options: {
+                ...chartOptions,
+                scales: {
+                    y: {
+                        beginAtZero: false,
+                        ticks: {
+                            callback: function(value) {
+                                return '$' + value.toFixed(2);
+                            }
+                        }
+                    }
+                },
+                plugins: {
+                    ...chartOptions.plugins,
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return 'CPD: $' + context.parsed.y.toFixed(2);
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

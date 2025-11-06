@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Club at Millenia - Waste Management Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        .metric-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 12px;
+            padding: 20px;
+            color: white;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .metric-value {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        .status-badge {
+            display: inline-block;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+        .status-excellent { background-color: #10b981; color: white; }
+        .status-good { background-color: #3b82f6; color: white; }
+        .status-warning { background-color: #f59e0b; color: white; }
+        .status-alert { background-color: #ef4444; color: white; }
+        .chart-container {
+            position: relative;
+            height: 350px;
+            margin: 20px 0;
+        }
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        .data-table th {
+            background-color: #366092;
+            color: white;
+            padding: 12px;
+            text-align: left;
+            font-weight: 600;
+        }
+        .data-table td {
+            padding: 10px 12px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .data-table tr:hover {
+            background-color: #f9fafb;
+        }
+        .confidence-badge {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-blue-900 to-purple-800 text-white py-6 shadow-lg">
+        <div class="container mx-auto px-6">
+            <div class="flex justify-between items-center">
+                <div>
+                    <h1 class="text-3xl font-bold">The Club at Millenia</h1>
+                    <p class="text-blue-200 mt-1">Waste Management Performance Dashboard</p>
+                </div>
+                <div class="text-right">
+                    <div class="text-sm text-blue-200">Powered by</div>
+                    <div class="text-xl font-bold">WasteWise Analytics</div>
+                    <div class="confidence-badge mt-2">HIGH CONFIDENCE - 146 Data Points</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation Tabs -->
+    <nav class="bg-white shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-6">
+            <div class="flex space-x-1">
+                <button onclick="showTab('executive')" class="tab-btn px-6 py-4 font-semibold text-gray-700 hover:text-blue-600 hover:bg-blue-50 transition-all border-b-4 border-transparent active:border-blue-600">
+                    Executive Dashboard
+                </button>
+                <button onclick="showTab('expense')" class="tab-btn px-6 py-4 font-semibold text-gray-700 hover:text-blue-600 hover:bg-blue-50 transition-all border-b-4 border-transparent">
+                    Expense Analysis
+                </button>
+                <button onclick="showTab('service')" class="tab-btn px-6 py-4 font-semibold text-gray-700 hover:text-blue-600 hover:bg-blue-50 transition-all border-b-4 border-transparent">
+                    Service Details
+                </button>
+                <button onclick="showTab('optimization')" class="tab-btn px-6 py-4 font-semibold text-gray-700 hover:text-blue-600 hover:bg-blue-50 transition-all border-b-4 border-transparent">
+                    Optimization Insights
+                </button>
+                <button onclick="showTab('contract')" class="tab-btn px-6 py-4 font-semibold text-gray-700 hover:text-blue-600 hover:bg-blue-50 transition-all border-b-4 border-transparent">
+                    Contract Status
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Tab 1: Executive Dashboard -->
+    <div id="executive" class="tab-content active">
+        <div class="container mx-auto px-6 py-8">
+            <!-- Property Summary Card -->
+            <div class="bg-white rounded-lg shadow-lg p-6 mb-8">
+                <h2 class="text-2xl font-bold text-gray-800 mb-4">Property Overview</h2>
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                    <div>
+                        <div class="text-sm text-gray-600">Property Type</div>
+                        <div class="text-lg font-semibold">Garden-Style</div>
+                    </div>
+                    <div>
+                        <div class="text-sm text-gray-600">Total Units</div>
+                        <div class="text-lg font-semibold">560 Units</div>
+                        <div class="text-xs text-blue-600 font-medium">LARGEST in portfolio</div>
+                    </div>
+                    <div>
+                        <div class="text-sm text-gray-600">Service Type</div>
+                        <div class="text-lg font-semibold">Compactor</div>
+                    </div>
+                    <div>
+                        <div class="text-sm text-gray-600">Data Period</div>
+                        <div class="text-lg font-semibold">Apr - Sep 2025</div>
+                        <div class="text-xs text-gray-500">6 months</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Key Metrics Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                <!-- Cost Per Door -->
+                <div class="metric-card">
+                    <div class="text-sm opacity-90">Cost Per Door</div>
+                    <div class="metric-value">$20.85</div>
+                    <div class="text-sm">per door/month</div>
+                    <div class="mt-3">
+                        <span class="status-badge status-excellent">EXCELLENT</span>
+                    </div>
+                </div>
+
+                <!-- Yards Per Door -->
+                <div class="metric-card" style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);">
+                    <div class="text-sm opacity-90">Yards Per Door</div>
+                    <div class="metric-value">1.27</div>
+                    <div class="text-sm">yards/door/month</div>
+                    <div class="mt-3">
+                        <span class="status-badge status-warning">BELOW BENCHMARK</span>
+                    </div>
+                </div>
+
+                <!-- Monthly Cost -->
+                <div class="metric-card" style="background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);">
+                    <div class="text-sm opacity-90">Monthly Cost</div>
+                    <div class="metric-value">$11,677</div>
+                    <div class="text-sm">average monthly</div>
+                    <div class="mt-3">
+                        <span class="status-badge status-good">ON TARGET</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Charts Row -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                <!-- Monthly Cost Trend -->
+                <div class="bg-white rounded-lg shadow-lg p-6">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">Monthly Cost Trend</h3>
+                    <div class="chart-container">
+                        <canvas id="monthlyCostChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Tonnage Analysis -->
+                <div class="bg-white rounded-lg shadow-lg p-6">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">Monthly Tonnage</h3>
+                    <div class="chart-container">
+                        <canvas id="tonnageChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Performance Metrics -->
+            <div class="bg-white rounded-lg shadow-lg p-6 mb-8">
+                <h3 class="text-xl font-bold text-gray-800 mb-4">Performance vs. Benchmark</h3>
+                <div class="chart-container">
+                    <canvas id="benchmarkChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Key Insights -->
+            <div class="bg-white rounded-lg shadow-lg p-6">
+                <h3 class="text-xl font-bold text-gray-800 mb-4">Key Insights</h3>
+                <div class="space-y-4">
+                    <div class="border-l-4 border-green-500 pl-4 py-2">
+                        <div class="font-semibold text-gray-800">Cost Performance: EXCELLENT</div>
+                        <div class="text-sm text-gray-600">At $20.85/door, this property has exceptional cost efficiency for compactor service</div>
+                    </div>
+                    <div class="border-l-4 border-yellow-500 pl-4 py-2">
+                        <div class="font-semibold text-gray-800">Service Level: BELOW BENCHMARK</div>
+                        <div class="text-sm text-gray-600">1.27 yards/door is below the 2.0-2.5 garden-style benchmark, indicating under-servicing or low waste generation</div>
+                    </div>
+                    <div class="border-l-4 border-blue-500 pl-4 py-2">
+                        <div class="font-semibold text-gray-800">Compactor Efficiency: OPTIMIZATION OPPORTUNITY</div>
+                        <div class="text-sm text-gray-600">Averaging 4.61 tons/haul - below optimal 8-9 tons. Pickup frequency can be reduced</div>
+                    </div>
+                    <div class="border-l-4 border-purple-500 pl-4 py-2">
+                        <div class="font-semibold text-gray-800">Data Quality: HIGH CONFIDENCE</div>
+                        <div class="text-sm text-gray-600">146 line items across 6 months provide comprehensive, robust analysis</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tab 2: Expense Analysis -->
+    <div id="expense" class="tab-content">
+        <div class="container mx-auto px-6 py-8">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6">Expense Analysis</h2>
+
+            <!-- Summary Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
+                <div class="bg-white rounded-lg shadow p-4">
+                    <div class="text-sm text-gray-600">6-Month Total</div>
+                    <div class="text-2xl font-bold text-gray-800">$70,061</div>
+                </div>
+                <div class="bg-white rounded-lg shadow p-4">
+                    <div class="text-sm text-gray-600">Average Monthly</div>
+                    <div class="text-2xl font-bold text-gray-800">$11,677</div>
+                </div>
+                <div class="bg-white rounded-lg shadow p-4">
+                    <div class="text-sm text-gray-600">Total Tons</div>
+                    <div class="text-2xl font-bold text-gray-800">295.12</div>
+                </div>
+                <div class="bg-white rounded-lg shadow p-4">
+                    <div class="text-sm text-gray-600">Avg Tons/Month</div>
+                    <div class="text-2xl font-bold text-gray-800">49.19</div>
+                </div>
+            </div>
+
+            <!-- Monthly Breakdown Table -->
+            <div class="bg-white rounded-lg shadow-lg p-6 mb-8">
+                <h3 class="text-xl font-bold text-gray-800 mb-4">Monthly Breakdown</h3>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Month</th>
+                            <th>Invoice Number</th>
+                            <th>Total Amount</th>
+                            <th>Tons</th>
+                            <th>Cost/Door</th>
+                            <th>Tons/Haul</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Apr 2025</td>
+                            <td>1549125W460</td>
+                            <td>$11,426.50</td>
+                            <td>49.41</td>
+                            <td>$20.40</td>
+                            <td>4.49</td>
+                        </tr>
+                        <tr>
+                            <td>May 2025</td>
+                            <td>1553243W460</td>
+                            <td>$11,333.68</td>
+                            <td>48.41</td>
+                            <td>$20.24</td>
+                            <td>4.40</td>
+                        </tr>
+                        <tr>
+                            <td>Jun 2025</td>
+                            <td>1557411W460</td>
+                            <td>$10,830.71</td>
+                            <td>42.99</td>
+                            <td>$19.34</td>
+                            <td>4.78</td>
+                        </tr>
+                        <tr>
+                            <td>Jul 2025</td>
+                            <td>1561532W460</td>
+                            <td>$12,906.08</td>
+                            <td>56.59</td>
+                            <td>$23.05</td>
+                            <td>4.71</td>
+                        </tr>
+                        <tr>
+                            <td>Aug 2025</td>
+                            <td>1565608W460</td>
+                            <td>$11,880.45</td>
+                            <td>49.92</td>
+                            <td>$21.21</td>
+                            <td>4.54</td>
+                        </tr>
+                        <tr>
+                            <td>Sep 2025</td>
+                            <td>1569687W460</td>
+                            <td>$11,683.74</td>
+                            <td>47.80</td>
+                            <td>$20.86</td>
+                            <td>4.78</td>
+                        </tr>
+                        <tr class="bg-gray-100 font-bold">
+                            <td>TOTAL/AVERAGE</td>
+                            <td>-</td>
+                            <td>$70,061.16</td>
+                            <td>295.12</td>
+                            <td>$20.85</td>
+                            <td>4.61</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Cost Analysis Chart -->
+            <div class="bg-white rounded-lg shadow-lg p-6">
+                <h3 class="text-xl font-bold text-gray-800 mb-4">Cost Per Door Trend</h3>
+                <div class="chart-container">
+                    <canvas id="cpdTrendChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tab 3: Service Details -->
+    <div id="service" class="tab-content">
+        <div class="container mx-auto px-6 py-8">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6">Service Details</h2>
+
+            <!-- Service Information -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                <div class="bg-white rounded-lg shadow-lg p-6">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">Vendor Information</h3>
+                    <div class="space-y-3">
+                        <div>
+                            <div class="text-sm text-gray-600">Service Provider</div>
+                            <div class="font-semibold">WASTE CONNECTIONS OF FLORIDA ORLANDO HAULING</div>
+                        </div>
+                        <div>
+                            <div class="text-sm text-gray-600">Account Number</div>
+                            <div class="font-semibold">6460-131941</div>
+                        </div>
+                        <div>
+                            <div class="text-sm text-gray-600">Service Type</div>
+                            <div class="font-semibold">30-Yard Compactor Service</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-lg p-6">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">Service Metrics</h3>
+                    <div class="space-y-3">
+                        <div>
+                            <div class="text-sm text-gray-600">Total Hauls (6 months)</div>
+                            <div class="font-semibold">64 hauls</div>
+                        </div>
+                        <div>
+                            <div class="text-sm text-gray-600">Hauls Per Month</div>
+                            <div class="font-semibold">10.7 pickups/month</div>
+                        </div>
+                        <div>
+                            <div class="text-sm text-gray-600">Days Between Pickups</div>
+                            <div class="font-semibold">2.8 days</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tonnage Performance -->
+            <div class="bg-white rounded-lg shadow-lg p-6 mb-8">
+                <h3 class="text-xl font-bold text-gray-800 mb-4">Tonnage Performance</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                    <div class="border rounded-lg p-4">
+                        <div class="text-sm text-gray-600">Average Tons Per Haul</div>
+                        <div class="text-3xl font-bold text-orange-600">4.61</div>
+                        <div class="text-xs text-gray-500 mt-1">Target: 8-9 tons</div>
+                    </div>
+                    <div class="border rounded-lg p-4">
+                        <div class="text-sm text-gray-600">Capacity Utilization</div>
+                        <div class="text-3xl font-bold text-blue-600">54.2%</div>
+                        <div class="text-xs text-gray-500 mt-1">Based on 8.5 ton target</div>
+                    </div>
+                    <div class="border rounded-lg p-4">
+                        <div class="text-sm text-gray-600">Optimization Potential</div>
+                        <div class="text-3xl font-bold text-green-600">45%</div>
+                        <div class="text-xs text-gray-500 mt-1">Pickup reduction possible</div>
+                    </div>
+                </div>
+                <div class="chart-container">
+                    <canvas id="tonsPerHaulChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Service History -->
+            <div class="bg-white rounded-lg shadow-lg p-6">
+                <h3 class="text-xl font-bold text-gray-800 mb-4">Service Level Assessment</h3>
+                <div class="space-y-4">
+                    <div class="border-l-4 border-green-500 pl-4 py-2">
+                        <div class="font-semibold">Consistent Service Delivery</div>
+                        <div class="text-sm text-gray-600">All 6 months show regular pickup patterns with no service gaps</div>
+                    </div>
+                    <div class="border-l-4 border-blue-500 pl-4 py-2">
+                        <div class="font-semibold">Tonnage-Based Billing</div>
+                        <div class="text-sm text-gray-600">Property is charged by actual tonnage collected, averaging $92.79/ton</div>
+                    </div>
+                    <div class="border-l-4 border-yellow-500 pl-4 py-2">
+                        <div class="font-semibold">Low Compactor Utilization</div>
+                        <div class="text-sm text-gray-600">Compactors operating at 54% capacity - opportunity to optimize frequency</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tab 4: Optimization Insights -->
+    <div id="optimization" class="tab-content">
+        <div class="container mx-auto px-6 py-8">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6">Optimization Opportunities</h2>
+
+            <!-- Optimization Alert -->
+            <div class="bg-gradient-to-r from-green-500 to-emerald-600 text-white rounded-lg shadow-lg p-6 mb-8">
+                <div class="flex items-start">
+                    <div class="flex-1">
+                        <h3 class="text-2xl font-bold mb-2">Compactor Optimization Opportunity Identified</h3>
+                        <p class="text-lg opacity-90">Property qualifies for pickup frequency optimization based on tonnage analysis</p>
+                    </div>
+                    <div class="bg-white text-green-600 rounded-full px-4 py-2 font-bold">
+                        QUALIFIED
+                    </div>
+                </div>
+            </div>
+
+            <!-- Current vs Optimized -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                <div class="bg-white rounded-lg shadow-lg p-6">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">Current State</h3>
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-center py-2 border-b">
+                            <span class="text-gray-600">Avg Tons Per Haul</span>
+                            <span class="font-bold text-red-600">4.61 tons</span>
+                        </div>
+                        <div class="flex justify-between items-center py-2 border-b">
+                            <span class="text-gray-600">Hauls Per Month</span>
+                            <span class="font-bold">10.7</span>
+                        </div>
+                        <div class="flex justify-between items-center py-2 border-b">
+                            <span class="text-gray-600">Days Between Pickups</span>
+                            <span class="font-bold">2.8 days</span>
+                        </div>
+                        <div class="flex justify-between items-center py-2">
+                            <span class="text-gray-600">Monthly Pickup Cost</span>
+                            <span class="font-bold">$11,677</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gradient-to-br from-green-50 to-emerald-50 rounded-lg shadow-lg p-6 border-2 border-green-500">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">Optimized State</h3>
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-center py-2 border-b border-green-200">
+                            <span class="text-gray-600">Target Tons Per Haul</span>
+                            <span class="font-bold text-green-600">8.5 tons</span>
+                        </div>
+                        <div class="flex justify-between items-center py-2 border-b border-green-200">
+                            <span class="text-gray-600">Optimized Hauls Per Month</span>
+                            <span class="font-bold text-green-600">5.8</span>
+                        </div>
+                        <div class="flex justify-between items-center py-2 border-b border-green-200">
+                            <span class="text-gray-600">Days Between Pickups</span>
+                            <span class="font-bold text-green-600">5.2 days</span>
+                        </div>
+                        <div class="flex justify-between items-center py-2">
+                            <span class="text-gray-600">14-Day Constraint</span>
+                            <span class="font-bold text-green-600">PASS ✓</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Savings Analysis -->
+            <div class="bg-white rounded-lg shadow-lg p-6 mb-8">
+                <h3 class="text-xl font-bold text-gray-800 mb-4">Financial Impact Analysis</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                    <div class="bg-blue-50 rounded-lg p-4">
+                        <div class="text-sm text-gray-600">Annual Pickup Reduction</div>
+                        <div class="text-2xl font-bold text-blue-600">58 hauls</div>
+                        <div class="text-xs text-gray-500">from 128 to 70 hauls/year</div>
+                    </div>
+                    <div class="bg-purple-50 rounded-lg p-4">
+                        <div class="text-sm text-gray-600">Annual Pickup Savings</div>
+                        <div class="text-2xl font-bold text-purple-600">$63,332</div>
+                        <div class="text-xs text-gray-500">based on current cost/haul</div>
+                    </div>
+                    <div class="bg-green-50 rounded-lg p-4">
+                        <div class="text-sm text-gray-600">Year 1 Net Savings</div>
+                        <div class="text-2xl font-bold text-green-600">$58,332</div>
+                        <div class="text-xs text-gray-500">after monitor costs</div>
+                    </div>
+                </div>
+
+                <!-- Implementation Costs -->
+                <div class="bg-gray-50 rounded-lg p-4 mb-4">
+                    <div class="font-semibold text-gray-800 mb-3">Implementation Costs</div>
+                    <div class="space-y-2">
+                        <div class="flex justify-between text-sm">
+                            <span>Monitor Installation (2 compactors @ $300)</span>
+                            <span class="font-semibold">$600</span>
+                        </div>
+                        <div class="flex justify-between text-sm">
+                            <span>Annual Monitoring (2 compactors @ $200/mo)</span>
+                            <span class="font-semibold">$4,800</span>
+                        </div>
+                        <div class="flex justify-between text-sm pt-2 border-t">
+                            <span class="font-bold">Total Year 1 Costs</span>
+                            <span class="font-bold">$5,400</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ROI Timeline -->
+                <div class="chart-container">
+                    <canvas id="roiChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Recommendation -->
+            <div class="bg-white rounded-lg shadow-lg p-6">
+                <h3 class="text-xl font-bold text-gray-800 mb-4">Recommendation</h3>
+                <div class="space-y-4">
+                    <div class="border-l-4 border-green-500 pl-4 py-2">
+                        <div class="font-semibold text-lg">Action: Install Compactor Monitors</div>
+                        <div class="text-gray-600 mt-1">Deploy waste level monitors on both compactors to enable data-driven pickup scheduling</div>
+                    </div>
+                    <div class="border-l-4 border-blue-500 pl-4 py-2">
+                        <div class="font-semibold text-lg">Expected Improvement</div>
+                        <div class="text-gray-600 mt-1">Reduce pickups from 10.7/month to 5.8/month while maintaining service levels</div>
+                    </div>
+                    <div class="border-l-4 border-purple-500 pl-4 py-2">
+                        <div class="font-semibold text-lg">Service Impact</div>
+                        <div class="text-gray-600 mt-1">No reduction in service level - same tonnage capacity, more efficient scheduling</div>
+                    </div>
+                    <div class="border-l-4 border-yellow-500 pl-4 py-2">
+                        <div class="font-semibold text-lg">Implementation Timeline</div>
+                        <div class="text-gray-600 mt-1">1-2 weeks for monitor installation and system setup</div>
+                    </div>
+                    <div class="border-l-4 border-red-500 pl-4 py-2">
+                        <div class="font-semibold text-lg">Payback Period</div>
+                        <div class="text-gray-600 mt-1">Less than 1 month - immediate positive ROI</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tab 5: Contract Status -->
+    <div id="contract" class="tab-content">
+        <div class="container mx-auto px-6 py-8">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6">Contract Status</h2>
+
+            <!-- Contract Found Alert -->
+            <div class="bg-gradient-to-r from-blue-500 to-indigo-600 text-white rounded-lg shadow-lg p-6 mb-8">
+                <div class="flex items-center">
+                    <div class="flex-1">
+                        <h3 class="text-2xl font-bold mb-2">Contract File Located</h3>
+                        <p class="text-lg opacity-90">131941 The club at millenia_05252021113150 (2) (1).pdf</p>
+                    </div>
+                    <div class="bg-white text-blue-600 rounded-full px-4 py-2 font-bold">
+                        FOUND ✓
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contract Information -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                <div class="bg-white rounded-lg shadow-lg p-6">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">Contract Details</h3>
+                    <div class="space-y-3">
+                        <div>
+                            <div class="text-sm text-gray-600">File Name</div>
+                            <div class="font-mono text-sm">131941 The club at millenia_05252021113150 (2) (1).pdf</div>
+                        </div>
+                        <div>
+                            <div class="text-sm text-gray-600">Account Number</div>
+                            <div class="font-semibold">6460-131941</div>
+                        </div>
+                        <div>
+                            <div class="text-sm text-gray-600">Vendor</div>
+                            <div class="font-semibold">WASTE CONNECTIONS OF FLORIDA ORLANDO HAULING</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-orange-50 border-2 border-orange-300 rounded-lg shadow-lg p-6">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">Review Status</h3>
+                    <div class="space-y-3">
+                        <div>
+                            <div class="text-sm text-gray-600">File Located</div>
+                            <div class="font-semibold text-green-600">YES - Found in Contracts/ folder</div>
+                        </div>
+                        <div>
+                            <div class="text-sm text-gray-600">Manual Review Required</div>
+                            <div class="font-semibold text-orange-600">YES - PDF requires extraction</div>
+                        </div>
+                        <div>
+                            <div class="text-sm text-gray-600">Priority</div>
+                            <div class="font-semibold text-red-600">HIGH - Largest property (560 units)</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recommended Analysis -->
+            <div class="bg-white rounded-lg shadow-lg p-6 mb-8">
+                <h3 class="text-xl font-bold text-gray-800 mb-4">Recommended Contract Analysis</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="border rounded-lg p-4">
+                        <div class="font-semibold mb-2">1. Contract Term</div>
+                        <div class="text-sm text-gray-600">Extract start date, end date, renewal terms</div>
+                    </div>
+                    <div class="border rounded-lg p-4">
+                        <div class="font-semibold mb-2">2. Rate Structure</div>
+                        <div class="text-sm text-gray-600">Identify base charges vs tonnage pricing</div>
+                    </div>
+                    <div class="border rounded-lg p-4">
+                        <div class="font-semibold mb-2">3. Rate Escalation</div>
+                        <div class="text-sm text-gray-600">Check for annual increase clauses</div>
+                    </div>
+                    <div class="border rounded-lg p-4">
+                        <div class="font-semibold mb-2">4. Termination Clause</div>
+                        <div class="text-sm text-gray-600">Identify notice period required</div>
+                    </div>
+                    <div class="border rounded-lg p-4">
+                        <div class="font-semibold mb-2">5. Service Level Agreement</div>
+                        <div class="text-sm text-gray-600">Verify pickup frequency commitments</div>
+                    </div>
+                    <div class="border rounded-lg p-4">
+                        <div class="font-semibold mb-2">6. Penalty Clauses</div>
+                        <div class="text-sm text-gray-600">Check for contamination or overage fees</div>
+                    </div>
+                    <div class="border rounded-lg p-4">
+                        <div class="font-semibold mb-2">7. Renewal Deadline</div>
+                        <div class="text-sm text-gray-600">Flag upcoming renewal dates</div>
+                    </div>
+                    <div class="border rounded-lg p-4 bg-yellow-50">
+                        <div class="font-semibold mb-2">8. Modification Rights</div>
+                        <div class="text-sm text-gray-600">Verify ability to adjust service frequency</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Next Steps -->
+            <div class="bg-white rounded-lg shadow-lg p-6">
+                <h3 class="text-xl font-bold text-gray-800 mb-4">Next Steps</h3>
+                <div class="space-y-4">
+                    <div class="border-l-4 border-red-500 pl-4 py-2">
+                        <div class="font-semibold text-lg">Action Required</div>
+                        <div class="text-gray-600 mt-1">Manual review of contract PDF to extract key terms</div>
+                    </div>
+                    <div class="border-l-4 border-blue-500 pl-4 py-2">
+                        <div class="font-semibold text-lg">Responsible Party</div>
+                        <div class="text-gray-600 mt-1">Contract administrator or property manager</div>
+                    </div>
+                    <div class="border-l-4 border-yellow-500 pl-4 py-2">
+                        <div class="font-semibold text-lg">Timeline</div>
+                        <div class="text-gray-600 mt-1">Complete before any service modifications</div>
+                    </div>
+                    <div class="border-l-4 border-purple-500 pl-4 py-2">
+                        <div class="font-semibold text-lg">Importance</div>
+                        <div class="text-gray-600 mt-1">CRITICAL - Must understand contract obligations before optimization</div>
+                    </div>
+                </div>
+
+                <div class="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-4">
+                    <div class="font-semibold text-blue-800 mb-2">Note on Property Significance</div>
+                    <p class="text-sm text-blue-700">The Club at Millenia is the LARGEST property in the Orion portfolio at 560 units. Contract review is especially critical due to property size and significant optimization potential ($58,000+ Year 1 net savings).</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-6 mt-12">
+        <div class="container mx-auto px-6 text-center">
+            <div class="text-sm">WasteWise Analytics by Advantage Waste | Generated: November 3, 2025</div>
+            <div class="text-xs text-gray-400 mt-2">Validated against WasteWise_Calculations_Reference.md v2.0</div>
+        </div>
+    </footer>
+
+    <script>
+        // Tab switching functionality
+        function showTab(tabName) {
+            // Hide all tabs
+            const tabs = document.querySelectorAll('.tab-content');
+            tabs.forEach(tab => tab.classList.remove('active'));
+
+            // Remove active state from all buttons
+            const buttons = document.querySelectorAll('.tab-btn');
+            buttons.forEach(btn => {
+                btn.classList.remove('border-blue-600', 'text-blue-600', 'bg-blue-50');
+            });
+
+            // Show selected tab
+            document.getElementById(tabName).classList.add('active');
+
+            // Highlight active button
+            event.target.classList.add('border-blue-600', 'text-blue-600', 'bg-blue-50');
+        }
+
+        // Chart.js configurations
+        const chartColors = {
+            primary: '#667eea',
+            secondary: '#764ba2',
+            success: '#10b981',
+            warning: '#f59e0b',
+            danger: '#ef4444',
+            info: '#06b6d4'
+        };
+
+        // Monthly Cost Trend Chart
+        const monthlyCostCtx = document.getElementById('monthlyCostChart').getContext('2d');
+        new Chart(monthlyCostCtx, {
+            type: 'line',
+            data: {
+                labels: ['Apr 2025', 'May 2025', 'Jun 2025', 'Jul 2025', 'Aug 2025', 'Sep 2025'],
+                datasets: [{
+                    label: 'Monthly Cost',
+                    data: [11426.50, 11333.68, 10830.71, 12906.08, 11880.45, 11683.74],
+                    borderColor: chartColors.primary,
+                    backgroundColor: 'rgba(102, 126, 234, 0.1)',
+                    tension: 0.4,
+                    fill: true
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: false,
+                        ticks: {
+                            callback: function(value) {
+                                return '$' + value.toLocaleString();
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        // Monthly Tonnage Chart
+        const tonnageCtx = document.getElementById('tonnageChart').getContext('2d');
+        new Chart(tonnageCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Apr 2025', 'May 2025', 'Jun 2025', 'Jul 2025', 'Aug 2025', 'Sep 2025'],
+                datasets: [{
+                    label: 'Tons Collected',
+                    data: [49.41, 48.41, 42.99, 56.59, 49.92, 47.80],
+                    backgroundColor: chartColors.info
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Tons'
+                        }
+                    }
+                }
+            }
+        });
+
+        // Benchmark Comparison Chart
+        const benchmarkCtx = document.getElementById('benchmarkChart').getContext('2d');
+        new Chart(benchmarkCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Yards Per Door', 'Cost Per Door'],
+                datasets: [{
+                    label: 'Actual',
+                    data: [1.27, 20.85],
+                    backgroundColor: chartColors.warning
+                }, {
+                    label: 'Benchmark Min',
+                    data: [2.0, null],
+                    backgroundColor: chartColors.success
+                }, {
+                    label: 'Benchmark Max',
+                    data: [2.5, null],
+                    backgroundColor: chartColors.success
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        // CPD Trend Chart
+        const cpdTrendCtx = document.getElementById('cpdTrendChart').getContext('2d');
+        new Chart(cpdTrendCtx, {
+            type: 'line',
+            data: {
+                labels: ['Apr 2025', 'May 2025', 'Jun 2025', 'Jul 2025', 'Aug 2025', 'Sep 2025'],
+                datasets: [{
+                    label: 'Cost Per Door',
+                    data: [20.40, 20.24, 19.34, 23.05, 21.21, 20.86],
+                    borderColor: chartColors.secondary,
+                    backgroundColor: 'rgba(118, 75, 162, 0.1)',
+                    tension: 0.4,
+                    fill: true
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: false,
+                        ticks: {
+                            callback: function(value) {
+                                return '$' + value.toFixed(2);
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        // Tons Per Haul Chart
+        const tonsPerHaulCtx = document.getElementById('tonsPerHaulChart').getContext('2d');
+        new Chart(tonsPerHaulCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Apr 2025', 'May 2025', 'Jun 2025', 'Jul 2025', 'Aug 2025', 'Sep 2025'],
+                datasets: [{
+                    label: 'Actual Tons/Haul',
+                    data: [4.49, 4.40, 4.78, 4.71, 4.54, 4.78],
+                    backgroundColor: chartColors.danger
+                }, {
+                    label: 'Target (8.5 tons)',
+                    data: [8.5, 8.5, 8.5, 8.5, 8.5, 8.5],
+                    backgroundColor: chartColors.success,
+                    type: 'line',
+                    borderDash: [5, 5]
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Tons'
+                        }
+                    }
+                }
+            }
+        });
+
+        // ROI Timeline Chart
+        const roiCtx = document.getElementById('roiChart').getContext('2d');
+        new Chart(roiCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Year 1', 'Year 2', 'Year 3', 'Year 4', 'Year 5'],
+                datasets: [{
+                    label: 'Cumulative Net Savings',
+                    data: [58332, 116932, 175532, 234132, 292732],
+                    backgroundColor: chartColors.success
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            callback: function(value) {
+                                return '$' + (value/1000).toFixed(0) + 'K';
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+================================================================================
+McCORD PARK FL - VALIDATION REPORT
+Generated: 2025-11-03 14:02:19
+================================================================================
+
+1. FORMULA VERIFICATION
+----------------------------------------
+✓ Cost per door formula: Total / 416
+  Average Monthly Cost: $11,017.41
+  Expected CPD: $26.48
+  Formula Status: PASS (uses Excel formula =B/416)
+
+✓ All Excel formulas present (not hardcoded)
+✓ Calculations match WasteWise_Calculations_Reference.md
+
+2. DATA ACCURACY
+----------------------------------------
+✓ Total invoices: 9
+✓ Total line items: 42
+✓ Date range: 2025-01-01 to 2025-10-01
+✓ Total spend: $99,156.68
+✓ Unit count: 416 (used consistently)
+✓ No cross-contamination from other properties
+
+3. RECOMMENDATION VALIDITY
+----------------------------------------
+✓ NO generic 'remove containers' advice
+✓ Compactor optimization: N/A (dumpster service)
+✓ Contamination trigger: NOT met (0% identified)
+✓ Bulk subscription trigger: NOT met ($0 average)
+✓ All insights data-driven (no hallucinations)
+
+4. OUTPUT COMPLETENESS
+----------------------------------------
+✓ Excel file has 6 required sheets:
+  - SUMMARY_FULL
+  - EXPENSE_ANALYSIS
+  - OPTIMIZATION
+  - QUALITY_CHECK
+  - DOCUMENTATION_NOTES
+  - CONTRACT_TERMS
+✓ Files properly named
+
+5. DATA LIMITATIONS IDENTIFIED
+----------------------------------------
+⚠ Container specifications not available:
+  - Container count: Unknown
+  - Container size: Unknown
+  - Pickup frequency: Unknown
+  Impact: Cannot calculate yards per door
+
+⚠ Contract not available:
+  - Renewal terms: Unknown
+  - Rate clauses: Unknown
+  Impact: Cannot analyze contract optimization
+
+================================================================================
+FINAL VALIDATION STATUS: PASS
+================================================================================
+
+All validations passed. Analysis complete with noted data limitations.
+Recommendations:
+1. Obtain service contract for complete analysis
+2. Request service specifications (container details)
+3. Re-run analysis once additional data available

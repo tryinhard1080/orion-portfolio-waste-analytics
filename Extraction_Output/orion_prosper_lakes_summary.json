@@ -1,0 +1,19 @@
+{
+  "property": "Orion Prosper Lakes",
+  "units": 308,
+  "vendor": "Republic Services",
+  "account": "3-0615-0156898",
+  "service_type": "Compactor",
+  "invoice_count": 2,
+  "total_spend": 3725.0,
+  "avg_monthly_cost": 1862.5,
+  "cost_per_door": 6.05,
+  "total_tons": 15.92,
+  "avg_tons_per_haul": 3.18,
+  "yards_per_door": 0.75,
+  "total_pickups": 5,
+  "avg_pickup_cost": 528.93,
+  "data_period": "2025-01-31 to 2025-04-30",
+  "compactor_optimization": true,
+  "num_hauls": 5
+}

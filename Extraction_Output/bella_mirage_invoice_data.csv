@@ -1,0 +1,103 @@
+Source File,Property,Vendor,Account #,Invoice #,Invoice Date,Due Date,Amount Due,Service Date,Description,Category,Quantity,UOM,Container Size (yd),Container Type,Frequency/Week,Unit Rate,Extended Amount,Notes,Data Source
+invoice (1).pdf,Bella Mirage,"Waste Management National Services, Inc.",GRY,1003547355,2025-08-14,,6949.37,2025-06-04,Trash Excess Yards 63160324,extra_pickup,1.0,incident,8,,4.0,35.0,35.0,Weekly x4 Permanent,Texas PDF
+invoice (1).pdf,Bella Mirage,"Waste Management National Services, Inc.",GRY,1003547355,2025-08-14,,6949.37,2025-06-04,Trash Excess Yards 63160323,extra_pickup,1.0,incident,8,,4.0,35.0,35.0,Weekly x4 Permanent,Texas PDF
+invoice (1).pdf,Bella Mirage,"Waste Management National Services, Inc.",GRY,1003547355,2025-08-14,,6949.37,2025-06-06,Trash Excess Yards 63242156,extra_pickup,1.0,incident,8,,4.0,0.0,0.0,Weekly x4 Permanent,Texas PDF
+invoice (1).pdf,Bella Mirage,"Waste Management National Services, Inc.",GRY,1003547355,2025-08-14,,6949.37,2025-06-11,Trash Excess Yards 63395908,extra_pickup,1.0,incident,8,,4.0,35.0,35.0,Weekly x4 Permanent,Texas PDF
+invoice (1).pdf,Bella Mirage,"Waste Management National Services, Inc.",GRY,1003547355,2025-08-14,,6949.37,2025-06-16,Trash Excess Yards 63783563,extra_pickup,1.0,incident,8,,4.0,0.0,0.0,Weekly x4 Permanent,Texas PDF
+invoice (1).pdf,Bella Mirage,"Waste Management National Services, Inc.",GRY,1003547355,2025-08-14,,6949.37,2025-06-30,Trash Excess Yards 63994685,extra_pickup,1.0,incident,8,,4.0,35.0,35.0,Weekly x4 Permanent,Texas PDF
+invoice (1).pdf,Bella Mirage,"Waste Management National Services, Inc.",GRY,1003547355,2025-08-14,,6949.37,2025-06-30,Trash Excess Yards 63994528,extra_pickup,1.0,incident,8,,4.0,35.0,35.0,Weekly x4 Permanent,Texas PDF
+invoice (1).pdf,Bella Mirage,"Waste Management National Services, Inc.",GRY,1003547355,2025-08-14,,6949.37,2025-06-30,Trash Excess Yards 63995257,extra_pickup,1.0,incident,8,,4.0,35.0,35.0,Weekly x4 Permanent,Texas PDF
+invoice (1).pdf,Bella Mirage,"Waste Management National Services, Inc.",GRY,1003547355,2025-08-14,,6949.37,2025-07-01,Trash Pickup,base,1.0,month,8,,4.0,1933.14,1933.14,Weekly x4 Permanent,Texas PDF
+invoice (1).pdf,Bella Mirage,"Waste Management National Services, Inc.",GRY,1003547355,2025-08-14,,6949.37,2025-07-01,Trash Pickup,base,1.0,month,8,,4.0,1626.75,1626.75,Weekly x4 Permanent,Texas PDF
+invoice (1).pdf,Bella Mirage,"Waste Management National Services, Inc.",GRY,1003547355,2025-08-14,,6949.37,2025-07-01,Trash Pickup,base,1.0,month,6,,4.0,1027.24,1027.24,Weekly x4 Permanent,Texas PDF
+invoice (1).pdf,Bella Mirage,"Waste Management National Services, Inc.",GRY,1003547355,2025-08-14,,6949.37,2025-07-01,Trash Pickup,base,1.0,month,8,,4.0,1004.28,1004.28,Weekly x4 Permanent,Texas PDF
+invoice (1).pdf,Bella Mirage,"Waste Management National Services, Inc.",GRY,1003547355,2025-08-14,,6949.37,2025-07-01,Trash Pickup,base,1.0,month,8,,4.0,668.4,668.4,Weekly x4 Permanent,Texas PDF
+invoice (1).pdf,Bella Mirage,"Waste Management National Services, Inc.",GRY,1003547355,2025-08-14,,6949.37,2025-07-01,Trash Pickup,base,1.0,month,4,,4.0,409.56,409.56,Weekly x4 Permanent,Texas PDF
+invoice (1).pdf,Bella Mirage,"Waste Management National Services, Inc.",GRY,1003547355,2025-08-14,,6949.37,2025-07-05,Trash Excess Yards 64191028,extra_pickup,1.0,incident,8,,4.0,35.0,35.0,Weekly x4 Permanent,Texas PDF
+invoice (1).pdf,Bella Mirage,"Waste Management National Services, Inc.",GRY,1003547355,2025-08-14,,6949.37,2025-07-21,Trash Excess Yards 64712927,extra_pickup,1.0,incident,6,,4.0,35.0,35.0,Weekly x4 Permanent,Texas PDF
+invoice (10).pdf,Bella Mirage,Waste Management,GRY014677,1003212677,2024-11-15,,6622.86,2024-09-27,Trash Excess Yards 54441335,extra_pickup,1.0,incident,4,,,35.0,35.0,Weekly x4 Permanent,Texas PDF
+invoice (10).pdf,Bella Mirage,Waste Management,GRY014677,1003212677,2024-11-15,,6622.86,2024-09-27,Trash Excess Yards 54441342,extra_pickup,1.0,incident,4,,,35.0,35.0,Weekly x4 Permanent,Texas PDF
+invoice (10).pdf,Bella Mirage,Waste Management,GRY014677,1003212677,2024-11-15,,6622.86,2024-09-30,Trash Excess Yards 54494510,extra_pickup,1.0,incident,8,,,35.0,35.0,Weekly x4 Permanent,Texas PDF
+invoice (10).pdf,Bella Mirage,Waste Management,GRY014677,1003212677,2024-11-15,,6622.86,2024-10-01,Trash Pickup,base,1.0,month,8,,4.0,1858.8,1858.8,Weekly x4 Permanent,Texas PDF
+invoice (10).pdf,Bella Mirage,Waste Management,GRY014677,1003212677,2024-11-15,,6622.86,2024-10-01,Trash Pickup,base,1.0,month,8,,4.0,1564.2,1564.2,Weekly x4 Permanent,Texas PDF
+invoice (10).pdf,Bella Mirage,Waste Management,GRY014677,1003212677,2024-11-15,,6622.86,2024-10-01,Trash Pickup,base,1.0,month,6,,4.0,987.72,987.72,Weekly x4 Permanent,Texas PDF
+invoice (10).pdf,Bella Mirage,Waste Management,GRY014677,1003212677,2024-11-15,,6622.86,2024-10-01,Trash Pickup,base,1.0,month,8,,4.0,965.64,965.64,Weekly x4 Permanent,Texas PDF
+invoice (10).pdf,Bella Mirage,Waste Management,GRY014677,1003212677,2024-11-15,,6622.86,2024-10-01,Trash Pickup,base,1.0,month,8,,4.0,642.7,642.7,Weekly x4 Permanent,Texas PDF
+invoice (10).pdf,Bella Mirage,Waste Management,GRY014677,1003212677,2024-11-15,,6622.86,2024-10-01,Trash Pickup,base,1.0,month,4,,4.0,393.8,393.8,Weekly x4 Permanent,Texas PDF
+invoice (10).pdf,Bella Mirage,Waste Management,GRY014677,1003212677,2024-11-15,,6622.86,2024-10-04,Trash Excess Yards 54632954,extra_pickup,1.0,incident,8,,,35.0,35.0,Weekly x4 Permanent,Texas PDF
+invoice (10).pdf,Bella Mirage,Waste Management,GRY014677,1003212677,2024-11-15,,6622.86,2024-10-19,Trash Excess Yards 55059467,extra_pickup,1.0,incident,8,,,35.0,35.0,Weekly x4 Permanent,Texas PDF
+invoice (10).pdf,Bella Mirage,Waste Management,GRY014677,1003212677,2024-11-15,,6622.86,2024-10-21,Trash Excess Yards 55118310,extra_pickup,1.0,incident,8,,,35.0,35.0,Weekly x4 Permanent,Texas PDF
+invoice (2).pdf,Bella Mirage,"Waste Management National Services, Inc.",GRY,1003508868,2025-07-15,,6669.37,2025-06-01,Trash Pickup 8 Yards Dumpster Weekly x4 Permanent,base,4.0,pickup,8,,1.0,,1933.14,,Texas PDF
+invoice (2).pdf,Bella Mirage,"Waste Management National Services, Inc.",GRY,1003508868,2025-07-15,,6669.37,2025-06-01,Trash Pickup 8 Yards Dumpster Weekly x4 Permanent,base,4.0,pickup,8,,1.0,,1626.75,,Texas PDF
+invoice (2).pdf,Bella Mirage,"Waste Management National Services, Inc.",GRY,1003508868,2025-07-15,,6669.37,2025-06-01,Trash Pickup 6 Yards Dumpster Weekly x4 Permanent,base,4.0,pickup,6,,1.0,,1027.24,,Texas PDF
+invoice (2).pdf,Bella Mirage,"Waste Management National Services, Inc.",GRY,1003508868,2025-07-15,,6669.37,2025-06-01,Trash Pickup 8 Yards Dumpster Weekly x4 Permanent,base,4.0,pickup,8,,1.0,,1004.28,,Texas PDF
+invoice (2).pdf,Bella Mirage,"Waste Management National Services, Inc.",GRY,1003508868,2025-07-15,,6669.37,2025-06-01,Trash Pickup 8 Yards Dumpster Weekly x4 Permanent,base,4.0,pickup,8,,1.0,,668.4,,Texas PDF
+invoice (2).pdf,Bella Mirage,"Waste Management National Services, Inc.",GRY,1003508868,2025-07-15,,6669.37,2025-06-01,Trash Pickup 4 Yards Dumpster Weekly x4 Permanent,base,4.0,pickup,4,,1.0,,409.56,,Texas PDF
+invoice (3).pdf,Bella Mirage,"Waste Management National Services, Inc.",GRY014677,1003477060,2025-06-17,,6774.37,2025-05-01,Trash Pickup,base,4.0,lift,8,,4.0,,1933.14,Weekly x4 Permanent,Texas PDF
+invoice (3).pdf,Bella Mirage,"Waste Management National Services, Inc.",GRY014677,1003477060,2025-06-17,,6774.37,2025-05-01,Trash Pickup,base,4.0,lift,8,,4.0,,1626.75,Weekly x4 Permanent,Texas PDF
+invoice (3).pdf,Bella Mirage,"Waste Management National Services, Inc.",GRY014677,1003477060,2025-06-17,,6774.37,2025-05-01,Trash Pickup,base,4.0,lift,6,,4.0,,1027.24,Weekly x4 Permanent,Texas PDF
+invoice (3).pdf,Bella Mirage,"Waste Management National Services, Inc.",GRY014677,1003477060,2025-06-17,,6774.37,2025-05-01,Trash Pickup,base,4.0,lift,8,,4.0,,1004.28,Weekly x4 Permanent,Texas PDF
+invoice (3).pdf,Bella Mirage,"Waste Management National Services, Inc.",GRY014677,1003477060,2025-06-17,,6774.37,2025-05-01,Trash Pickup,base,4.0,lift,8,,4.0,,668.4,Weekly x4 Permanent,Texas PDF
+invoice (3).pdf,Bella Mirage,"Waste Management National Services, Inc.",GRY014677,1003477060,2025-06-17,,6774.37,2025-05-01,Trash Pickup,base,4.0,lift,4,,4.0,,409.56,Weekly x4 Permanent,Texas PDF
+invoice (3).pdf,Bella Mirage,"Waste Management National Services, Inc.",GRY014677,1003477060,2025-06-17,,6774.37,2025-05-19,Trash Excess Yards 62554199,overage,1.0,incident,6,,,35.0,35.0,,Texas PDF
+invoice (3).pdf,Bella Mirage,"Waste Management National Services, Inc.",GRY014677,1003477060,2025-06-17,,6774.37,2025-05-19,Trash Excess Yards 62554185,overage,1.0,incident,6,,,35.0,35.0,,Texas PDF
+invoice (3).pdf,Bella Mirage,"Waste Management National Services, Inc.",GRY014677,1003477060,2025-06-17,,6774.37,2025-05-19,Trash Excess Yards 62554203,overage,1.0,incident,8,,,35.0,35.0,,Texas PDF
+invoice (4).pdf,Bella Mirage,"Waste Management National Services, Inc.",GRY,1003432086,2025-05-15,,6669.37,2025-04-01,Trash Pickup 8 Yards Dumpster Weekly x4 Permanent,base,4.0,pickup,8,,1.0,,1933.14,,Texas PDF
+invoice (4).pdf,Bella Mirage,"Waste Management National Services, Inc.",GRY,1003432086,2025-05-15,,6669.37,2025-04-01,Trash Pickup 8 Yards Dumpster Weekly x4 Permanent,base,4.0,pickup,8,,1.0,,1626.75,,Texas PDF
+invoice (4).pdf,Bella Mirage,"Waste Management National Services, Inc.",GRY,1003432086,2025-05-15,,6669.37,2025-04-01,Trash Pickup 6 Yards Dumpster Weekly x4 Permanent,base,4.0,pickup,6,,1.0,,1027.24,,Texas PDF
+invoice (4).pdf,Bella Mirage,"Waste Management National Services, Inc.",GRY,1003432086,2025-05-15,,6669.37,2025-04-01,Trash Pickup 8 Yards Dumpster Weekly x4 Permanent,base,4.0,pickup,8,,1.0,,1004.28,,Texas PDF
+invoice (4).pdf,Bella Mirage,"Waste Management National Services, Inc.",GRY,1003432086,2025-05-15,,6669.37,2025-04-01,Trash Pickup 8 Yards Dumpster Weekly x4 Permanent,base,4.0,pickup,8,,1.0,,668.4,,Texas PDF
+invoice (4).pdf,Bella Mirage,"Waste Management National Services, Inc.",GRY,1003432086,2025-05-15,,6669.37,2025-04-01,Trash Pickup 4 Yards Dumpster Weekly x4 Permanent,base,4.0,pickup,4,,1.0,,409.56,,Texas PDF
+invoice (5).pdf,Bella Mirage,"Waste Management National Services, Inc.",GRY,1003398871,2025-04-16,,6879.37,2025-03-01,Trash Pickup,base,4.0,week,8,,4.0,,1933.14,Weekly x4 Permanent,Texas PDF
+invoice (5).pdf,Bella Mirage,"Waste Management National Services, Inc.",GRY,1003398871,2025-04-16,,6879.37,2025-03-01,Trash Pickup,base,4.0,week,8,,4.0,,1626.75,Weekly x4 Permanent,Texas PDF
+invoice (5).pdf,Bella Mirage,"Waste Management National Services, Inc.",GRY,1003398871,2025-04-16,,6879.37,2025-03-01,Trash Pickup,base,4.0,week,6,,4.0,,1027.24,Weekly x4 Permanent,Texas PDF
+invoice (5).pdf,Bella Mirage,"Waste Management National Services, Inc.",GRY,1003398871,2025-04-16,,6879.37,2025-03-01,Trash Pickup,base,4.0,week,8,,4.0,,1004.28,Weekly x4 Permanent,Texas PDF
+invoice (5).pdf,Bella Mirage,"Waste Management National Services, Inc.",GRY,1003398871,2025-04-16,,6879.37,2025-03-01,Trash Pickup,base,4.0,week,8,,4.0,,668.4,Weekly x4 Permanent,Texas PDF
+invoice (5).pdf,Bella Mirage,"Waste Management National Services, Inc.",GRY,1003398871,2025-04-16,,6879.37,2025-03-01,Trash Pickup,base,4.0,week,4,,4.0,,409.56,Weekly x4 Permanent,Texas PDF
+invoice (5).pdf,Bella Mirage,"Waste Management National Services, Inc.",GRY,1003398871,2025-04-16,,6879.37,2025-03-03,Trash Excess Yards 60149181,extra_pickup,1.0,incident,8,,,35.0,35.0,,Texas PDF
+invoice (5).pdf,Bella Mirage,"Waste Management National Services, Inc.",GRY,1003398871,2025-04-16,,6879.37,2025-03-17,Trash Excess Yards 60605930,extra_pickup,1.0,incident,8,,,35.0,35.0,,Texas PDF
+invoice (5).pdf,Bella Mirage,"Waste Management National Services, Inc.",GRY,1003398871,2025-04-16,,6879.37,2025-03-21,Trash Excess Yards 60910822,extra_pickup,1.0,incident,8,,,35.0,35.0,,Texas PDF
+invoice (5).pdf,Bella Mirage,"Waste Management National Services, Inc.",GRY,1003398871,2025-04-16,,6879.37,2025-03-22,Trash Excess Yards 60803005,extra_pickup,1.0,incident,8,,,35.0,35.0,,Texas PDF
+invoice (5).pdf,Bella Mirage,"Waste Management National Services, Inc.",GRY,1003398871,2025-04-16,,6879.37,2025-03-24,Trash Excess Yards 60952437,extra_pickup,1.0,incident,8,,,35.0,35.0,,Texas PDF
+invoice (5).pdf,Bella Mirage,"Waste Management National Services, Inc.",GRY,1003398871,2025-04-16,,6879.37,2025-03-26,Trash Excess Yards 60938403,extra_pickup,1.0,incident,8,,,35.0,35.0,,Texas PDF
+invoice (6).pdf,Bella Mirage,"Waste Management National Services, Inc.",GRY014677,1003357696,2025-03-13,,6739.37,2025-02-01,Trash Pickup,base,4.0,lifts,8,,1.0,,1933.14,Weekly x4 Permanent,Texas PDF
+invoice (6).pdf,Bella Mirage,"Waste Management National Services, Inc.",GRY014677,1003357696,2025-03-13,,6739.37,2025-02-01,Trash Pickup,base,4.0,lifts,8,,1.0,,1626.75,Weekly x4 Permanent,Texas PDF
+invoice (6).pdf,Bella Mirage,"Waste Management National Services, Inc.",GRY014677,1003357696,2025-03-13,,6739.37,2025-02-01,Trash Pickup,base,4.0,lifts,6,,1.0,,1027.24,Weekly x4 Permanent,Texas PDF
+invoice (6).pdf,Bella Mirage,"Waste Management National Services, Inc.",GRY014677,1003357696,2025-03-13,,6739.37,2025-02-01,Trash Pickup,base,4.0,lifts,8,,1.0,,1004.28,Weekly x4 Permanent,Texas PDF
+invoice (6).pdf,Bella Mirage,"Waste Management National Services, Inc.",GRY014677,1003357696,2025-03-13,,6739.37,2025-02-01,Trash Pickup,base,4.0,lifts,8,,1.0,,668.4,Weekly x4 Permanent,Texas PDF
+invoice (6).pdf,Bella Mirage,"Waste Management National Services, Inc.",GRY014677,1003357696,2025-03-13,,6739.37,2025-02-01,Trash Pickup,base,4.0,lifts,4,,1.0,,409.56,Weekly x4 Permanent,Texas PDF
+invoice (6).pdf,Bella Mirage,"Waste Management National Services, Inc.",GRY014677,1003357696,2025-03-13,,6739.37,2025-02-10,Trash Excess Yards 59422668,extra_pickup,1.0,incident,8,,,35.0,35.0,,Texas PDF
+invoice (6).pdf,Bella Mirage,"Waste Management National Services, Inc.",GRY014677,1003357696,2025-03-13,,6739.37,2025-02-17,Trash Excess Yards 59648987,extra_pickup,1.0,incident,6,,,35.0,35.0,,Texas PDF
+invoice (7).pdf,Bella Mirage,"WM National Services, Inc.",GRY014677,1003320679,2025-02-14,,6914.37,2024-12-30,Trash Excess Yards,overage,1.0,incident,8,,4.0,35.0,35.0,57789278,Texas PDF
+invoice (7).pdf,Bella Mirage,"WM National Services, Inc.",GRY014677,1003320679,2025-02-14,,6914.37,2024-12-30,Trash Excess Yards,overage,1.0,incident,8,,4.0,35.0,35.0,57789286,Texas PDF
+invoice (7).pdf,Bella Mirage,"WM National Services, Inc.",GRY014677,1003320679,2025-02-14,,6914.37,2024-12-30,Trash Excess Yards,overage,1.0,incident,8,,4.0,35.0,35.0,57894140,Texas PDF
+invoice (7).pdf,Bella Mirage,"WM National Services, Inc.",GRY014677,1003320679,2025-02-14,,6914.37,2024-12-30,Trash Excess Yards,overage,1.0,incident,6,,4.0,35.0,35.0,57786865,Texas PDF
+invoice (7).pdf,Bella Mirage,"WM National Services, Inc.",GRY014677,1003320679,2025-02-14,,6914.37,2025-01-01,Trash Pickup,base,1.0,month,8,,4.0,1933.14,1933.14,,Texas PDF
+invoice (7).pdf,Bella Mirage,"WM National Services, Inc.",GRY014677,1003320679,2025-02-14,,6914.37,2025-01-01,Trash Pickup,base,1.0,month,8,,4.0,1626.75,1626.75,,Texas PDF
+invoice (7).pdf,Bella Mirage,"WM National Services, Inc.",GRY014677,1003320679,2025-02-14,,6914.37,2025-01-01,Trash Pickup,base,1.0,month,6,,4.0,1027.24,1027.24,,Texas PDF
+invoice (7).pdf,Bella Mirage,"WM National Services, Inc.",GRY014677,1003320679,2025-02-14,,6914.37,2025-01-01,Trash Pickup,base,1.0,month,8,,4.0,1004.28,1004.28,,Texas PDF
+invoice (7).pdf,Bella Mirage,"WM National Services, Inc.",GRY014677,1003320679,2025-02-14,,6914.37,2025-01-01,Trash Pickup,base,1.0,month,8,,4.0,668.4,668.4,,Texas PDF
+invoice (7).pdf,Bella Mirage,"WM National Services, Inc.",GRY014677,1003320679,2025-02-14,,6914.37,2025-01-01,Trash Pickup,base,1.0,month,4,,4.0,409.56,409.56,,Texas PDF
+invoice (7).pdf,Bella Mirage,"WM National Services, Inc.",GRY014677,1003320679,2025-02-14,,6914.37,2025-01-06,Trash Excess Yards,overage,1.0,incident,8,,4.0,35.0,35.0,58155867,Texas PDF
+invoice (7).pdf,Bella Mirage,"WM National Services, Inc.",GRY014677,1003320679,2025-02-14,,6914.37,2025-01-08,Trash Excess Yards,overage,1.0,incident,8,,4.0,35.0,35.0,58172011,Texas PDF
+invoice (7).pdf,Bella Mirage,"WM National Services, Inc.",GRY014677,1003320679,2025-02-14,,6914.37,2025-01-15,Trash Excess Yards,overage,1.0,incident,8,,4.0,35.0,35.0,58466740,Texas PDF
+invoice (8).pdf,Bella Mirage,Waste Management,GRY,1003278289,2025-01-13,,6622.86,2024-11-27,Trash Excess Yards,extra_pickup,1.0,incident,6,,4.0,35.0,35.0,56467605,Texas PDF
+invoice (8).pdf,Bella Mirage,Waste Management,GRY,1003278289,2025-01-13,,6622.86,2024-12-01,Trash Pickup,base,1.0,month,8,,4.0,1858.8,1858.8,12/1/2024 - 12/31/2024,Texas PDF
+invoice (8).pdf,Bella Mirage,Waste Management,GRY,1003278289,2025-01-13,,6622.86,2024-12-01,Trash Pickup,base,1.0,month,8,,4.0,1564.2,1564.2,12/1/2024 - 12/31/2024,Texas PDF
+invoice (8).pdf,Bella Mirage,Waste Management,GRY,1003278289,2025-01-13,,6622.86,2024-12-01,Trash Pickup,base,1.0,month,6,,4.0,987.72,987.72,12/1/2024 - 12/31/2024,Texas PDF
+invoice (8).pdf,Bella Mirage,Waste Management,GRY,1003278289,2025-01-13,,6622.86,2024-12-01,Trash Pickup,base,1.0,month,8,,4.0,965.64,965.64,12/1/2024 - 12/31/2024,Texas PDF
+invoice (8).pdf,Bella Mirage,Waste Management,GRY,1003278289,2025-01-13,,6622.86,2024-12-01,Trash Pickup,base,1.0,month,8,,4.0,642.7,642.7,12/1/2024 - 12/31/2024,Texas PDF
+invoice (8).pdf,Bella Mirage,Waste Management,GRY,1003278289,2025-01-13,,6622.86,2024-12-01,Trash Pickup,base,1.0,month,4,,4.0,393.8,393.8,12/1/2024 - 12/31/2024,Texas PDF
+invoice (8).pdf,Bella Mirage,Waste Management,GRY,1003278289,2025-01-13,,6622.86,2024-12-09,Trash Excess Yards,extra_pickup,1.0,incident,8,,4.0,35.0,35.0,56889851,Texas PDF
+invoice (8).pdf,Bella Mirage,Waste Management,GRY,1003278289,2025-01-13,,6622.86,2024-12-11,Trash Excess Yards,extra_pickup,1.0,incident,6,,4.0,35.0,35.0,57101836,Texas PDF
+invoice (8).pdf,Bella Mirage,Waste Management,GRY,1003278289,2025-01-13,,6622.86,2024-12-18,Trash Excess Yards,extra_pickup,1.0,incident,8,,4.0,35.0,35.0,57326785,Texas PDF
+invoice (8).pdf,Bella Mirage,Waste Management,GRY,1003278289,2025-01-13,,6622.86,2024-12-20,Trash Excess Yards,extra_pickup,1.0,incident,8,,4.0,35.0,35.0,57393425,Texas PDF
+invoice (8).pdf,Bella Mirage,Waste Management,GRY,1003278289,2025-01-13,,6622.86,2024-12-20,Trash Excess Yards,extra_pickup,1.0,incident,6,,4.0,35.0,35.0,57393426,Texas PDF
+invoice (9).pdf,Bella Mirage,"Waste Management National Services, Inc.",GRY,1003250854,2024-12-16,,6482.86,2024-10-28,Trash Excess Yards 55436573,overage,,,8,,4.0,,35.0,Weekly x4 Permanent,Texas PDF
+invoice (9).pdf,Bella Mirage,"Waste Management National Services, Inc.",GRY,1003250854,2024-12-16,,6482.86,2024-11-01,Trash Pickup,base,,month,8,,4.0,,1858.8,Weekly x4 Permanent,Texas PDF
+invoice (9).pdf,Bella Mirage,"Waste Management National Services, Inc.",GRY,1003250854,2024-12-16,,6482.86,2024-11-01,Trash Pickup,base,,month,8,,4.0,,1564.2,Weekly x4 Permanent,Texas PDF
+invoice (9).pdf,Bella Mirage,"Waste Management National Services, Inc.",GRY,1003250854,2024-12-16,,6482.86,2024-11-01,Trash Pickup,base,,month,6,,4.0,,987.72,Weekly x4 Permanent,Texas PDF
+invoice (9).pdf,Bella Mirage,"Waste Management National Services, Inc.",GRY,1003250854,2024-12-16,,6482.86,2024-11-01,Trash Pickup,base,,month,8,,4.0,,965.64,Weekly x4 Permanent,Texas PDF
+invoice (9).pdf,Bella Mirage,"Waste Management National Services, Inc.",GRY,1003250854,2024-12-16,,6482.86,2024-11-01,Trash Pickup,base,,month,8,,4.0,,642.7,Weekly x4 Permanent,Texas PDF
+invoice (9).pdf,Bella Mirage,"Waste Management National Services, Inc.",GRY,1003250854,2024-12-16,,6482.86,2024-11-01,Trash Pickup,base,,month,4,,4.0,,393.8,Weekly x4 Permanent,Texas PDF
+invoice (9).pdf,Bella Mirage,"Waste Management National Services, Inc.",GRY,1003250854,2024-12-16,,6482.86,2024-11-20,Trash Excess Yards 56190445,overage,,,6,,4.0,,35.0,Weekly x4 Permanent,Texas PDF
