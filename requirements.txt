@@ -1,7 +1,7 @@
 # Orion Portfolio Waste Management - Python Dependencies
 
 # Airtable API
-requests==2.31.0
+requests==2.32.4
 
 # Environment variable management
 python-dotenv==1.0.0
@@ -23,14 +23,14 @@ pytest==7.4.3
 pytest-cov==4.1.0
 
 # Linting and formatting
-black==23.12.1
+black==24.3.0
 flake8==6.1.0
 
 # Type checking
 mypy==1.7.1
 
 # HTML report generation
-jinja2==3.1.2
+jinja2==3.1.6
 
 # PDF report generation
 weasyprint==60.1
