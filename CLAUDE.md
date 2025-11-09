@@ -413,6 +413,65 @@ The subagent extraction system:
 - Handles multiple invoice formats
 - See `Documentation/SUBAGENT_QUICK_START.md` for detailed guide
 
+## Available Claude Skills
+
+The project has access to specialized Claude skills for waste management analysis. Skills are installed in `.claude/skills/` directory.
+
+### Active Skills (6)
+
+**1. wastewise-analytics-validated**
+- Complete WasteWise analysis with comprehensive validation framework
+- Ensures contract tabs, optimization criteria, formula accuracy, data completeness
+- Quality-scored evaluation with validation report
+- Use for standard waste management analysis with quality assurance
+
+**2. wastewise-regulatory** ⭐ NEW
+- Enhanced WasteWise analysis + automated regulatory compliance research
+- Researches local waste/recycling/organics ordinances
+- Documents penalties, enforcement, licensed haulers
+- Generates property-specific compliance checklists
+- Confidence scoring (HIGH/MEDIUM/LOW) for research quality
+- Use when you need waste analysis AND regulatory compliance documentation
+
+**3. compactor-optimization**
+- Specialized compactor performance analysis (NOT open tops)
+- Calculates yards per door for compacted service (0.08-0.15 target)
+- Identifies over-servicing and optimization opportunities
+- Use for properties with compactor service
+
+**4. waste-batch-extractor**
+- Batch process multiple invoices using Claude Vision API
+- Creates location-specific Excel tabs with validation reports
+- Use for processing many invoices at once
+
+**5. waste-contract-extractor**
+- Extract critical data from waste service contracts (PDF/Word/scanned)
+- Parses pricing, terms, service specifications
+- Use when analyzing contract documents
+
+**6. waste-visual-reporter**
+- Generate interactive HTML dashboards with Chart.js visualizations
+- 5 tabs: Dashboard, Expense Analysis, Haul Log, Optimization, Contract Terms
+- Use for stakeholder presentations and visual reports
+
+### When to Use Skills
+
+**Use wastewise-regulatory when:**
+- Property needs regulatory compliance documentation
+- Local ordinances (recycling/composting mandates) apply
+- Client wants to verify compliance with city/county requirements
+- Need licensed hauler directory for location
+
+**Use wastewise-analytics-validated when:**
+- Standard waste analysis without regulatory research
+- Quality assurance is critical
+- Need validation report for client confidence
+
+**Use specialized skills (compactor-optimization, etc.) when:**
+- Focused analysis of specific service type
+- Quick assessment without full validation suite
+- Specialized output format needed (HTML dashboards, etc.)
+
 ## Slash Commands
 
 The project includes 12 custom slash commands for streamlined workflows.
