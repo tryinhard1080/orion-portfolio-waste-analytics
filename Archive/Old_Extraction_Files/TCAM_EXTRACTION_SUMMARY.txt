@@ -1,0 +1,220 @@
+================================================================================
+THE CLUB AT MILLENIA (TCAM) - INVOICE EXTRACTION SUMMARY
+================================================================================
+
+Extraction Date: November 3, 2025 10:10 AM
+Model Used: claude-sonnet-4-20250514 (Claude Vision API)
+Property: The Club at Millenia
+Status: SUCCESSFULLY COMPLETED
+
+================================================================================
+FILES PROCESSED
+================================================================================
+
+TCAM Invoice Files Extracted (6 total):
+  1. TCAM 4.15.25.pdf
+  2. TCAM 5.15.25.pdf
+  3. TCAM 6.15.25.pdf
+  4. TCAM 7.15.25 (1).pdf
+  5. TCAM 8.15.25.pdf
+  6. TCAM 9.15.25.pdf
+
+Note: Generic invoice files (invoice (1).pdf through invoice (10).pdf) were
+identified as Bella Mirage invoices and excluded from this extraction.
+
+================================================================================
+EXTRACTION RESULTS
+================================================================================
+
+Total Invoices: 6
+Total Data Rows: 146 (including line item details)
+Success Rate: 100%
+Failed Extractions: 0
+
+================================================================================
+INVOICE SUMMARY
+================================================================================
+
+Invoice Number    | Invoice Date | Total Amount | Source File
+------------------|--------------|--------------|-------------------------
+1549125W460       | 2025-04-30   | $11,426.50   | TCAM 4.15.25.pdf
+1553243W460       | 2025-05-31   | $11,333.68   | TCAM 5.15.25.pdf
+1557411W460       | 2025-06-30   | $10,830.71   | TCAM 6.15.25.pdf
+1561532W460       | 2025-07-31   | $12,906.08   | TCAM 7.15.25 (1).pdf
+1565608W460       | 2025-08-31   | $11,880.45   | TCAM 8.15.25.pdf
+1569687W460       | 2025-09-30   | $11,683.74   | TCAM 9.15.25.pdf
+
+================================================================================
+FINANCIAL SUMMARY (6 MONTHS: APRIL - SEPTEMBER 2025)
+================================================================================
+
+Total Amount (6 invoices):     $70,061.16
+Average Monthly Invoice:       $11,676.86
+Minimum Invoice:               $10,830.71 (June 2025)
+Maximum Invoice:               $12,906.08 (July 2025)
+
+Service Period Coverage: April 2025 - September 2025 (6 months)
+
+================================================================================
+SERVICE TYPE BREAKDOWN
+================================================================================
+
+Base Service:                  $70,061.16 (100%)
+
+Note: All charges categorized as Base Service. No extra pickups, fuel
+surcharges, or environmental fees identified in the extracted data.
+
+================================================================================
+DATA QUALITY & VALIDATION
+================================================================================
+
+Extraction Confidence: High
+Property Name Match: 100% verified as "The Club at Millenia"
+Critical Fields Extracted:
+  - Invoice Number: 6/6 (100%)
+  - Invoice Date: 6/6 (100%)
+  - Service Period: 6/6 (100%)
+  - Total Amount: 6/6 (100%)
+  - Service Provider: 6/6 (100%)
+
+Validation Flags: None critical
+All invoices passed property name validation.
+
+================================================================================
+EXCEL FILE DETAILS
+================================================================================
+
+Output File: COMPLETE_All_Properties_UPDATED_20251103_101053.xlsx
+Location: C:\Users\Richard\Downloads\Orion Data Part 2\Extraction_Output\
+
+Excel Structure:
+  - Total Sheets: 11 (10 properties + Portfolio Summary)
+  - New Sheet Added: "The Club at Millenia"
+  - Portfolio Summary: Updated to include TCAM data
+
+Property Sheets in Excel:
+  1. Portfolio Summary (overview)
+  2. Bella Mirage
+  3. Mandarina
+  4. McCord Park FL
+  5. Orion McKinney
+  6. Orion Prosper
+  7. Orion Prosper Lakes
+  8. Pavilions at Arrowhead
+  9. Springs at Alta Mesa
+  10. Tempe Vista
+  11. The Club at Millenia (NEW)
+
+================================================================================
+EXTRACTED FIELDS (PER INVOICE)
+================================================================================
+
+Header Information:
+  - Property Name
+  - Invoice Number
+  - Invoice Date
+  - Service Period Start
+  - Service Period End
+  - Service Provider
+  - Account Number
+  - Due Date
+  - Previous Balance
+  - Payments
+
+Line Item Details (per service):
+  - Line Item Description
+  - Quantity
+  - Unit Price
+  - Line Item Amount
+  - Service Type
+
+Metadata:
+  - Total Amount
+  - Validation Flags
+  - Source File
+  - Extraction Confidence
+
+================================================================================
+MONTHLY COST ANALYSIS
+================================================================================
+
+Property: The Club at Millenia
+Units: 560 (from project documentation)
+
+April 2025:    $11,426.50  |  CPD: $20.40
+May 2025:      $11,333.68  |  CPD: $20.24
+June 2025:     $10,830.71  |  CPD: $19.34
+July 2025:     $12,906.08  |  CPD: $23.05  (HIGHEST)
+August 2025:   $11,880.45  |  CPD: $21.22
+September 2025: $11,683.74 |  CPD: $20.86
+
+6-Month Average CPD: $20.85
+
+Note: CPD = Cost Per Door (Monthly Cost / 560 units)
+
+================================================================================
+NEXT STEPS
+================================================================================
+
+1. Review Excel file to verify data accuracy
+   File: COMPLETE_All_Properties_UPDATED_20251103_101053.xlsx
+
+2. Check for validation flags (if any) in the Excel sheet
+
+3. Verify Portfolio Summary includes TCAM data and totals
+
+4. Cross-reference extracted amounts with original PDF invoices
+
+5. Use this data for:
+   - Portfolio performance analysis
+   - Cost per door calculations
+   - Monthly trend analysis
+   - Budget forecasting
+
+================================================================================
+TECHNICAL DETAILS
+================================================================================
+
+Extraction Method: Claude Vision API (Anthropic)
+Model: claude-sonnet-4-20250514
+API: Document analysis with structured JSON extraction
+Encoding: Base64 PDF encoding
+Max Tokens: 4000 per extraction
+Validation: Automated property name matching and field completeness checks
+
+Python Libraries Used:
+  - anthropic: Claude API client
+  - pandas: Data processing and Excel manipulation
+  - openpyxl: Excel file formatting and multi-sheet support
+  - base64: PDF encoding
+
+Processing Time: ~2-3 minutes for 6 invoices
+Success Rate: 100% (6/6 invoices extracted successfully)
+
+================================================================================
+SCRIPT LOCATION
+================================================================================
+
+Extraction Script: Code/extract_tcam_only.py
+Working Directory: C:\Users\Richard\Downloads\Orion Data Part 2
+
+To re-run extraction:
+  cd "C:\Users\Richard\Downloads\Orion Data Part 2"
+  python Code/extract_tcam_only.py
+
+================================================================================
+COMPLETION STATUS
+================================================================================
+
+Status: SUCCESSFULLY COMPLETED
+Date: November 3, 2025 10:10 AM
+Duration: ~2 minutes
+Errors: 0
+Warnings: 0 (10 generic invoice files correctly identified as Bella Mirage)
+
+All TCAM invoices have been extracted and added to the comprehensive Excel file.
+The Club at Millenia data is now available for portfolio analysis and reporting.
+
+================================================================================
+END OF SUMMARY
+================================================================================

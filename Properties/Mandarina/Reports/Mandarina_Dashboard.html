@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mandarina - Waste Management Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <style>
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        .tab-button.active { background-color: #1e40af; color: white; }
+        .metric-card { transition: transform 0.2s; }
+        .metric-card:hover { transform: translateY(-2px); }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-blue-900 to-blue-700 text-white py-6 shadow-lg">
+        <div class="container mx-auto px-4">
+            <h1 class="text-3xl font-bold">Mandarina</h1>
+            <p class="text-blue-200 mt-1">Waste Management Performance Dashboard</p>
+            <p class="text-sm text-blue-300 mt-2">Phoenix, Arizona | 180 Units | Generated November 03, 2025</p>
+        </div>
+    </header>
+
+    <!-- Tab Navigation -->
+    <div class="bg-white shadow-md">
+        <div class="container mx-auto px-4">
+            <nav class="flex space-x-1">
+                <button onclick="switchTab('executive')" class="tab-button active px-6 py-3 font-medium text-gray-600 hover:bg-gray-100 transition">
+                    Executive Dashboard
+                </button>
+                <button onclick="switchTab('expense')" class="tab-button px-6 py-3 font-medium text-gray-600 hover:bg-gray-100 transition">
+                    Expense Analysis
+                </button>
+                <button onclick="switchTab('service')" class="tab-button px-6 py-3 font-medium text-gray-600 hover:bg-gray-100 transition">
+                    Service Details
+                </button>
+                <button onclick="switchTab('optimization')" class="tab-button px-6 py-3 font-medium text-gray-600 hover:bg-gray-100 transition">
+                    Optimization Insights
+                </button>
+                <button onclick="switchTab('contract')" class="tab-button px-6 py-3 font-medium text-gray-600 hover:bg-gray-100 transition">
+                    Contract Status
+                </button>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Tab Content -->
+    <div class="container mx-auto px-4 py-8">
+
+        <!-- TAB 1: Executive Dashboard -->
+        <div id="executive" class="tab-content active">
+            <div class="mb-6">
+                <h2 class="text-2xl font-bold text-gray-800">Executive Dashboard</h2>
+                <p class="text-gray-600">Contract-based financial summary and key metrics</p>
+            </div>
+
+            <!-- Key Metrics -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                <div class="metric-card bg-white rounded-lg shadow-md p-6 border-l-4 border-blue-500">
+                    <div class="text-gray-500 text-sm font-medium mb-1">Units</div>
+                    <div class="text-3xl font-bold text-gray-800">180</div>
+                    <div class="text-xs text-gray-500 mt-1">From Ally Waste contract</div>
+                </div>
+
+                <div class="metric-card bg-white rounded-lg shadow-md p-6 border-l-4 border-green-500">
+                    <div class="text-gray-500 text-sm font-medium mb-1">Cost Per Door</div>
+                    <div class="text-3xl font-bold text-gray-800">$7.74</div>
+                    <div class="text-xs text-gray-500 mt-1">Contract-based (not actual invoices)</div>
+                </div>
+
+                <div class="metric-card bg-white rounded-lg shadow-md p-6 border-l-4 border-purple-500">
+                    <div class="text-gray-500 text-sm font-medium mb-1">Monthly Cost</div>
+                    <div class="text-3xl font-bold text-gray-800">$1,393.86</div>
+                    <div class="text-xs text-gray-500 mt-1">WM + Ally Waste contracts</div>
+                </div>
+
+                <div class="metric-card bg-white rounded-lg shadow-md p-6 border-l-4 border-red-500">
+                    <div class="text-gray-500 text-sm font-medium mb-1">Yards Per Door</div>
+                    <div class="text-3xl font-bold text-gray-800">N/A</div>
+                    <div class="text-xs text-red-600 mt-1">Missing tonnage data</div>
+                </div>
+            </div>
+
+            <!-- Data Availability Warning -->
+            <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 mb-8">
+                <div class="flex">
+                    <div class="flex-shrink-0">
+                        <svg class="h-5 w-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z"/>
+                        </svg>
+                    </div>
+                    <div class="ml-3">
+                        <h3 class="text-sm font-medium text-yellow-800">Data Availability Notice</h3>
+                        <div class="mt-2 text-sm text-yellow-700">
+                            <p>Invoice amounts are missing from the Excel consolidation file (all values = NaN). Dashboard displays contract rates only. Actual spending and trends cannot be calculated without invoice data.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contract Summary -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-lg font-bold text-gray-800 mb-4">Contract Summary</h3>
+                    <table class="w-full text-sm">
+                        <tr class="border-b">
+                            <td class="py-2 text-gray-600">Service Type</td>
+                            <td class="py-2 font-medium text-right">Compactor + Bulk</td>
+                        </tr>
+                        <tr class="border-b">
+                            <td class="py-2 text-gray-600">Vendors</td>
+                            <td class="py-2 font-medium text-right">2 (WM + Ally)</td>
+                        </tr>
+                        <tr class="border-b">
+                            <td class="py-2 text-gray-600">Compactors</td>
+                            <td class="py-2 font-medium text-right">2 x 8-yard FEL</td>
+                        </tr>
+                        <tr class="border-b">
+                            <td class="py-2 text-gray-600">Pickup Frequency</td>
+                            <td class="py-2 font-medium text-right">3x per week</td>
+                        </tr>
+                        <tr>
+                            <td class="py-2 text-gray-600 font-semibold">Total Monthly Cost</td>
+                            <td class="py-2 font-bold text-right text-lg">$1,393.86</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-lg font-bold text-gray-800 mb-4">Data Quality Status</h3>
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-gray-600">Contract Data</span>
+                            <span class="px-3 py-1 bg-green-100 text-green-800 text-xs font-medium rounded-full">✓ Available</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-gray-600">Unit Count</span>
+                            <span class="px-3 py-1 bg-green-100 text-green-800 text-xs font-medium rounded-full">✓ Confirmed</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-gray-600">Invoice Amounts</span>
+                            <span class="px-3 py-1 bg-red-100 text-red-800 text-xs font-medium rounded-full">✗ Missing</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-gray-600">Tonnage Data</span>
+                            <span class="px-3 py-1 bg-red-100 text-red-800 text-xs font-medium rounded-full">✗ Missing</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-gray-600">Optimization Analysis</span>
+                            <span class="px-3 py-1 bg-yellow-100 text-yellow-800 text-xs font-medium rounded-full">⚠ Limited</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 2: Expense Analysis -->
+        <div id="expense" class="tab-content">
+            <div class="mb-6">
+                <h2 class="text-2xl font-bold text-gray-800">Expense Analysis</h2>
+                <p class="text-gray-600">Contract-based cost breakdown</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-lg font-bold text-gray-800 mb-4">Monthly Cost Breakdown</h3>
+                    <canvas id="costBreakdownChart"></canvas>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-lg font-bold text-gray-800 mb-4">Cost by Vendor</h3>
+                    <table class="w-full">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th class="px-4 py-2 text-left text-sm font-medium text-gray-700">Vendor</th>
+                                <th class="px-4 py-2 text-right text-sm font-medium text-gray-700">Monthly Cost</th>
+                                <th class="px-4 py-2 text-right text-sm font-medium text-gray-700">Per Door</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200">
+                            <tr>
+                                <td class="px-4 py-3 text-sm">Waste Management</td>
+                                <td class="px-4 py-3 text-sm text-right font-medium">$818.86</td>
+                                <td class="px-4 py-3 text-sm text-right">$4.55</td>
+                            </tr>
+                            <tr>
+                                <td class="px-4 py-3 text-sm">Ally Waste (Bulk)</td>
+                                <td class="px-4 py-3 text-sm text-right font-medium">$575.00</td>
+                                <td class="px-4 py-3 text-sm text-right">$3.19</td>
+                            </tr>
+                            <tr class="bg-gray-50 font-bold">
+                                <td class="px-4 py-3 text-sm">TOTAL</td>
+                                <td class="px-4 py-3 text-sm text-right">$1,393.86</td>
+                                <td class="px-4 py-3 text-sm text-right">$7.74</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Data Gap Warning -->
+            <div class="bg-red-50 border-l-4 border-red-400 p-4">
+                <div class="flex">
+                    <div class="flex-shrink-0">
+                        <svg class="h-5 w-5 text-red-400" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"/>
+                        </svg>
+                    </div>
+                    <div class="ml-3">
+                        <h3 class="text-sm font-medium text-red-800">Cannot Display Actual Expense Data</h3>
+                        <div class="mt-2 text-sm text-red-700">
+                            <p><strong>Missing:</strong> All invoice amounts (37 invoices from Oct 2024 - Sep 2025)</p>
+                            <p class="mt-1"><strong>Impact:</strong> Cannot show month-over-month trends, actual vs. contract comparison, or overage analysis</p>
+                            <p class="mt-1"><strong>Action Required:</strong> Extract invoice amounts from source PDF files to enable full expense analysis</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 3: Service Details -->
+        <div id="service" class="tab-content">
+            <div class="mb-6">
+                <h2 class="text-2xl font-bold text-gray-800">Service Details</h2>
+                <p class="text-gray-600">Equipment configuration and vendor information</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-lg font-bold text-gray-800 mb-4">Waste Management - Compactor Service</h3>
+                    <dl class="space-y-3">
+                        <div>
+                            <dt class="text-sm font-medium text-gray-500">Vendor</dt>
+                            <dd class="mt-1 text-sm text-gray-900">Waste Management of Arizona, Inc.</dd>
+                        </div>
+                        <div>
+                            <dt class="text-sm font-medium text-gray-500">Account Number</dt>
+                            <dd class="mt-1 text-sm text-gray-900">18-19120-63004</dd>
+                        </div>
+                        <div>
+                            <dt class="text-sm font-medium text-gray-500">Equipment</dt>
+                            <dd class="mt-1 text-sm text-gray-900">2 x 8 Yard FEL Compactor</dd>
+                        </div>
+                        <div>
+                            <dt class="text-sm font-medium text-gray-500">Material Stream</dt>
+                            <dd class="mt-1 text-sm text-gray-900">MSW Commercial</dd>
+                        </div>
+                        <div>
+                            <dt class="text-sm font-medium text-gray-500">Frequency</dt>
+                            <dd class="mt-1 text-sm text-gray-900">3x Per Week</dd>
+                        </div>
+                        <div>
+                            <dt class="text-sm font-medium text-gray-500">Base Rate</dt>
+                            <dd class="mt-1 text-sm text-gray-900">$750.00</dd>
+                        </div>
+                        <div>
+                            <dt class="text-sm font-medium text-gray-500">Environmental/RCR Fee</dt>
+                            <dd class="mt-1 text-sm text-gray-900">$68.86</dd>
+                        </div>
+                        <div class="pt-3 border-t">
+                            <dt class="text-sm font-bold text-gray-700">Total Monthly</dt>
+                            <dd class="mt-1 text-lg font-bold text-gray-900">$818.86</dd>
+                        </div>
+                    </dl>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-lg font-bold text-gray-800 mb-4">Ally Waste - Bulk Service</h3>
+                    <dl class="space-y-3">
+                        <div>
+                            <dt class="text-sm font-medium text-gray-500">Vendor</dt>
+                            <dd class="mt-1 text-sm text-gray-900">Ally Waste Services, LLC</dd>
+                        </div>
+                        <div>
+                            <dt class="text-sm font-medium text-gray-500">Account Number</dt>
+                            <dd class="mt-1 text-sm text-gray-900">AW-mn48</dd>
+                        </div>
+                        <div>
+                            <dt class="text-sm font-medium text-gray-500">Service Type</dt>
+                            <dd class="mt-1 text-sm text-gray-900">Bulk Removal Service</dd>
+                        </div>
+                        <div>
+                            <dt class="text-sm font-medium text-gray-500">Container Type</dt>
+                            <dd class="mt-1 text-sm text-gray-900">N/A (bulk pickup only)</dd>
+                        </div>
+                        <div>
+                            <dt class="text-sm font-medium text-gray-500">Frequency</dt>
+                            <dd class="mt-1 text-sm text-gray-900">1 Day/Week (TBD)</dd>
+                        </div>
+                        <div>
+                            <dt class="text-sm font-medium text-gray-500">Trailer Size</dt>
+                            <dd class="mt-1 text-sm text-gray-900">8ft x 7ft x 4ft</dd>
+                        </div>
+                        <div>
+                            <dt class="text-sm font-medium text-gray-500">Exclusions</dt>
+                            <dd class="mt-1 text-sm text-gray-900">Renovation/remodeling debris</dd>
+                        </div>
+                        <div class="pt-3 border-t">
+                            <dt class="text-sm font-bold text-gray-700">Total Monthly</dt>
+                            <dd class="mt-1 text-lg font-bold text-gray-900">$575.00</dd>
+                        </div>
+                    </dl>
+                </div>
+            </div>
+
+            <div class="mt-6 bg-white rounded-lg shadow-md p-6">
+                <h3 class="text-lg font-bold text-gray-800 mb-4">Invoice Record Summary</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div>
+                        <div class="text-sm text-gray-500 mb-1">Total Invoices</div>
+                        <div class="text-2xl font-bold text-gray-800">37</div>
+                        <div class="text-xs text-gray-500 mt-1">Oct 2024 - Sep 2025</div>
+                    </div>
+                    <div>
+                        <div class="text-sm text-gray-500 mb-1">Ally Waste</div>
+                        <div class="text-2xl font-bold text-gray-800">12</div>
+                        <div class="text-xs text-gray-500 mt-1">Bulk service invoices</div>
+                    </div>
+                    <div>
+                        <div class="text-sm text-gray-500 mb-1">Waste Management</div>
+                        <div class="text-2xl font-bold text-gray-800">25</div>
+                        <div class="text-xs text-gray-500 mt-1">Compactor + hauling invoices</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 4: Optimization Insights -->
+        <div id="optimization" class="tab-content">
+            <div class="mb-6">
+                <h2 class="text-2xl font-bold text-gray-800">Optimization Insights</h2>
+                <p class="text-gray-600">Service improvement opportunities</p>
+            </div>
+
+            <!-- Critical Limitation Banner -->
+            <div class="bg-red-50 border-l-4 border-red-500 p-6 mb-8">
+                <div class="flex">
+                    <div class="flex-shrink-0">
+                        <svg class="h-6 w-6 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+                        </svg>
+                    </div>
+                    <div class="ml-4">
+                        <h3 class="text-lg font-bold text-red-800">Optimization Analysis Not Possible</h3>
+                        <div class="mt-2 text-sm text-red-700">
+                            <p class="font-medium">Missing Critical Data:</p>
+                            <ul class="list-disc list-inside mt-2 space-y-1">
+                                <li>Invoice amounts (cannot calculate actual spending)</li>
+                                <li>Tonnage data (cannot calculate yards/door or assess compactor efficiency)</li>
+                                <li>Haul frequency (cannot perform compactor optimization analysis)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 gap-6">
+                <!-- Bulk Service -->
+                <div class="bg-white rounded-lg shadow-md p-6 border-l-4 border-green-500">
+                    <div class="flex items-start justify-between">
+                        <div>
+                            <h3 class="text-lg font-bold text-gray-800">✓ Bulk Subscription</h3>
+                            <p class="text-sm text-gray-600 mt-1">Already Implemented</p>
+                        </div>
+                        <span class="px-3 py-1 bg-green-100 text-green-800 text-sm font-medium rounded-full">Active</span>
+                    </div>
+                    <div class="mt-4">
+                        <p class="text-sm text-gray-700">Property currently uses Ally Waste bulk removal subscription at $575.00/month.</p>
+                        <p class="text-sm text-gray-700 mt-2"><strong>Recommendation:</strong> Monitor utilization to ensure cost-effectiveness compared to on-demand bulk service.</p>
+                    </div>
+                </div>
+
+                <!-- Compactor Optimization -->
+                <div class="bg-white rounded-lg shadow-md p-6 border-l-4 border-red-500">
+                    <div class="flex items-start justify-between">
+                        <div>
+                            <h3 class="text-lg font-bold text-gray-800">✗ Compactor Optimization</h3>
+                            <p class="text-sm text-gray-600 mt-1">Cannot Perform Analysis</p>
+                        </div>
+                        <span class="px-3 py-1 bg-red-100 text-red-800 text-sm font-medium rounded-full">Data Missing</span>
+                    </div>
+                    <div class="mt-4">
+                        <p class="text-sm text-gray-700">Compactor optimization requires tonnage data to calculate average tons per haul.</p>
+                        <div class="mt-3 bg-gray-50 p-3 rounded">
+                            <p class="text-sm font-medium text-gray-700">Required Data:</p>
+                            <ul class="text-sm text-gray-600 mt-2 space-y-1">
+                                <li>• Total tons collected per month</li>
+                                <li>• Number of hauls per month</li>
+                                <li>• Average tons per haul (trigger: &lt; 6.0 tons)</li>
+                            </ul>
+                        </div>
+                        <p class="text-sm text-gray-700 mt-3"><strong>Action Required:</strong> Extract tonnage from WM compactor invoices to enable analysis.</p>
+                    </div>
+                </div>
+
+                <!-- Dual Vendor Review -->
+                <div class="bg-white rounded-lg shadow-md p-6 border-l-4 border-yellow-500">
+                    <div class="flex items-start justify-between">
+                        <div>
+                            <h3 class="text-lg font-bold text-gray-800">⚠ Vendor Consolidation</h3>
+                            <p class="text-sm text-gray-600 mt-1">Review Recommended</p>
+                        </div>
+                        <span class="px-3 py-1 bg-yellow-100 text-yellow-800 text-sm font-medium rounded-full">Consider</span>
+                    </div>
+                    <div class="mt-4">
+                        <p class="text-sm text-gray-700">Property currently uses 2 separate vendors (WM for compactor, Ally for bulk).</p>
+                        <div class="mt-3 bg-gray-50 p-3 rounded">
+                            <p class="text-sm font-medium text-gray-700">Potential Benefits:</p>
+                            <ul class="text-sm text-gray-600 mt-2 space-y-1">
+                                <li>• Simplified vendor management (single point of contact)</li>
+                                <li>• Possible volume discount from consolidated service</li>
+                                <li>• Streamlined invoicing and payment processing</li>
+                            </ul>
+                        </div>
+                        <p class="text-sm text-gray-700 mt-3"><strong>Recommendation:</strong> Request consolidated quote from single vendor before next contract renewal.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-8 bg-blue-50 border-l-4 border-blue-500 p-6">
+                <h3 class="text-md font-bold text-blue-800">Next Steps to Enable Optimization</h3>
+                <ol class="mt-3 space-y-2 text-sm text-blue-700">
+                    <li><strong>Priority 1:</strong> Extract invoice amounts from PDF files (enables actual cost analysis)</li>
+                    <li><strong>Priority 2:</strong> Extract tonnage data from WM compactor invoices (enables yards/door calculation)</li>
+                    <li><strong>Priority 3:</strong> Analyze haul frequency vs. tonnage (enables compactor optimization)</li>
+                    <li><strong>Priority 4:</strong> Review contamination charges if present (enables contamination analysis)</li>
+                    <li><strong>Priority 5:</strong> Evaluate vendor consolidation opportunity</li>
+                </ol>
+            </div>
+        </div>
+
+        <!-- TAB 5: Contract Status -->
+        <div id="contract" class="tab-content">
+            <div class="mb-6">
+                <h2 class="text-2xl font-bold text-gray-800">Contract Status</h2>
+                <p class="text-gray-600">Agreement terms, renewal dates, and key clauses</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+                <!-- WM Contract -->
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-lg font-bold text-gray-800 mb-4">Waste Management Contract</h3>
+                    <dl class="space-y-3">
+                        <div>
+                            <dt class="text-sm font-medium text-gray-500">Agreement Number</dt>
+                            <dd class="mt-1 text-sm text-gray-900">S000983B029</dd>
+                        </div>
+                        <div>
+                            <dt class="text-sm font-medium text-gray-500">Effective Date</dt>
+                            <dd class="mt-1 text-sm text-gray-900">February 1, 2018</dd>
+                        </div>
+                        <div>
+                            <dt class="text-sm font-medium text-gray-500">Term Length</dt>
+                            <dd class="mt-1 text-sm text-gray-900">1 year (automatically renews)</dd>
+                        </div>
+                        <div>
+                            <dt class="text-sm font-medium text-gray-500">Termination Notice</dt>
+                            <dd class="mt-1 text-sm text-gray-900">90 days (max 180 days)</dd>
+                        </div>
+                        <div>
+                            <dt class="text-sm font-medium text-gray-500">Rate Adjustments</dt>
+                            <dd class="mt-1 text-sm text-gray-900">Allowed per CPI increases</dd>
+                        </div>
+                    </dl>
+                    <div class="mt-6 pt-4 border-t">
+                        <div class="flex items-center text-sm">
+                            <svg class="h-5 w-5 text-yellow-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z"/>
+                            </svg>
+                            <span class="text-yellow-700 font-medium">Auto-renewal - requires calendar tracking</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ally Contract -->
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-lg font-bold text-gray-800 mb-4">Ally Waste Contract</h3>
+                    <dl class="space-y-3">
+                        <div>
+                            <dt class="text-sm font-medium text-gray-500">Service Type</dt>
+                            <dd class="mt-1 text-sm text-gray-900">Bulk Removal Service Agreement</dd>
+                        </div>
+                        <div>
+                            <dt class="text-sm font-medium text-gray-500">Start Date</dt>
+                            <dd class="mt-1 text-sm text-gray-900">September 10, 2025</dd>
+                        </div>
+                        <div>
+                            <dt class="text-sm font-medium text-gray-500">Term Length</dt>
+                            <dd class="mt-1 text-sm text-gray-900">12 months (automatically renews)</dd>
+                        </div>
+                        <div>
+                            <dt class="text-sm font-medium text-gray-500">Termination Notice</dt>
+                            <dd class="mt-1 text-sm text-gray-900">90-180 days before term end</dd>
+                        </div>
+                        <div>
+                            <dt class="text-sm font-medium text-gray-500">Rate Lock</dt>
+                            <dd class="mt-1 text-sm text-gray-900">No increases first 12 months</dd>
+                        </div>
+                        <div>
+                            <dt class="text-sm font-medium text-gray-500">Rate Increases</dt>
+                            <dd class="mt-1 text-sm text-gray-900">Up to 8% annually thereafter</dd>
+                        </div>
+                    </dl>
+                    <div class="mt-6 pt-4 border-t">
+                        <div class="text-sm">
+                            <span class="text-green-700 font-medium">Next Renewal: September 10, 2026</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Key Clauses -->
+            <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+                <h3 class="text-lg font-bold text-gray-800 mb-4">Notable Contract Clauses</h3>
+                <div class="space-y-4">
+                    <div class="flex items-start">
+                        <svg class="h-5 w-5 text-yellow-500 mt-0.5 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z"/>
+                        </svg>
+                        <div>
+                            <p class="font-medium text-gray-900">Auto-Renewal (Both Contracts)</p>
+                            <p class="text-sm text-gray-600 mt-1">Both agreements automatically renew unless proper notice is given 90-180 days before term end. Set calendar reminders to avoid unintentional renewal.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start">
+                        <svg class="h-5 w-5 text-yellow-500 mt-0.5 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z"/>
+                        </svg>
+                        <div>
+                            <p class="font-medium text-gray-900">Liquidated Damages (Ally Waste)</p>
+                            <p class="text-sm text-gray-600 mt-1">Early termination results in penalty equal to 6 months of service charges. Consider timing of termination notice carefully.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start">
+                        <svg class="h-5 w-5 text-yellow-500 mt-0.5 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z"/>
+                        </svg>
+                        <div>
+                            <p class="font-medium text-gray-900">Rate Increase Exposure</p>
+                            <p class="text-sm text-gray-600 mt-1">WM: Allowed to increase per CPI or other indices. Ally: Up to 8% annually after first year. Monitor actual rate changes vs. contract allowances.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start">
+                        <svg class="h-5 w-5 text-blue-500 mt-0.5 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"/>
+                        </svg>
+                        <div>
+                            <p class="font-medium text-gray-900">Service Exclusions (Ally Waste)</p>
+                            <p class="text-sm text-gray-600 mt-1">Bulk service does NOT include renovation/remodeling debris. May require additional vendor for construction projects.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recommendations -->
+            <div class="bg-blue-50 border-l-4 border-blue-500 p-6">
+                <h3 class="text-md font-bold text-blue-800 mb-3">Contract Management Recommendations</h3>
+                <ul class="space-y-2 text-sm text-blue-700">
+                    <li class="flex items-start">
+                        <svg class="h-5 w-5 mr-2 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"/>
+                        </svg>
+                        <span><strong>Set Calendar Alerts:</strong> Create 120-day advance reminders for both contract renewal dates to ensure adequate notice period.</span>
+                    </li>
+                    <li class="flex items-start">
+                        <svg class="h-5 w-5 mr-2 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"/>
+                        </svg>
+                        <span><strong>Vendor Consolidation Review:</strong> Before WM renewal, evaluate single-vendor solution to simplify management and potentially reduce costs.</span>
+                    </li>
+                    <li class="flex items-start">
+                        <svg class="h-5 w-5 mr-2 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"/>
+                        </svg>
+                        <span><strong>Monitor Rate Increases:</strong> Track actual rate adjustments against contract allowances to ensure compliance with terms.</span>
+                    </li>
+                    <li class="flex items-start">
+                        <svg class="h-5 w-5 mr-2 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"/>
+                        </svg>
+                        <span><strong>RFP Planning:</strong> Consider issuing competitive RFP 6 months before Ally renewal (March 2026) to test market rates.</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-6 mt-12">
+        <div class="container mx-auto px-4 text-center">
+            <p class="text-sm">Generated by WasteWise Analytics | Advantage Waste & Greystar</p>
+            <p class="text-xs text-gray-400 mt-2">Calculation standards: WasteWise_Calculations_Reference.md v2.0</p>
+        </div>
+    </footer>
+
+    <script>
+        // Tab switching
+        function switchTab(tabName) {
+            // Hide all tabs
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+
+            // Remove active class from all buttons
+            document.querySelectorAll('.tab-button').forEach(btn => {
+                btn.classList.remove('active');
+            });
+
+            // Show selected tab
+            document.getElementById(tabName).classList.add('active');
+
+            // Add active class to clicked button
+            event.target.classList.add('active');
+        }
+
+        // Initialize Chart.js
+        document.addEventListener('DOMContentLoaded', function() {
+            // Cost Breakdown Chart
+            const ctx = document.getElementById('costBreakdownChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    labels: ['WM Base Rate', 'Environmental/RCR', 'Ally Bulk Service'],
+                    datasets: [{
+                        data: [750.00, 68.86, 575.00],
+                        backgroundColor: [
+                            '#3B82F6',
+                            '#10B981',
+                            '#F59E0B'
+                        ]
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                        },
+                        title: {
+                            display: false
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    let label = context.label || '';
+                                    if (label) {
+                                        label += ': ';
+                                    }
+                                    label += '$' + context.parsed.toFixed(2);
+                                    return label;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

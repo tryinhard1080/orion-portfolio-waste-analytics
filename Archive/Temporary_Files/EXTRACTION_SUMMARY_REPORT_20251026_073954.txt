@@ -1,0 +1,219 @@
+====================================================================================================
+ORION PORTFOLIO INVOICE EXTRACTION - DETAILED SUMMARY REPORT
+====================================================================================================
+Extraction Date: 2025-10-26
+Total Invoices Processed: 66
+
+----------------------------------------------------------------------------------------------------
+PROPERTY BREAKDOWN
+----------------------------------------------------------------------------------------------------
+
+Bella Mirage:
+  Invoice Count: 10
+  Total Amount: $67,324.17
+  Vendors: Waste Management
+
+Bonita Fountains:
+  Invoice Count: 6
+  Total Amount: $0.00
+  Vendors: Waste Connections of Florida
+
+Orion Prosper (980 S Coit Rd):
+  Invoice Count: 14
+  Total Amount: $30,518.85
+  Vendors: Republic Services
+
+Orion Prosper Lakes:
+  Invoice Count: 3
+  Total Amount: $8,148.51
+  Vendors: Republic Services
+
+UNKNOWN:
+  Invoice Count: 33
+  Total Amount: $0.00
+  Vendors: UNKNOWN
+
+----------------------------------------------------------------------------------------------------
+VENDOR BREAKDOWN
+----------------------------------------------------------------------------------------------------
+
+Republic Services:
+  Invoice Count: 17
+  Total Amount: $38,667.36
+
+UNKNOWN:
+  Invoice Count: 33
+  Total Amount: $0.00
+
+Waste Connections of Florida:
+  Invoice Count: 6
+  Total Amount: $0.00
+
+Waste Management:
+  Invoice Count: 10
+  Total Amount: $67,324.17
+
+----------------------------------------------------------------------------------------------------
+DATE RANGE ANALYSIS
+----------------------------------------------------------------------------------------------------
+Earliest Invoice: 2024-11-15
+Latest Invoice: 2025-08-25
+
+Invoices by Month:
+  2024-11: 1 invoices
+  2024-12: 1 invoices
+  2025-01: 1 invoices
+  2025-02: 3 invoices
+  2025-03: 1 invoices
+  2025-04: 1 invoices
+  2025-05: 1 invoices
+  2025-06: 1 invoices
+  2025-07: 1 invoices
+  2025-08: 3 invoices
+
+----------------------------------------------------------------------------------------------------
+DATA QUALITY ANALYSIS
+----------------------------------------------------------------------------------------------------
+Total Flags: 54
+  [RED] Critical Issues:       39
+  [YELLOW] Needs Review:       7
+  [GREEN] Validate:            8
+  [OK] Clean Extractions:      12
+
+Field Completion Rates:
+  invoice_date        :  14/66 ( 21.2%)
+  invoice_number      :  33/66 ( 50.0%)
+  property_name       :  33/66 ( 50.0%)
+  service_period      :  33/66 ( 50.0%)
+  total_amount        :  27/66 ( 40.9%)
+  vendor              :  66/66 (100.0%)
+
+Confidence Score Distribution:
+  90-100%     :  14 invoices ( 21.2%)
+  75-89%      :  13 invoices ( 19.7%)
+  50-74%      :   6 invoices (  9.1%)
+  Below 50%   :  33 invoices ( 50.0%)
+
+----------------------------------------------------------------------------------------------------
+CRITICAL ISSUES REQUIRING IMMEDIATE ATTENTION
+----------------------------------------------------------------------------------------------------
+
+Total Critical Issues: 39
+
+Grouped by Issue Type:
+
+1. total_amount: Total amount not found
+   Affected Invoices (6):
+     - TCAM 4.15.25.pdf
+     - TCAM 5.15.25.pdf
+     - TCAM 6.15.25.pdf
+     - TCAM 7.15.25 (1).pdf
+     - TCAM 8.15.25.pdf
+     - TCAM 9.15.25.pdf
+
+2. vendor: Vendor could not be identified
+   Affected Invoices (33):
+     - CITY OF MCKINNEY-16338246_02-2025.pdf
+     - CITY OF MCKINNEY-16433228_03-2025.pdf
+     - CITY OF MCKINNEY-16433232_03-2025.pdf
+     - CITY OF MCKINNEY-16788617_07-2025.pdf
+     - CITY OF MCKINNEY-16788622_07-2025.pdf
+     - CITY OF MCKINNEY-16788626_07-2025.pdf
+     - Community Waste Disposal, LP-16239646_01-2025.pdf
+     - Community Waste Disposal, LP-16325555_02-2025.pdf
+     - Community Waste Disposal, LP-16423855_03-2025.pdf
+     - Community Waste Disposal, LP-16502663_04-2025.pdf
+     ... and 23 more
+
+----------------------------------------------------------------------------------------------------
+MISSING CRITICAL DATA SUMMARY
+----------------------------------------------------------------------------------------------------
+
+Missing invoice_date (52 invoices):
+  - CITY OF MCKINNEY-16338246_02-2025.pdf
+  - CITY OF MCKINNEY-16433228_03-2025.pdf
+  - CITY OF MCKINNEY-16433232_03-2025.pdf
+  - CITY OF MCKINNEY-16788617_07-2025.pdf
+  - CITY OF MCKINNEY-16788622_07-2025.pdf
+  - CITY OF MCKINNEY-16788626_07-2025.pdf
+  - Community Waste Disposal, LP-16239646_01-2025.pdf
+  - Community Waste Disposal, LP-16325555_02-2025.pdf
+  - Community Waste Disposal, LP-16423855_03-2025.pdf
+  - Community Waste Disposal, LP-16502663_04-2025.pdf
+  - Community Waste Disposal, LP-16589192_05-2025.pdf
+  - Community Waste Disposal, LP-16681937_06-2025.pdf
+  - Community Waste Disposal, LP-16777493_07-2025.pdf
+  - Community Waste Disposal, LP-16856537_08-2025.pdf
+  - Frontier Waste-16275266_01-2025.pdf
+  ... and 37 more
+
+Missing property_name (33 invoices):
+  - CITY OF MCKINNEY-16338246_02-2025.pdf
+  - CITY OF MCKINNEY-16433228_03-2025.pdf
+  - CITY OF MCKINNEY-16433232_03-2025.pdf
+  - CITY OF MCKINNEY-16788617_07-2025.pdf
+  - CITY OF MCKINNEY-16788622_07-2025.pdf
+  - CITY OF MCKINNEY-16788626_07-2025.pdf
+  - Community Waste Disposal, LP-16239646_01-2025.pdf
+  - Community Waste Disposal, LP-16325555_02-2025.pdf
+  - Community Waste Disposal, LP-16423855_03-2025.pdf
+  - Community Waste Disposal, LP-16502663_04-2025.pdf
+  - Community Waste Disposal, LP-16589192_05-2025.pdf
+  - Community Waste Disposal, LP-16681937_06-2025.pdf
+  - Community Waste Disposal, LP-16777493_07-2025.pdf
+  - Community Waste Disposal, LP-16856537_08-2025.pdf
+  - Frontier Waste-16275266_01-2025.pdf
+  ... and 18 more
+
+Missing total_amount (39 invoices):
+  - CITY OF MCKINNEY-16338246_02-2025.pdf
+  - CITY OF MCKINNEY-16433228_03-2025.pdf
+  - CITY OF MCKINNEY-16433232_03-2025.pdf
+  - CITY OF MCKINNEY-16788617_07-2025.pdf
+  - CITY OF MCKINNEY-16788622_07-2025.pdf
+  - CITY OF MCKINNEY-16788626_07-2025.pdf
+  - Community Waste Disposal, LP-16239646_01-2025.pdf
+  - Community Waste Disposal, LP-16325555_02-2025.pdf
+  - Community Waste Disposal, LP-16423855_03-2025.pdf
+  - Community Waste Disposal, LP-16502663_04-2025.pdf
+  - Community Waste Disposal, LP-16589192_05-2025.pdf
+  - Community Waste Disposal, LP-16681937_06-2025.pdf
+  - Community Waste Disposal, LP-16777493_07-2025.pdf
+  - Community Waste Disposal, LP-16856537_08-2025.pdf
+  - Frontier Waste-16275266_01-2025.pdf
+  ... and 24 more
+
+Missing vendor (33 invoices):
+  - CITY OF MCKINNEY-16338246_02-2025.pdf
+  - CITY OF MCKINNEY-16433228_03-2025.pdf
+  - CITY OF MCKINNEY-16433232_03-2025.pdf
+  - CITY OF MCKINNEY-16788617_07-2025.pdf
+  - CITY OF MCKINNEY-16788622_07-2025.pdf
+  - CITY OF MCKINNEY-16788626_07-2025.pdf
+  - Community Waste Disposal, LP-16239646_01-2025.pdf
+  - Community Waste Disposal, LP-16325555_02-2025.pdf
+  - Community Waste Disposal, LP-16423855_03-2025.pdf
+  - Community Waste Disposal, LP-16502663_04-2025.pdf
+  - Community Waste Disposal, LP-16589192_05-2025.pdf
+  - Community Waste Disposal, LP-16681937_06-2025.pdf
+  - Community Waste Disposal, LP-16777493_07-2025.pdf
+  - Community Waste Disposal, LP-16856537_08-2025.pdf
+  - Frontier Waste-16275266_01-2025.pdf
+  ... and 18 more
+
+----------------------------------------------------------------------------------------------------
+RECOMMENDATIONS
+----------------------------------------------------------------------------------------------------
+1. PRIORITY: 39 invoices missing total amount - manual review required
+2. HIGH: 33 invoices need property identification
+3. HIGH: 52 invoices missing invoice date
+4. MEDIUM: 7 items flagged for review (container details, frequencies)
+5. LOW: 8 items flagged for validation (excess charges, service types)
+
+Property-Specific Actions:
+  - Bonita Fountains: Review 6 critical issues
+  - UNKNOWN: Review 33 critical issues
+
+====================================================================================================
+END OF REPORT
+====================================================================================================

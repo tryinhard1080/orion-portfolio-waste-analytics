@@ -1,0 +1,127 @@
+{
+  "Orion Prosper": {
+    "units": 312,
+    "state": "Texas",
+    "property_type": "Garden Style",
+    "service_type": "Compactor"
+  },
+  "McCord Park FL": {
+    "units": 416,
+    "state": "Florida",
+    "property_type": "Garden Style",
+    "service_type": "Dumpster"
+  },
+  "Orion McKinney": {
+    "units": 453,
+    "state": "Texas",
+    "property_type": "Garden Style",
+    "service_type": "Mixed"
+  },
+  "The Club at Millenia": {
+    "units": 560,
+    "state": "Florida",
+    "property_type": "Garden Style",
+    "service_type": "Compactor"
+  },
+  "Bella Mirage": {
+    "units": 715,
+    "state": "Arizona",
+    "property_type": "Garden Style",
+    "service_type": "Compactor"
+  },
+  "Orion Prosper Lakes": {
+    "units": 308,
+    "state": "Texas",
+    "property_type": "Garden Style",
+    "service_type": "Compactor"
+  },
+  "Mandarina": {
+    "units": 180,
+    "state": "Arizona",
+    "property_type": "Garden Style",
+    "service_type": "Compactor",
+    "containers": [
+      {
+        "type": "Compactor",
+        "size": 6,
+        "qty": 2,
+        "frequency": 3
+      }
+    ]
+  },
+  "Pavilions at Arrowhead": {
+    "units": 248,
+    "state": "Arizona",
+    "property_type": "Garden Style",
+    "service_type": "Dumpster",
+    "containers": [
+      {
+        "type": "Dumpster",
+        "size": 4,
+        "qty": 4,
+        "frequency": 2
+      }
+    ],
+    "bulk_service": {
+      "frequency": "Weekly (Thursday)",
+      "cost": 365
+    }
+  },
+  "Springs at Alta Mesa": {
+    "units": 200,
+    "state": "Arizona",
+    "property_type": "Garden Style",
+    "service_type": "Mixed",
+    "containers": [
+      {
+        "type": "Dumpster",
+        "size": 6,
+        "qty": 5,
+        "frequency": 3
+      },
+      {
+        "type": "Dumpster",
+        "size": 4,
+        "qty": 4,
+        "frequency": 3
+      },
+      {
+        "type": "Cart",
+        "size": 90,
+        "qty": 7,
+        "frequency": 3,
+        "unit": "gallon"
+      }
+    ],
+    "bulk_service": {
+      "frequency": "Weekly (Thursday)",
+      "cost": null
+    }
+  },
+  "Tempe Vista": {
+    "units": 186,
+    "state": "Arizona",
+    "property_type": "Garden Style",
+    "service_type": "Dumpster",
+    "containers": [
+      {
+        "type": "Dumpster",
+        "size": 4,
+        "qty": 6,
+        "frequency": 3
+      },
+      {
+        "type": "Dumpster",
+        "size": 6,
+        "qty": 1,
+        "frequency": 3
+      },
+      {
+        "type": "Dumpster",
+        "size": 8,
+        "qty": 1,
+        "frequency": 3
+      }
+    ]
+  }
+}

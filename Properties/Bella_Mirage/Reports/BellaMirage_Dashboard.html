@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bella Mirage - Waste Management Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f8fafc;
+        }
+
+        .tab-button {
+            transition: all 0.2s ease;
+        }
+
+        .tab-button.active {
+            background: #2563eb;
+            color: white;
+            border-bottom: 3px solid #1d4ed8;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.3s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .kpi-card {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .kpi-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .kpi-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #1e293b;
+        }
+
+        .kpi-label {
+            font-size: 0.875rem;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-top: 8px;
+        }
+
+        .alert-card {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-left: 4px solid #f59e0b;
+            padding: 16px;
+            border-radius: 8px;
+            margin-top: 16px;
+        }
+
+        .alert-urgent {
+            background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
+            border-left: 4px solid #ef4444;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+        }
+
+        thead {
+            background: #f1f5f9;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        th {
+            padding: 12px 16px;
+            text-align: left;
+            font-weight: 600;
+            color: #475569;
+            border-bottom: 2px solid #e2e8f0;
+        }
+
+        td {
+            padding: 12px 16px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        tr:hover {
+            background: #f8fafc;
+        }
+
+        .efficiency-high {
+            background: #dcfce7 !important;
+        }
+
+        .efficiency-medium {
+            background: #fef9c3 !important;
+        }
+
+        .efficiency-low {
+            background: #fee2e2 !important;
+        }
+
+        .chart-container {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            margin-top: 24px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .gauge-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 32px;
+        }
+    </style>
+</head>
+<body class="p-6">
+    <!-- Header -->
+    <div class="max-w-7xl mx-auto">
+        <div class="bg-gradient-to-r from-blue-600 to-blue-800 rounded-lg p-8 text-white mb-6">
+            <div class="flex justify-between items-start">
+                <div>
+                    <h1 class="text-4xl font-bold mb-2">Bella Mirage</h1>
+                    <p class="text-blue-100 text-lg">Waste Management Performance Dashboard</p>
+                    <p class="text-blue-200 text-sm mt-2">715 Units • Period: Nov 2024 - Aug 2025</p>
+                    <p class="text-blue-200 text-sm">Vendor: Waste Management of Arizona, Inc. • Service: Dumpster</p>
+                </div>
+                <div class="text-right">
+                    <div class="text-sm text-blue-200">Generated</div>
+                    <div class="text-lg font-semibold">November 03, 2025</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab Navigation -->
+        <div class="bg-white rounded-lg shadow-sm mb-6">
+            <div class="flex border-b overflow-x-auto">
+                <button onclick="switchTab('dashboard')" class="tab-button active px-6 py-4 font-semibold text-gray-700 hover:bg-gray-50 whitespace-nowrap">
+                    Dashboard
+                </button>
+                <button onclick="switchTab('expense')" class="tab-button px-6 py-4 font-semibold text-gray-700 hover:bg-gray-50 whitespace-nowrap">
+                    Expense Analysis
+                </button>
+                <button onclick="switchTab('haul')" class="tab-button px-6 py-4 font-semibold text-gray-700 hover:bg-gray-50 whitespace-nowrap">
+                    Haul Log
+                </button>
+                <button onclick="switchTab('optimization')" class="tab-button px-6 py-4 font-semibold text-gray-700 hover:bg-gray-50 whitespace-nowrap">
+                    Optimization
+                </button>
+                <button onclick="switchTab('contract')" class="tab-button px-6 py-4 font-semibold text-gray-700 hover:bg-gray-50 whitespace-nowrap">
+                    Contract Terms
+                </button>
+            </div>
+        </div>
+
+        <!-- Tab Content -->
+
+        <!-- Tab 1: Dashboard -->
+        <div id="tab-dashboard" class="tab-content active">
+            <!-- KPI Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+                <div class="kpi-card">
+                    <div class="kpi-value text-blue-600">$9.42</div>
+                    <div class="kpi-label">Cost Per Door</div>
+                    <div class="text-sm text-gray-600 mt-2">Monthly average per unit</div>
+                </div>
+
+                <div class="kpi-card">
+                    <div class="kpi-value text-green-600">$74,056.59</div>
+                    <div class="kpi-label">Total Period Spend</div>
+                    <div class="text-sm text-gray-600 mt-2">12 months analyzed</div>
+                </div>
+
+                <div class="kpi-card">
+                    <div class="kpi-value text-purple-600">$6,171.38</div>
+                    <div class="kpi-label">Monthly Average</div>
+                    <div class="text-sm text-gray-600 mt-2">Baseline cost per month</div>
+                </div>
+            </div>
+
+            <!-- Performance Gauge -->
+            <div class="bg-white rounded-lg shadow-sm p-6 mb-6">
+                <h2 class="text-2xl font-bold mb-4">Overall Performance</h2>
+                <div class="gauge-container">
+                    <canvas id="performanceGauge" width="400" height="200"></canvas>
+                </div>
+                <div class="text-center text-sm text-gray-600 mt-4">
+                    Performance calculated based on cost per door vs. industry benchmarks ($12-15/door)
+                </div>
+            </div>
+
+            <!-- Key Findings -->
+            <div class="bg-white rounded-lg shadow-sm p-6 mb-6">
+                <h2 class="text-2xl font-bold mb-4">Key Findings</h2>
+                <div class="space-y-3">
+                    <div class="flex items-start">
+                        <span class="text-2xl mr-3">✅</span>
+                        <div>
+                            <strong>Excellent Cost Efficiency:</strong> Bella Mirage maintains a cost per door of $9.42,
+                            which is below the industry benchmark range of $12-15 per door.
+                        </div>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="text-2xl mr-3">📊</span>
+                        <div>
+                            <strong>Service Consistency:</strong> 12 months of data analyzed
+                            showing stable service costs with $6,171.38 average monthly spend.
+                        </div>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="text-2xl mr-3">🏢</span>
+                        <div>
+                            <strong>Service Configuration:</strong> Dumpster service with provider Waste Management of Arizona, Inc.,
+                            serving 715 units across the property.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contract Renewal Alert -->
+            <div class="alert-card alert-urgent">
+                <div class="flex items-center">
+                    <span class="text-3xl mr-4">⚠️</span>
+                    <div>
+                        <h3 class="font-bold text-lg text-red-900">Contract Renewal Deadline Approaching</h3>
+                        <p class="text-red-800 mt-1">
+                            <strong>66 days</strong> until contract renewal deadline.
+                            Review terms and negotiate improvements before auto-renewal.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab 2: Expense Analysis -->
+        <div id="tab-expense" class="tab-content">
+            <div class="bg-white rounded-lg shadow-sm p-6 mb-6">
+                <h2 class="text-2xl font-bold mb-4">Monthly Expense Breakdown</h2>
+                <div class="overflow-x-auto">
+                    <table id="expenseTable">
+                        <!-- Populated by JavaScript -->
+                    </table>
+                </div>
+            </div>
+
+            <!-- Cost Per Door Trend Chart -->
+            <div class="chart-container">
+                <h3 class="text-xl font-bold mb-4">Cost Per Door Trend</h3>
+                <canvas id="cpdTrendChart"></canvas>
+            </div>
+
+            <!-- Total Cost Trend Chart -->
+            <div class="chart-container">
+                <h3 class="text-xl font-bold mb-4">Total Monthly Cost Trend</h3>
+                <canvas id="totalCostChart"></canvas>
+            </div>
+        </div>
+
+        <!-- Tab 3: Haul Log -->
+        <div id="tab-haul" class="tab-content">
+            <div class="bg-white rounded-lg shadow-sm p-6">
+                <h2 class="text-2xl font-bold mb-4">Haul-by-Haul Data</h2>
+                <div class="text-gray-600">
+                    <p>Detailed haul logs are not available for this dumpster service.</p>
+                    <p class="mt-2">For compactor services, individual haul data including weights and efficiency metrics would be displayed here.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab 4: Optimization -->
+        <div id="tab-optimization" class="tab-content">
+            <div class="bg-white rounded-lg shadow-sm p-6 mb-6">
+                <h2 class="text-2xl font-bold mb-4">Optimization Opportunities</h2>
+                <div id="optimizationContent">
+                    <!-- Populated by JavaScript -->
+                </div>
+            </div>
+
+            <!-- Comparison Charts -->
+            <div class="chart-container">
+                <h3 class="text-xl font-bold mb-4">Performance Comparison</h3>
+                <canvas id="comparisonChart"></canvas>
+            </div>
+        </div>
+
+        <!-- Tab 5: Contract Terms -->
+        <div id="tab-contract" class="tab-content">
+            <div class="bg-white rounded-lg shadow-sm p-6 mb-6">
+                <h2 class="text-2xl font-bold mb-4">Contract Terms & Conditions</h2>
+                <div id="contractTerms">
+                    <!-- Populated by JavaScript -->
+                </div>
+            </div>
+
+            <!-- Calendar Reminders -->
+            <div class="bg-white rounded-lg shadow-sm p-6">
+                <h3 class="text-xl font-bold mb-4">Important Dates</h3>
+                <div id="calendarReminders">
+                    <!-- Populated by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Data from Python
+        const expenseData = [{"Month": "Nov 2024", "Invoice Date": "2024-11-01", "Total Amount": 6622.86, "Cost/Door": 9.262741258741258, "Base Charges": 6592.416999999999, "Overages": 140.0}, {"Month": "Dec 2024", "Invoice Date": "2024-12-01", "Total Amount": 6482.86, "Cost/Door": 9.066937062937063, "Base Charges": 6592.416999999999, "Overages": 140.0}, {"Month": "Jan 2025", "Invoice Date": "2025-01-01", "Total Amount": 6622.86, "Cost/Door": 9.262741258741258, "Base Charges": 6592.416999999999, "Overages": 140.0}, {"Month": "Feb 2025", "Invoice Date": "2025-02-01", "Total Amount": 6914.37, "Cost/Door": 9.670447552447552, "Base Charges": 6592.416999999999, "Overages": 140.0}, {"Month": "Mar 2025", "Invoice Date": "2025-03-01", "Total Amount": 6739.37, "Cost/Door": 9.425692307692307, "Base Charges": 6592.416999999999, "Overages": 140.0}, {"Month": "Apr 2025", "Invoice Date": "2025-04-01", "Total Amount": 6879.37, "Cost/Door": 9.621496503496504, "Base Charges": 6592.416999999999, "Overages": 140.0}, {"Month": "May 2025", "Invoice Date": "2025-05-01", "Total Amount": 6669.37, "Cost/Door": 9.32779020979021, "Base Charges": 6592.416999999999, "Overages": 140.0}, {"Month": "Jun 2025", "Invoice Date": "2025-06-01", "Total Amount": 6774.37, "Cost/Door": 9.474643356643357, "Base Charges": 6592.416999999999, "Overages": 140.0}, {"Month": "Jul 2025", "Invoice Date": "2025-07-01", "Total Amount": 6669.37, "Cost/Door": 9.32779020979021, "Base Charges": 6592.416999999999, "Overages": 140.0}, {"Month": "Aug 2025", "Invoice Date": "2025-08-01", "Total Amount": 6949.37, "Cost/Door": 9.719398601398602, "Base Charges": 6592.416999999999, "Overages": 140.0}, {"Month": "", "Invoice Date": "", "Total Amount": 0, "Cost/Door": 0, "Base Charges": "", "Overages": ""}, {"Month": "AVERAGE", "Invoice Date": "", "Total Amount": 6732.416999999999, "Cost/Door": 9.415967832167832, "Base Charges": "", "Overages": ""}];
+        const haulData = [];
+        const optimizationData = [{"title": "Service Frequency Review", "description": "Current service provides consistent monthly costs with minimal variation. Monitor for seasonal changes in waste generation.", "roi": 0}, {"title": "Container Optimization", "description": "With 22 total containers serving 715 units, review container placement and sizing to ensure optimal coverage.", "roi": 0}, {"title": "Contract Renewal Planning", "description": "Contract renewal approaching. Prepare competitive bids from alternative vendors to leverage pricing negotiations.", "roi": 0}];
+        const contractData = {"terms": [{"label": "Effective Date:", "value": "2020-04-08"}, {"label": "Initial Term:", "value": "3 years"}, {"label": "Auto-Renewal:", "value": "Yes - 12 month terms"}, {"label": "Monthly Base Cost:", "value": "$4,071.00"}, {"label": "Total Containers:", "value": "22"}], "dates": [{"label": "Termination notice window OPENS - Can submit termination notice (certified mail required)", "date": "2025-10-10", "daysUntil": -25, "urgent": true}, {"label": "Termination notice window CLOSES - Last day to submit termination notice to avoid auto-renewal", "date": "2026-01-08", "daysUntil": 65, "urgent": true}, {"label": "Contract auto-renews for 12 months unless termination notice was submitted", "date": "2026-04-08", "daysUntil": 155, "urgent": false}, {"label": "Contract Action", "date": "EXTRACTED CONTRACT CLAUSES", "daysUntil": null, "urgent": false}, {"label": "Verbatim Contract Language", "date": "Category", "daysUntil": null, "urgent": false}, {"label": "Contract Term is for 3 year(s) from the Effective Date ('Initial Term') and it shall automatically renew thereafter for additional terms of 12 months ('Renewal Term') unless terminated as set forth herein.", "date": "Term & Renewal", "daysUntil": null, "urgent": false}, {"label": "Unless otherwise specified on the Service Summary, at the end of the Initial Term and any subsequent Renewal Term, the Contract Term shall automatically renew for an additional Renewal Term at the then current Service levels and applicable Charges, unless (a) for a Renewal Term of twelve (12) months or more, either party gives to the other party written notice of termination at least ninety (90) days, but not more than one hundred eighty (180) days, prior to the termination of the then-existing term, and (b) for a Renewal Term of less than twelve (12) months, either party gives to the other party written notice of termination at least thirty (30) days prior to the termination of the then-existing term. Notice of termination received at any other time will be considered ineffective and the Agreement will be considered automatically renewed upon completion of the then-existing term.", "date": "Termination", "daysUntil": null, "urgent": false}, {"label": "Company reserves the right, and Customer acknowledges that it should expect Company to increase or add Charges payable by Customer hereunder during the Contract Term: (i) for any changes or modifications to, or differences between, the actual equipment and Services provided by Company to Customer and those specified on the Service Summary; (ii) for any changes or difference in the composition, amount or weight of the Waste Materials collected by Company from Customer's service location(s) from what is specified on the Service Summary (including for container overages or overflows); (iii) for any increase in or other modification made by Company to the Fuel Surcharge, Regulatory Cost Recovery Charge, Recyclable Materials Offset, Environmental Charge, and/or any other Charges included or referenced in the Service Summary (which Charges are calculated and/or determined on enterprise-wide basis, including Company and all Affiliates); (iv) to cover any increases in disposal, processing, and/or transportation costs, including fuel surcharges; (v) to cover increased costs due to uncontrollable circumstances, including, without limitation, changes (occurring from and after three (3) months prior to the Effective Date) in local, state, federal or foreign laws or regulations (or the enforcement, interpretation or application thereof), including the imposition of or increase in taxes, fees or surcharges, or acts of God such as floods, fires, hurricanes and natural disasters; and (vi) for increases in the Consumer Price Index (\"CPI\") for Water, Sewer and Trash Collection Services published by U.S. Bureau of Labor Statistics, or with written notice to Customer, any other national, regional or local CPI, with such increases in CPI being measured from the Effective Date, or as applicable, Customer's last CPI based price increase date (\"PI Date\").", "date": "Rate Increases", "daysUntil": null, "urgent": false}, {"label": "Neither party shall be liable to the other for consequential, incidental or punitive damages arising out of the performance or breach of this Agreement.", "date": "Liability", "daysUntil": null, "urgent": false}, {"label": "SERVICE GUARANTEE. We guarantee our Services (as defined below). If Company fails to perform Services in accordance with the service summary as provided, which for Services purchased online include the information and terms disclosed during the order and checkout process (collectively, the \"Service Summary\"), and Company does not remedy such failure within five (5) business days of its receipt of a written demand from Customer, Customer may immediately terminate this Agreement without penalty.", "date": "Service Level", "daysUntil": null, "urgent": false}, {"label": "Company agrees to indemnify, defend and save Customer and its Affiliates harmless from and against any and all liability which Customer or its Affiliates may suffer, incur or pay as a result of any bodily injuries (including death), property damage or violation of law, to the extent caused by any negligent act or omission or willful misconduct of Company or its employees, which occurs (a) during the collection or transportation of Customer's Waste Materials, or (b) as a result of the disposal of Customer's Waste Materials in a facility owned by Company or an Affiliate, provided that Company's indemnification obligations will not apply to occurrences involving Excluded Materials. Customer agrees to indemnify, defend and save Company and its Affiliates harmless from and against any and all liability which Company and its Affiliates may suffer, incur or pay as a result of any bodily injuries (including death), property damage or violation of law to the extent caused by Customer's breach of this Agreement or by any negligent act or omission or willful misconduct of Customer or its employees, agents or contractors or Customer's use, operation or possession of any equipment furnished by Company.", "date": "Indemnification", "daysUntil": null, "urgent": false}, {"label": "Except for the obligation to make payments hereunder for Services already performed, neither party shall be in default for its failure to perform or delay in performance caused by events or significant threats of events beyond its reasonable control, whether or not foreseeable, including, but not limited to, strikes, labor trouble, riots, imposition of laws or governmental orders, fires, acts of war or terrorism, acts of God, and the inability to obtain equipment, and the affected party shall be excused from performance during the occurrence of such events.", "date": "Force Majeure", "daysUntil": null, "urgent": false}]};
+        const kpis = {"cost_per_door": 9.415967832167832, "total_spend": 74056.587, "monthly_average": 6171.38225, "period_months": 12, "contract_renewal_days": 66, "haul_count": 0, "avg_efficiency": 0, "vendor": "Waste Management of Arizona, Inc.", "service_type": "Dumpster"};
+
+        // Tab switching
+        function switchTab(tabName) {
+            // Hide all tabs
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+
+            // Remove active from all buttons
+            document.querySelectorAll('.tab-button').forEach(btn => {
+                btn.classList.remove('active');
+            });
+
+            // Show selected tab
+            document.getElementById('tab-' + tabName).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        // Initialize on load
+        document.addEventListener('DOMContentLoaded', function() {
+            renderExpenseTable();
+            renderOptimizationContent();
+            renderContractTerms();
+            renderPerformanceGauge();
+            renderCPDTrendChart();
+            renderTotalCostChart();
+            renderComparisonChart();
+        });
+
+        // Render expense table
+        function renderExpenseTable() {
+            const table = document.getElementById('expenseTable');
+            if (!expenseData || expenseData.length === 0) {
+                table.innerHTML = '<p class="text-gray-500 p-4">No expense data available</p>';
+                return;
+            }
+
+            let html = '<thead><tr>';
+            const headers = Object.keys(expenseData[0]);
+            headers.forEach(header => {
+                html += `<th>${header}</th>`;
+            });
+            html += '</tr></thead><tbody>';
+
+            expenseData.forEach(row => {
+                html += '<tr>';
+                headers.forEach(header => {
+                    const value = row[header];
+                    if (header.includes('Cost') || header.includes('Amount') || header.includes('Overage') || header.includes('Charges')) {
+                        html += `<td>$${parseFloat(value).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td>`;
+                    } else {
+                        html += `<td>${value}</td>`;
+                    }
+                });
+                html += '</tr>';
+            });
+
+            html += '</tbody>';
+            table.innerHTML = html;
+        }
+
+        // Render optimization content
+        function renderOptimizationContent() {
+            const container = document.getElementById('optimizationContent');
+            if (!optimizationData || optimizationData.length === 0) {
+                container.innerHTML = '<p class="text-gray-500">No optimization data available</p>';
+                return;
+            }
+
+            let html = '<div class="space-y-4">';
+            optimizationData.forEach(item => {
+                html += `
+                    <div class="border-l-4 border-blue-500 pl-4 py-2">
+                        <h4 class="font-bold text-lg">${item.title}</h4>
+                        <p class="text-gray-700 mt-2">${item.description}</p>
+                        ${item.roi && item.roi > 0 ? `<p class="text-green-600 font-semibold mt-2">Potential ROI: $${item.roi.toLocaleString()}</p>` : ''}
+                    </div>
+                `;
+            });
+            html += '</div>';
+            container.innerHTML = html;
+        }
+
+        // Render contract terms
+        function renderContractTerms() {
+            const container = document.getElementById('contractTerms');
+            const calendarContainer = document.getElementById('calendarReminders');
+
+            if (!contractData || !contractData.terms || contractData.terms.length === 0) {
+                container.innerHTML = '<p class="text-gray-500">No contract data available</p>';
+                return;
+            }
+
+            // Contract terms
+            let termsHtml = '<div class="grid grid-cols-1 md:grid-cols-2 gap-4">';
+            contractData.terms.forEach(term => {
+                termsHtml += `
+                    <div class="border rounded-lg p-4">
+                        <div class="font-semibold text-gray-700">${term.label}</div>
+                        <div class="text-lg mt-1">${term.value}</div>
+                    </div>
+                `;
+            });
+            termsHtml += '</div>';
+            container.innerHTML = termsHtml;
+
+            // Calendar reminders
+            if (contractData.dates && contractData.dates.length > 0) {
+                let datesHtml = '<div class="space-y-3">';
+                contractData.dates.forEach(date => {
+                    const urgencyClass = date.urgent ? 'alert-urgent' : 'alert-card';
+                    datesHtml += `
+                        <div class="${urgencyClass}">
+                            <div class="flex justify-between items-center">
+                                <div>
+                                    <strong>${date.label}</strong>
+                                    <div class="text-sm mt-1">${date.date}</div>
+                                </div>
+                                ${date.daysUntil !== null ? `<div class="text-lg font-bold">${date.daysUntil} days</div>` : ''}
+                            </div>
+                        </div>
+                    `;
+                });
+                datesHtml += '</div>';
+                calendarContainer.innerHTML = datesHtml;
+            }
+        }
+
+        // Performance gauge chart
+        function renderPerformanceGauge() {
+            const ctx = document.getElementById('performanceGauge').getContext('2d');
+
+            // Calculate performance score (0-100)
+            // Lower cost per door = higher score
+            // Benchmark: $12-15, excellent < $10
+            const cpd = parseFloat(kpis.cost_per_door);
+            let score = 100;
+            if (cpd > 10) {
+                score = Math.max(0, 100 - ((cpd - 10) * 10));
+            }
+
+            new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    datasets: [{
+                        data: [score, 100 - score],
+                        backgroundColor: [
+                            score >= 80 ? '#10b981' : score >= 60 ? '#f59e0b' : '#ef4444',
+                            '#e5e7eb'
+                        ],
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    circumference: 180,
+                    rotation: -90,
+                    cutout: '75%',
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            enabled: false
+                        }
+                    }
+                },
+                plugins: [{
+                    afterDraw: function(chart) {
+                        const ctx = chart.ctx;
+                        const width = chart.width;
+                        const height = chart.height;
+
+                        ctx.restore();
+                        const fontSize = (height / 114).toFixed(2);
+                        ctx.font = fontSize + "em sans-serif";
+                        ctx.textBaseline = "middle";
+
+                        const text = Math.round(score) + "%";
+                        const textX = Math.round((width - ctx.measureText(text).width) / 2);
+                        const textY = height / 1.4;
+
+                        ctx.fillStyle = '#1e293b';
+                        ctx.fillText(text, textX, textY);
+
+                        ctx.font = (fontSize * 0.4) + "em sans-serif";
+                        const label = "Performance Score";
+                        const labelX = Math.round((width - ctx.measureText(label).width) / 2);
+                        const labelY = textY + 30;
+
+                        ctx.fillStyle = '#64748b';
+                        ctx.fillText(label, labelX, labelY);
+                        ctx.save();
+                    }
+                }]
+            });
+        }
+
+        // CPD Trend Chart
+        function renderCPDTrendChart() {
+            if (!expenseData || expenseData.length === 0) return;
+
+            const ctx = document.getElementById('cpdTrendChart').getContext('2d');
+
+            const labels = expenseData.map(row => row.Month || row.month || '');
+            const cpdValues = expenseData.map(row => parseFloat(row['Cost/Door'] || 0));
+
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Cost Per Door',
+                        data: cpdValues,
+                        borderColor: '#2563eb',
+                        backgroundColor: 'rgba(37, 99, 235, 0.1)',
+                        tension: 0.4,
+                        fill: true
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            display: true,
+                            position: 'top'
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return 'CPD: $' + context.parsed.y.toFixed(2);
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                callback: function(value) {
+                                    return '$' + value.toFixed(2);
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Total Cost Trend Chart
+        function renderTotalCostChart() {
+            if (!expenseData || expenseData.length === 0) return;
+
+            const ctx = document.getElementById('totalCostChart').getContext('2d');
+
+            const labels = expenseData.map(row => row.Month || row.month || '');
+            const totalCosts = expenseData.map(row => parseFloat(row['Total Amount'] || 0));
+
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Total Monthly Cost',
+                        data: totalCosts,
+                        backgroundColor: '#10b981',
+                        borderColor: '#059669',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            display: true,
+                            position: 'top'
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return 'Total: $' + context.parsed.y.toLocaleString('en-US', {minimumFractionDigits: 2});
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                callback: function(value) {
+                                    return '$' + value.toLocaleString();
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Comparison Chart
+        function renderComparisonChart() {
+            const ctx = document.getElementById('comparisonChart').getContext('2d');
+
+            const currentCPD = parseFloat(kpis.cost_per_door);
+
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Current CPD', 'Industry Avg', 'Best Practice'],
+                    datasets: [{
+                        label: 'Cost Per Door Comparison',
+                        data: [currentCPD, 13.50, 10.00],
+                        backgroundColor: [
+                            '#2563eb',
+                            '#64748b',
+                            '#10b981'
+                        ]
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return 'CPD: $' + context.parsed.y.toFixed(2);
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                callback: function(value) {
+                                    return '$' + value.toFixed(2);
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+</html>

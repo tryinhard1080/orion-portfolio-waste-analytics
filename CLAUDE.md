@@ -4,14 +4,14 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-**Orion Portfolio Waste Management Analytics System (Version 3.0 - Clean Build)** - A streamlined waste management performance monitoring and reporting platform for 6 garden-style apartment properties in Texas. The system generates HTML performance reports directly from Google Sheets data, providing real-time insights into cost efficiency, service utilization, and performance metrics.
+**Orion Portfolio Waste Management Analytics System (Version 3.0 - Property-Centric Structure)** - A fact-based waste management performance monitoring and reporting platform for 10 garden-style apartment properties (6 in TX/FL, 4 in AZ). The system extracts real data from invoices and contracts, consolidates it into a master Excel file, and generates performance reports based on actual spend and service utilization.
 
 **Key Technologies:**
-- Python 3.8+ with Google Sheets API integration
-- Jinja2 HTML templating for report generation
-- Google Sheets as single source of truth for all property data
-- AI-powered invoice extraction using subagents
-- Automated performance analysis and benchmarking
+- Python 3.8+ for data extraction and report generation
+- Excel as single source of truth for all property data
+- AI-powered invoice extraction using Claude Vision API
+- Fact-based performance analysis and benchmarking
+- Property-centric folder organization
 
 ## Critical Path Information
 
@@ -19,59 +19,66 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 **Current Working Directory:** `C:\Users\Richard\Downloads\Orion Data Part 2`
 
-**Google Sheets Spreadsheet:** "Orion Portfolio - Waste Management Analytics"
-- **Spreadsheet ID:** `1oy-F3p_CPpJaGGmGUMcjQMubRIRi7p4IID7mfpNLZJQ`
-- **URL:** https://docs.google.com/spreadsheets/d/1oy-F3p_CPpJaGGmGUMcjQMubRIRi7p4IID7mfpNLZJQ/edit
-- **Sheets:** Property Details, Portfolio Summary, Invoice Data
+**Master Data File:** `Portfolio_Reports/MASTER_Portfolio_Complete_Data.xlsx`
+- **Single Source of Truth** for all property data
+- **10 Properties:** All TX, FL, and AZ properties
+- **894 Invoice Line Items:** Complete extraction from all invoices
+- **17 Tabs:** 7 summary tabs + 10 property-specific tabs
 
-## Folder Structure
+## Folder Structure (Property-Centric Organization)
 
 ```
 Orion Data Part 2/
 │
-├── Invoices/                          # Invoice PDFs organized by property
-│   ├── Bella_Mirage/
-│   ├── McCord_Park_FL/
-│   ├── Orion_McKinney/
+├── Properties/                        # Property-centric organization (10 properties)
 │   ├── Orion_Prosper/
+│   │   ├── Invoices/                 # All invoices for this property
+│   │   ├── Reports/                  # Generated reports (Excel, HTML, validation)
+│   │   ├── Contracts/                # Service contracts and agreements
+│   │   ├── Documentation/            # Property-specific notes
+│   │   └── README.md                 # Property information and guide
+│   │
 │   ├── Orion_Prosper_Lakes/
-│   └── The_Club_at_Millenia/
+│   ├── Orion_McKinney/
+│   ├── McCord_Park_FL/
+│   ├── The_Club_at_Millenia/
+│   ├── Bella_Mirage/
+│   ├── Mandarina/
+│   ├── Pavilions_at_Arrowhead/
+│   ├── Springs_at_Alta_Mesa/
+│   └── Tempe_Vista/
+│       └── (same structure as Orion_Prosper)
 │
-├── Contracts/                         # Service contracts by property
-│   └── (PDF contracts)
-│
-├── Reports/                           # Generated HTML reports
-│   ├── PortfolioSummaryDashboard.html
-│   ├── {Property}Analysis.html (6 files)
-│   └── Contract_Comparison/
-│       └── {Property}_Report.html (6 files)
+├── Portfolio_Reports/                 # Portfolio-wide reports and master data
+│   ├── MASTER_Portfolio_Complete_Data.xlsx  # ⭐ SINGLE SOURCE OF TRUTH
+│   └── README.md                     # Master file documentation
 │
 ├── Code/                              # Python scripts
 │   ├── agent_prompts.py              # LLM prompts for extraction
 │   ├── orchestrate_extraction.py     # Extraction workflow orchestration
-│   ├── extract_orion_prosper_invoices.py  # Example extraction script
 │   ├── validate_extracted_data.py    # Data validation
-│   ├── update_google_sheets.py       # Update spreadsheet with extracted data
-│   ├── comprehensive_validation.py   # Extended validation
-│   ├── generate_reports_from_sheets.py    # Main report generator
-│   ├── generate_reports_from_sheets_data.py  # Hardcoded data fallback
-│   ├── validate_reports.py           # Report validation
-│   ├── generate_contract_reports.py  # Contract analysis reports
-│   ├── convert_to_pdf_puppeteer.py   # PDF conversion
+│   ├── reorganize_folder_structure.py # Folder reorganization script
+│   ├── create_property_readmes.py    # README generation script
 │   └── templates/                    # Jinja2 HTML templates
 │       ├── portfolio_summary.html
 │       └── property_detail.html
 │
 ├── Documentation/                     # Project documentation
+│   ├── DATA_INTEGRITY_GUIDE.md       # Data quality standards
 │   ├── SUBAGENT_EXTRACTION_STRATEGY.md    # Extraction workflow guide
 │   ├── SUBAGENT_QUICK_START.md            # Quick start for extraction
 │   ├── REPORT_CORRECTION_SUMMARY.md       # Language validation rules
-│   ├── REPORT_CRITERIA_ANALYSIS.md        # Report quality standards
-│   └── CORRECTIVE_ACTION_PLAN.md          # Data correction methodology
+│   └── REPORT_CRITERIA_ANALYSIS.md        # Report quality standards
+│
+├── Archive/                           # Old files (not for active use)
+│   ├── Old_Scripts/
+│   ├── Old_Extraction_Files/
+│   └── Temporary_Files/
 │
 ├── .env.example                      # Configuration template
 ├── requirements.txt                  # Python dependencies
-└── CLAUDE.md                         # This file
+├── CLAUDE.md                         # This file
+└── README.md                         # Project overview
 ```
 
 ## Environment Setup
@@ -193,66 +200,103 @@ python Code/generate_reports_from_sheets.py
 
 **See `Documentation/SUBAGENT_EXTRACTION_STRATEGY.md` for complete extraction workflow.**
 
-## Data Source: Google Sheets (Primary) or Hardcoded Data (Fallback)
+## Data Source: Master Excel File
 
-The system supports two data source modes:
+**Primary Data Source:** `Portfolio_Reports/MASTER_Portfolio_Complete_Data.xlsx`
 
-**Mode 1: Google Sheets API (Recommended)**
-- Reads live data from spreadsheet
-- Real-time updates reflected in reports
-- Requires Google Sheets API credentials
+This is the **SINGLE SOURCE OF TRUTH** for all property data.
 
-**Mode 2: Hardcoded Data (Fallback)**
-- Uses static data in `Code/generate_reports_from_sheets_data.py`
-- No API credentials required
-- Must manually update Python file for data changes
+### Master File Structure
 
-The system automatically falls back to hardcoded data if Google Sheets API is unavailable.
+**17 Tabs Total:**
 
-### Spreadsheet Structure
+**Summary/Analysis Tabs (7):**
+1. Executive Summary - Portfolio overview and key metrics
+2. Property Overview - All 10 properties comparison
+3. Spend Summary - Total spend by property
+4. Spend by Category - Breakdown of service categories
+5. Service Details - Container types, sizes, frequencies
+6. Yards Per Door - YPD calculations for all properties
+7. Contract Terms - Contract status and renewal dates
 
-**Sheet: "Property Details"**
-- Column A: Property Name
-- Column B: Unit Count
-- Column C: Service Type (Compactor/Dumpster)
-- Column D: Cost Per Door (CPD)
-- Column E-H: Performance metrics
-- Column I: Monthly Cost
+**Property-Specific Tabs (10):**
+8. Orion Prosper - 95 invoice line items
+9. McCord Park FL - 42 invoice line items
+10. Orion McKinney - 95 invoice line items
+11. The Club at Millenia - 146 invoice line items
+12. Bella Mirage - 102 invoice line items
+13. Orion Prosper Lakes - 104 invoice line items
+14. Mandarina - 37 invoice line items
+15. Pavilions at Arrowhead - 47 invoice line items
+16. Springs at Alta Mesa - 203 invoice line items
+17. Tempe Vista - 23 invoice line items
 
-**Sheet: "Portfolio Summary"**
-- Total units across all properties
-- Average CPD
-- Total monthly cost
-- Portfolio performance score
+**Total Invoice Line Items:** 894
 
-**Sheet: "Invoice Data"**
-- Historical invoice data
-- Extracted field values
-- Month/year tracking
+### How to Use the Master File
+
+**For Report Generation:**
+- Your Claude skill reads from this file to generate property reports
+- All calculations based on real invoice data in property tabs
+- Summary tabs provide portfolio-wide insights
+
+**For Data Updates:**
+1. Extract new invoice data using extraction workflow
+2. Update appropriate property tab in master file
+3. Regenerate reports using Claude skill
+
+**For Analysis:**
+- Review Executive Summary for portfolio overview
+- Compare properties in Property Overview tab
+- Analyze spend trends in Spend Summary tab
+- Drill into property tabs for detailed invoice data
 
 ## Key Property Data (Current)
 
-### All 6 Properties - Verified Data
+### All 10 Properties - Portfolio Overview
 
-| Property | Units | Monthly Cost | CPD | Status |
-|----------|-------|--------------|-----|--------|
-| **Orion Prosper** | 312 | $4,308.72 | $13.81 | ✓ |
-| **McCord Park FL** | 416 | $10,911.68 | $26.23 | ✓ |
-| **Orion McKinney** | 453 | $6,015.84 | $13.28 | ✓ |
-| **The Club at Millenia** | **560** | $11,760.00 | **$21.00** | ✓ |
-| **Bella Mirage** | 715 | $7,636.20 | $10.68 | ✓ |
-| **Orion Prosper Lakes** | 308 | $4,031.72 | $13.09 | ✓ |
-| **TOTALS** | **2,764** | **$44,664.16** | **$16.15** | ✓ |
+**Texas/Florida Properties (6):**
+
+| Property | Units | Location | Vendor | Service Type |
+|----------|-------|----------|--------|--------------|
+| **Orion Prosper** | 312 | Prosper, TX | Republic Services | FEL Dumpsters |
+| **Orion Prosper Lakes** | 308 | Prosper, TX | Republic Services | Compactor |
+| **Orion McKinney** | 453 | McKinney, TX | Frontier Waste | FEL Dumpsters |
+| **McCord Park FL** | 416 | Florida | Community Waste | Dumpster |
+| **The Club at Millenia** | 560 | Orlando, FL | Waste Connections | Compactor |
+| **Bella Mirage** | 715 | Phoenix, AZ | Waste Management | Dumpster |
+
+**Arizona Properties (4):**
+
+| Property | Units | Location | Vendor | Service Type |
+|----------|-------|----------|--------|--------------|
+| **Mandarina** | 180 | Phoenix, AZ | WM + Ally Waste | Compactor + Bulk |
+| **Pavilions at Arrowhead** | TBD | Glendale, AZ | City + Ally Waste | Mixed |
+| **Springs at Alta Mesa** | 200 | Mesa, AZ | City + Ally Waste | Dumpster + Bulk |
+| **Tempe Vista** | 150* | Tempe, AZ | WM + Ally Waste | Mixed |
+
+*Estimated - needs verification
+
+**Portfolio Totals:**
+- **Total Units:** 3,578 (verified for 9 properties)
+- **Total Properties:** 10
+- **Annual Spend:** ~$662K (based on extracted invoice data)
 
 **Property Constants (for code):**
 ```python
 PROPERTIES = {
-    'Orion Prosper': 312,
-    'McCord Park FL': 416,
-    'Orion McKinney': 453,
-    'The Club at Millenia': 560,
-    'Bella Mirage': 715,
-    'Orion Prosper Lakes': 308
+    # Texas/Florida
+    'Orion Prosper': {'units': 312, 'state': 'TX'},
+    'Orion Prosper Lakes': {'units': 308, 'state': 'TX'},
+    'Orion McKinney': {'units': 453, 'state': 'TX'},
+    'McCord Park FL': {'units': 416, 'state': 'FL'},
+    'The Club at Millenia': {'units': 560, 'state': 'FL'},
+    'Bella Mirage': {'units': 715, 'state': 'AZ'},
+    # Arizona
+    'Mandarina': {'units': 180, 'state': 'AZ'},
+    'Pavilions at Arrowhead': {'units': None, 'state': 'AZ'},  # TBD
+    'Springs at Alta Mesa': {'units': 200, 'state': 'AZ'},
+    'Tempe Vista': {'units': 150, 'state': 'AZ'},  # Estimated
 }
 ```
 
@@ -658,7 +702,7 @@ See `Documentation/DATA_INTEGRITY_GUIDE.md` for complete validation rules.
 **For Issues:**
 1. Check this CLAUDE.md file first
 2. Review error messages carefully
-3. Verify Google Sheets data is current
+3. Verify master data file is current
 4. Ensure working directory is correct
 5. Check that dependencies are installed
 
@@ -671,3 +715,35 @@ See `Documentation/DATA_INTEGRITY_GUIDE.md` for complete validation rules.
 - Quick start: `Documentation/SUBAGENT_QUICK_START.md`
 - Full strategy: `Documentation/SUBAGENT_EXTRACTION_STRATEGY.md`
 - Agent prompts: `Code/agent_prompts.py`
+
+## Version Information
+
+**Current Version:** 3.0 (Property-Centric Structure)
+**Last Updated:** November 9, 2025
+**Status:** PRODUCTION READY
+**Data Source:** Excel Master File (Single Source of Truth)
+
+**Key Features:**
+- Property-centric folder organization
+- Master Excel file with all 10 properties
+- AI-powered invoice extraction
+- Fact-based reporting (no projections)
+- Validated calculations and benchmarks
+
+**Recent Changes (v3.0):**
+- Reorganized into property-centric structure
+- Created Properties/ folder with 10 property subfolders
+- Consolidated master data file: MASTER_Portfolio_Complete_Data.xlsx
+- Added README.md to each property folder
+- Created Portfolio_Reports/ folder for portfolio-wide data
+- Archived old/duplicate files
+
+## Critical Reminders
+
+1. **Single Source of Truth:** `Portfolio_Reports/MASTER_Portfolio_Complete_Data.xlsx`
+2. **Property-Centric Structure:** All files organized by property in `Properties/` folder
+3. **Fact-Based Reporting:** No projections, optimizations, or unrealistic savings claims
+4. **Language Validation:** Never use "cost savings" or similar terms in reports
+5. **Always Validate:** Run validation before distributing reports
+6. **Data Integrity:** Never hallucinate data - flag missing fields for user review
+7. **Real Data Only:** All insights based on actual invoice and contract data

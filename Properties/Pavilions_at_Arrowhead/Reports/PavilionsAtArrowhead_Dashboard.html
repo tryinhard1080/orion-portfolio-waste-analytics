@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pavilions at Arrowhead - Waste Management Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        .tab-button { @apply px-6 py-3 font-semibold text-gray-600 hover:text-blue-600 border-b-2 border-transparent transition-all; }
+        .tab-button.active { @apply text-blue-600 border-blue-600; }
+        .metric-card { @apply bg-white rounded-lg shadow-md p-6 border-l-4; }
+        .metric-good { @apply border-green-500; }
+        .metric-warning { @apply border-yellow-500; }
+        .metric-critical { @apply border-red-500; }
+        .alert-banner { @apply p-4 rounded-lg mb-6; }
+        .alert-warning { @apply bg-yellow-50 border-l-4 border-yellow-400; }
+        .alert-info { @apply bg-blue-50 border-l-4 border-blue-400; }
+        .alert-critical { @apply bg-red-50 border-l-4 border-red-400; }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-blue-600 to-blue-800 text-white shadow-lg">
+        <div class="container mx-auto px-6 py-8">
+            <h1 class="text-4xl font-bold">Pavilions at Arrowhead</h1>
+            <p class="text-blue-100 mt-2">Waste Management Performance Dashboard</p>
+            <p class="text-sm text-blue-200 mt-1">Analysis Period: November 2024 - October 2025</p>
+        </div>
+    </header>
+
+    <!-- Data Gap Warning Banner -->
+    <div class="container mx-auto px-6 mt-6">
+        <div class="alert-banner alert-critical">
+            <div class="flex items-start">
+                <svg class="w-6 h-6 text-red-600 mt-0.5 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+                </svg>
+                <div class="flex-grow">
+                    <h3 class="text-red-800 font-bold text-lg">CRITICAL DATA GAPS DETECTED</h3>
+                    <p class="text-red-700 mt-2">This analysis is incomplete due to missing critical data:</p>
+                    <ul class="list-disc list-inside text-red-700 mt-2 ml-4">
+                        <li><strong>Unit Count:</strong> Not available - Required for per-door calculations</li>
+                        <li><strong>Service Specifications:</strong> Contract is image-based PDF (not extractable)</li>
+                        <li><strong>Tonnage/Volume Data:</strong> Not in invoices - Required for optimization</li>
+                    </ul>
+                    <p class="text-red-700 mt-3 font-semibold">→ Cannot perform optimization analysis or benchmark comparisons until data gaps are resolved</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tab Navigation -->
+    <div class="container mx-auto px-6 mt-6">
+        <div class="bg-white rounded-t-lg shadow-md border-b">
+            <nav class="flex space-x-2">
+                <button class="tab-button active" onclick="switchTab('executive')">Executive Dashboard</button>
+                <button class="tab-button" onclick="switchTab('expense')">Expense Analysis</button>
+                <button class="tab-button" onclick="switchTab('service')">Service Details</button>
+                <button class="tab-button" onclick="switchTab('optimization')">Optimization Insights</button>
+                <button class="tab-button" onclick="switchTab('contract')">Contract Status</button>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Tab Content Container -->
+    <div class="container mx-auto px-6 pb-12">
+        <!-- TAB 1: Executive Dashboard -->
+        <div id="executive-tab" class="tab-content active bg-white rounded-b-lg shadow-md p-8">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6">Executive Summary</h2>
+
+            <!-- Key Metrics Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                <div class="metric-card metric-warning">
+                    <div class="text-sm font-semibold text-gray-600 mb-2">TOTAL SPEND (12 Months)</div>
+                    <div class="text-3xl font-bold text-gray-900">$29,884</div>
+                    <div class="text-sm text-gray-500 mt-2">Ally Waste + City of Glendale</div>
+                </div>
+
+                <div class="metric-card metric-warning">
+                    <div class="text-sm font-semibold text-gray-600 mb-2">AVG MONTHLY COST</div>
+                    <div class="text-3xl font-bold text-gray-900">$2,490</div>
+                    <div class="text-sm text-gray-500 mt-2">12-month average</div>
+                </div>
+
+                <div class="metric-card metric-critical">
+                    <div class="text-sm font-semibold text-gray-600 mb-2">COST PER DOOR</div>
+                    <div class="text-2xl font-bold text-red-600">Data Not Available</div>
+                    <div class="text-sm text-red-500 mt-2">Unit count required</div>
+                </div>
+            </div>
+
+            <!-- Data Availability Assessment -->
+            <div class="bg-gray-50 rounded-lg p-6 mb-8">
+                <h3 class="text-lg font-bold text-gray-800 mb-4">Data Availability Assessment</h3>
+                <div class="space-y-3">
+                    <div class="flex items-center">
+                        <svg class="w-6 h-6 text-green-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                        <div>
+                            <span class="font-semibold">Invoice Amounts:</span>
+                            <span class="text-gray-600 ml-2">Complete (23 invoices analyzed)</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center">
+                        <svg class="w-6 h-6 text-green-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                        <div>
+                            <span class="font-semibold">Invoice Dates:</span>
+                            <span class="text-gray-600 ml-2">Complete (Nov 2024 - Oct 2025)</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center">
+                        <svg class="w-6 h-6 text-red-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                        <div>
+                            <span class="font-semibold">Unit Count:</span>
+                            <span class="text-red-600 ml-2 font-semibold">NOT AVAILABLE - Manual extraction required</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center">
+                        <svg class="w-6 h-6 text-red-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                        <div>
+                            <span class="font-semibold">Service Specifications:</span>
+                            <span class="text-red-600 ml-2 font-semibold">NOT AVAILABLE - Contract is image-based PDF</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Vendor Breakdown -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                    <h3 class="text-lg font-bold text-gray-800 mb-4">Vendor Spend Breakdown</h3>
+                    <canvas id="vendorChart" height="200"></canvas>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold text-gray-800 mb-4">Key Findings</h3>
+                    <div class="space-y-3">
+                        <div class="bg-blue-50 border-l-4 border-blue-400 p-4 rounded">
+                            <p class="text-sm font-semibold text-blue-800">Dual Vendor Setup</p>
+                            <p class="text-sm text-blue-700 mt-1">Property uses both Ally Waste (bulk) and City of Glendale (municipal service)</p>
+                        </div>
+                        <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 rounded">
+                            <p class="text-sm font-semibold text-yellow-800">City of Glendale: 82% of Spend</p>
+                            <p class="text-sm text-yellow-700 mt-1">$24,372 from municipal trash service (12 invoices)</p>
+                        </div>
+                        <div class="bg-green-50 border-l-4 border-green-400 p-4 rounded">
+                            <p class="text-sm font-semibold text-green-800">Ally Waste: Consistent Bulk Service</p>
+                            <p class="text-sm text-green-700 mt-1">$495/month bulk service (11 months)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 2: Expense Analysis -->
+        <div id="expense-tab" class="tab-content bg-white rounded-b-lg shadow-md p-8">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6">Expense Analysis</h2>
+
+            <!-- Monthly Trend Chart -->
+            <div class="mb-8">
+                <h3 class="text-lg font-bold text-gray-800 mb-4">Monthly Expense Trend</h3>
+                <canvas id="expenseChart" height="80"></canvas>
+            </div>
+
+            <!-- Monthly Breakdown Table -->
+            <div class="mt-8">
+                <h3 class="text-lg font-bold text-gray-800 mb-4">Monthly Breakdown</h3>
+                <div class="overflow-x-auto">
+                    <table class="min-w-full bg-white border rounded-lg">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Month</th>
+                                <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase">Ally Waste</th>
+                                <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase">City of Glendale</th>
+                                <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase">Total</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200">
+                            <tr><td class="px-6 py-4">2024-11</td><td class="px-6 py-4 text-right">$431</td><td class="px-6 py-4 text-right">$1,979</td><td class="px-6 py-4 text-right font-semibold">$2,410</td></tr>
+                            <tr><td class="px-6 py-4">2024-12</td><td class="px-6 py-4 text-right">$626</td><td class="px-6 py-4 text-right">$1,870</td><td class="px-6 py-4 text-right font-semibold">$2,496</td></tr>
+                            <tr><td class="px-6 py-4">2025-01</td><td class="px-6 py-4 text-right">$495</td><td class="px-6 py-4 text-right">$1,870</td><td class="px-6 py-4 text-right font-semibold">$2,365</td></tr>
+                            <tr><td class="px-6 py-4">2025-02</td><td class="px-6 py-4 text-right">$495</td><td class="px-6 py-4 text-right">$1,923</td><td class="px-6 py-4 text-right font-semibold">$2,418</td></tr>
+                            <tr><td class="px-6 py-4">2025-03</td><td class="px-6 py-4 text-right">$495</td><td class="px-6 py-4 text-right">$2,078</td><td class="px-6 py-4 text-right font-semibold">$2,573</td></tr>
+                            <tr><td class="px-6 py-4">2025-04</td><td class="px-6 py-4 text-right">$495</td><td class="px-6 py-4 text-right">$2,078</td><td class="px-6 py-4 text-right font-semibold">$2,573</td></tr>
+                            <tr><td class="px-6 py-4">2025-05</td><td class="px-6 py-4 text-right">$495</td><td class="px-6 py-4 text-right">$2,078</td><td class="px-6 py-4 text-right font-semibold">$2,573</td></tr>
+                            <tr><td class="px-6 py-4">2025-06</td><td class="px-6 py-4 text-right">$495</td><td class="px-6 py-4 text-right">$2,078</td><td class="px-6 py-4 text-right font-semibold">$2,573</td></tr>
+                            <tr><td class="px-6 py-4">2025-07</td><td class="px-6 py-4 text-right">$495</td><td class="px-6 py-4 text-right">$2,078</td><td class="px-6 py-4 text-right font-semibold">$2,573</td></tr>
+                            <tr><td class="px-6 py-4">2025-08</td><td class="px-6 py-4 text-right">$495</td><td class="px-6 py-4 text-right">$2,186</td><td class="px-6 py-4 text-right font-semibold">$2,681</td></tr>
+                            <tr><td class="px-6 py-4">2025-09</td><td class="px-6 py-4 text-right">$495</td><td class="px-6 py-4 text-right">$2,078</td><td class="px-6 py-4 text-right font-semibold">$2,573</td></tr>
+                            <tr><td class="px-6 py-4">2025-10</td><td class="px-6 py-4 text-right">$0</td><td class="px-6 py-4 text-right">$2,078</td><td class="px-6 py-4 text-right font-semibold">$2,078</td></tr>
+                            <tr class="bg-gray-50 font-bold">
+                                <td class="px-6 py-4">TOTALS</td>
+                                <td class="px-6 py-4 text-right">$5,512</td>
+                                <td class="px-6 py-4 text-right">$24,372</td>
+                                <td class="px-6 py-4 text-right text-blue-600">$29,884</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 3: Service Details -->
+        <div id="service-tab" class="tab-content bg-white rounded-b-lg shadow-md p-8">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6">Service Details</h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Ally Waste Service -->
+                <div class="border rounded-lg p-6">
+                    <h3 class="text-lg font-bold text-gray-800 mb-4">Ally Waste - Bulk Service</h3>
+                    <div class="space-y-3">
+                        <div><span class="font-semibold">Service Type:</span> Bulk Trash</div>
+                        <div><span class="font-semibold">Account #:</span> AW-pv62</div>
+                        <div><span class="font-semibold">Total Spend:</span> $5,511.84</div>
+                        <div><span class="font-semibold">Invoice Count:</span> 11 invoices</div>
+                        <div><span class="font-semibold">Avg Monthly:</span> $495.00 (consistent)</div>
+                        <div><span class="font-semibold">Service Period:</span> Nov 2024 - Sep 2025</div>
+                    </div>
+                    <div class="mt-4 bg-green-50 border border-green-200 rounded p-3">
+                        <p class="text-sm text-green-800">✓ Consistent bulk service subscription active</p>
+                    </div>
+                </div>
+
+                <!-- City of Glendale Service -->
+                <div class="border rounded-lg p-6">
+                    <h3 class="text-lg font-bold text-gray-800 mb-4">City of Glendale - Municipal Service</h3>
+                    <div class="space-y-3">
+                        <div><span class="font-semibold">Service Type:</span> Municipal Trash Collection</div>
+                        <div><span class="font-semibold">Account #:</span> 00249988-03</div>
+                        <div><span class="font-semibold">Total Spend:</span> $24,372.21</div>
+                        <div><span class="font-semibold">Invoice Count:</span> 12 invoices</div>
+                        <div><span class="font-semibold">Avg Monthly:</span> $2,031.02</div>
+                        <div><span class="font-semibold">Service Period:</span> Nov 2024 - Oct 2025</div>
+                    </div>
+                    <div class="mt-4 bg-blue-50 border border-blue-200 rounded p-3">
+                        <p class="text-sm text-blue-800">82% of total waste management spend</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Service Specifications Gap -->
+            <div class="mt-8 alert-banner alert-warning">
+                <h3 class="text-yellow-800 font-bold mb-2">Service Specifications Not Available</h3>
+                <p class="text-yellow-700">Contract is image-based PDF - Cannot extract service details automatically.</p>
+                <p class="text-yellow-700 mt-2"><strong>Needed Information:</strong></p>
+                <ul class="list-disc list-inside text-yellow-700 ml-4 mt-1">
+                    <li>Container types and sizes</li>
+                    <li>Pickup frequencies</li>
+                    <li>Service area specifications</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- TAB 4: Optimization Insights -->
+        <div id="optimization-tab" class="tab-content bg-white rounded-b-lg shadow-md p-8">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6">Optimization Insights</h2>
+
+            <div class="alert-banner alert-critical mb-6">
+                <h3 class="text-red-800 font-bold text-lg mb-2">Optimization Analysis: INCOMPLETE</h3>
+                <p class="text-red-700">Cannot perform optimization analysis due to missing data:</p>
+                <ul class="list-disc list-inside text-red-700 ml-4 mt-2">
+                    <li><strong>Unit Count:</strong> Required for per-door calculations and benchmarking</li>
+                    <li><strong>Service Specifications:</strong> Required for utilization analysis</li>
+                    <li><strong>Tonnage/Volume Data:</strong> Required for compactor optimization (if applicable)</li>
+                </ul>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                <div class="border rounded-lg p-6 bg-gray-50">
+                    <h4 class="font-bold text-gray-800 mb-3">Compactor Optimization</h4>
+                    <div class="text-gray-600 text-sm mb-2">Trigger: Avg tons/haul < 6 tons</div>
+                    <div class="text-red-600 font-semibold">✗ Cannot Evaluate</div>
+                    <p class="text-sm text-gray-600 mt-2">No tonnage or haul data available</p>
+                </div>
+
+                <div class="border rounded-lg p-6 bg-gray-50">
+                    <h4 class="font-bold text-gray-800 mb-3">Contamination Reduction</h4>
+                    <div class="text-gray-600 text-sm mb-2">Trigger: Contamination > 3% of spend</div>
+                    <div class="text-red-600 font-semibold">✗ Cannot Evaluate</div>
+                    <p class="text-sm text-gray-600 mt-2">No contamination charge data</p>
+                </div>
+
+                <div class="border rounded-lg p-6 bg-yellow-50 border-yellow-300">
+                    <h4 class="font-bold text-gray-800 mb-3">Bulk Subscription</h4>
+                    <div class="text-gray-600 text-sm mb-2">Trigger: Avg bulk > $500/month</div>
+                    <div class="text-yellow-600 font-semibold">⚠️ Partial Data</div>
+                    <p class="text-sm text-gray-600 mt-2">Ally Waste: $495/mo (suggests active subscription)</p>
+                </div>
+            </div>
+
+            <div class="bg-blue-50 border-l-4 border-blue-400 p-6 rounded">
+                <h3 class="text-blue-800 font-bold mb-3">Data Collection Plan</h3>
+                <div class="space-y-4">
+                    <div>
+                        <h4 class="font-semibold text-blue-800">Step 1: Extract Unit Count (CRITICAL)</h4>
+                        <p class="text-sm text-blue-700 mt-1">Source: WCI Bulk Agreement contract (manual review required)</p>
+                        <p class="text-sm text-blue-700">Impact: Enables cost/door and yards/door calculations</p>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-blue-800">Step 2: Document Service Specifications (HIGH)</h4>
+                        <p class="text-sm text-blue-700 mt-1">Information needed: Container types, sizes, pickup frequencies</p>
+                        <p class="text-sm text-blue-700">Impact: Enables service utilization and efficiency analysis</p>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-blue-800">Step 3: Obtain Tonnage Data (MEDIUM)</h4>
+                        <p class="text-sm text-blue-700 mt-1">Source: Vendor reports (if compactor service)</p>
+                        <p class="text-sm text-blue-700">Impact: Enables compactor optimization analysis</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 5: Contract Status -->
+        <div id="contract-tab" class="tab-content bg-white rounded-b-lg shadow-md p-8">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6">Contract Status</h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="border rounded-lg p-6">
+                    <h3 class="text-lg font-bold text-gray-800 mb-4">WCI Bulk Agreement</h3>
+                    <div class="space-y-3">
+                        <div><span class="font-semibold">File Name:</span> Pavilions at Arrowhead - Waste Consolidators Inc Bulk Agreement.pdf</div>
+                        <div><span class="font-semibold">File Size:</span> 1.2 MB</div>
+                        <div><span class="font-semibold">Status:</span> <span class="text-red-600 font-semibold">✗ Image-Based PDF</span></div>
+                        <div><span class="font-semibold">Extraction:</span> Not possible automatically</div>
+                    </div>
+                    <div class="mt-4 bg-red-50 border border-red-200 rounded p-3">
+                        <p class="text-sm text-red-800 font-semibold">Manual review required</p>
+                        <p class="text-xs text-red-700 mt-1">Contract contains scanned images, not extractable text</p>
+                    </div>
+                </div>
+
+                <div class="border rounded-lg p-6">
+                    <h3 class="text-lg font-bold text-gray-800 mb-4">Critical Information Needed</h3>
+                    <div class="space-y-2">
+                        <div class="flex items-start">
+                            <span class="text-red-500 mr-2">☐</span>
+                            <div><span class="font-semibold">Unit Count</span> - CRITICAL for per-door calculations</div>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="text-red-500 mr-2">☐</span>
+                            <div><span class="font-semibold">Container Types</span> - Compactor vs dumpster</div>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="text-red-500 mr-2">☐</span>
+                            <div><span class="font-semibold">Container Sizes</span> - Cubic yards</div>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="text-red-500 mr-2">☐</span>
+                            <div><span class="font-semibold">Pickup Frequency</span> - Times per week/month</div>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="text-red-500 mr-2">☐</span>
+                            <div><span class="font-semibold">Contract Dates</span> - Effective and expiration dates</div>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="text-red-500 mr-2">☐</span>
+                            <div><span class="font-semibold">Rate Terms</span> - Pricing and escalation clauses</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-8">
+                <h3 class="text-lg font-bold text-gray-800 mb-4">Alternative Data Sources</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="bg-blue-50 border border-blue-200 rounded p-4">
+                        <h4 class="font-semibold text-blue-800">Property Management</h4>
+                        <p class="text-sm text-blue-700 mt-1">Contact for unit count and service details</p>
+                    </div>
+                    <div class="bg-blue-50 border border-blue-200 rounded p-4">
+                        <h4 class="font-semibold text-blue-800">Vendor Contact (WCI)</h4>
+                        <p class="text-sm text-blue-700 mt-1">Can provide service specifications and contract terms</p>
+                    </div>
+                    <div class="bg-blue-50 border border-blue-200 rounded p-4">
+                        <h4 class="font-semibold text-blue-800">City of Glendale</h4>
+                        <p class="text-sm text-blue-700 mt-1">Municipal records may have property details</p>
+                    </div>
+                    <div class="bg-blue-50 border border-blue-200 rounded p-4">
+                        <h4 class="font-semibold text-blue-800">Historical Reports</h4>
+                        <p class="text-sm text-blue-700 mt-1">Previous waste management reports may contain data</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white mt-12">
+        <div class="container mx-auto px-6 py-6">
+            <div class="flex justify-between items-center">
+                <div>
+                    <p class="text-sm">WasteWise Analytics - Validated Edition</p>
+                    <p class="text-xs text-gray-400 mt-1">Following WasteWise_Calculations_Reference.md v2.0</p>
+                </div>
+                <div class="text-right">
+                    <p class="text-sm">Generated: November 3, 2025</p>
+                    <p class="text-xs text-gray-400 mt-1">Analysis Status: PARTIAL (Data Gaps Present)</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Tab switching
+        function switchTab(tabName) {
+            // Hide all tabs
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.querySelectorAll('.tab-button').forEach(btn => {
+                btn.classList.remove('active');
+            });
+
+            // Show selected tab
+            document.getElementById(tabName + '-tab').classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        // Vendor Pie Chart
+        const vendorCtx = document.getElementById('vendorChart').getContext('2d');
+        new Chart(vendorCtx, {
+            type: 'pie',
+            data: {
+                labels: ['City of Glendale', 'Ally Waste'],
+                datasets: [{
+                    data: [24372.21, 5511.84],
+                    backgroundColor: ['#3B82F6', '#10B981'],
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                plugins: {
+                    legend: {
+                        position: 'bottom'
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                let label = context.label || '';
+                                if (label) {
+                                    label += ': ';
+                                }
+                                label += '$' + context.parsed.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+                                const total = context.dataset.data.reduce((a, b) => a + b, 0);
+                                const percentage = ((context.parsed / total) * 100).toFixed(1);
+                                label += ' (' + percentage + '%)';
+                                return label;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        // Monthly Expense Trend Chart
+        const expenseCtx = document.getElementById('expenseChart').getContext('2d');
+        new Chart(expenseCtx, {
+            type: 'line',
+            data: {
+                labels: ['2024-11', '2024-12', '2025-01', '2025-02', '2025-03', '2025-04', '2025-05', '2025-06', '2025-07', '2025-08', '2025-09', '2025-10'],
+                datasets: [
+                    {
+                        label: 'Ally Waste',
+                        data: [430.92, 625.92, 495, 495, 495, 495, 495, 495, 495, 495, 495, 0],
+                        borderColor: '#10B981',
+                        backgroundColor: 'rgba(16, 185, 129, 0.1)',
+                        tension: 0.3
+                    },
+                    {
+                        label: 'City of Glendale',
+                        data: [1978.72, 1870.29, 1870.29, 1923.28, 2077.65, 2077.65, 2077.65, 2077.65, 2077.65, 2186.08, 2077.65, 2077.65],
+                        borderColor: '#3B82F6',
+                        backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                        tension: 0.3
+                    },
+                    {
+                        label: 'Total',
+                        data: [2409.64, 2496.21, 2365.29, 2418.28, 2572.65, 2572.65, 2572.65, 2572.65, 2572.65, 2681.08, 2572.65, 2077.65],
+                        borderColor: '#6B7280',
+                        backgroundColor: 'rgba(107, 114, 128, 0.1)',
+                        borderWidth: 2,
+                        tension: 0.3
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                plugins: {
+                    legend: {
+                        position: 'top'
+                    },
+                    tooltip: {
+                        mode: 'index',
+                        intersect: false,
+                        callbacks: {
+                            label: function(context) {
+                                let label = context.dataset.label || '';
+                                if (label) {
+                                    label += ': ';
+                                }
+                                label += '$' + context.parsed.y.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+                                return label;
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            callback: function(value) {
+                                return '$' + value.toLocaleString();
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

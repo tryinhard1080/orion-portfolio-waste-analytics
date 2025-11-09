@@ -1,0 +1,121 @@
+{
+  "analysis_date": "2025-10-26",
+  "contracts": [
+    {
+      "filename": "131941 The club at millenia_05252021113150 (2) (1).pdf",
+      "property_name": "The Club at Millenia",
+      "vendor": "Waste Connections of Florida / Bonita Fountains Property Group",
+      "start_date": "2017-06-24",
+      "end_date": "Not specified - ongoing service",
+      "monthly_cost": 975.00,
+      "service_frequency": "2x/week and EOW (every other week)",
+      "container_specs": "1x 30-yard container (2x/week), 1x 30-yard container (EOW), 1x Bulk container (1x/week Tuesday)",
+      "auto_renew": false,
+      "notice_period_days": null,
+      "days_until_expiration": null,
+      "notice_deadline": null,
+      "alert_level": "INFO",
+      "price_escalation_clauses": "Surcharge rights reserved - $150 EA Delivery, $180 EA Removal, $75 EA Relocation, $150 EA Exchange, $15 EA Locks/Casters, MO per item",
+      "overage_charge_rates": "$126.51 per haul charge, $36.50 per ton disposal",
+      "special_terms": "NEW SCHEDULE effective 6-24-17: Service 1-1 (30-yard): 2x/week, Container charge $925, Per haul $126.51, Disposal $36.50/ton. Service 1-2 (30-yard): EOW Wednesday, Container charge $325, Per haul $126.51, Disposal $36.50/ton. Bulk service: 1x/week Tuesday, Container charge $350. Account #131941. Customer must refer to Pricing Policy at www.progressivewaste.com/business/pricingpolicy for fuel surcharge, environmental fee, and administrative fee details."
+    },
+    {
+      "filename": "Bella Mirage Waste Mgmt Contract 4.20 for 3 yrs.pdf",
+      "property_name": "Bella Mirage (Greystar)",
+      "vendor": "Waste Management of Arizona, Inc.",
+      "start_date": "2020-04-08",
+      "end_date": "2023-04-08",
+      "monthly_cost": 4071.00,
+      "service_frequency": "3x per week",
+      "container_specs": "6x 8-yard FEL ($1,180/mo), 2x 8-yard FEL ($408/mo), 2x 4-yard FEL ($250/mo), 5x 8-yard FEL ($993/mo), 4x 6-yard FEL ($627/mo), 3x 8-yard FEL ($613/mo) - MSW Commercial containers",
+      "auto_renew": true,
+      "notice_period_days": 90,
+      "days_until_expiration": -912,
+      "notice_deadline": "2023-01-08",
+      "alert_level": "CRITICAL",
+      "price_escalation_clauses": "Company reserves right to increase charges during Contract Term for: (i) changes/modifications to equipment/services, (ii) changes in waste composition/amount/weight, (iii) increases in Fuel Surcharge/Regulatory Cost Recovery/Recyclable Materials Offset/Environmental Charge, (iv) disposal/processing/transportation cost increases including fuel surcharges, (v) uncontrollable circumstances/law changes/tax increases, (vi) CPI increases. Consensual Price Increases allowed with 30-day customer termination right if not accepted.",
+      "overage_charge_rates": "Extra pickup rate: $75.00 per lift. Current FSC 0.00%, EVC 0.00%, RCR 0.00%",
+      "special_terms": "EXPIRED CONTRACT - Initial 3-year term from 4/8/2020 to 4/8/2023. Auto-renewal terms of 12 months unless 90-day notice given (90-180 days prior to term end). Service addresses: 3800 N El Mirage Dr, Avondale AZ 85392. Agreement #S0013040977, Customer IDs: 22-06174-13009 and 577-192514. Total monthly: $4,071.00 base rate. Binding arbitration clause included. Class action waiver. Service guarantee: failure remedy within 5 business days allows immediate termination without penalty."
+    },
+    {
+      "filename": "Little Elm 01-01-25 contract.pdf",
+      "property_name": "Town of Little Elm",
+      "vendor": "Community Waste Disposal, L.P. (CWD)",
+      "start_date": "2025-02-01",
+      "end_date": "2035-02-01",
+      "monthly_cost": null,
+      "service_frequency": "Residential: 1x/week trash, 1x/week recycling, 2x/month bulk waste. Commercial: varies by agreement (minimum 1x/week)",
+      "container_specs": "Residential: 1x 90/95-gallon BLUE recycle cart, 1x 90/95-gallon GREY trash cart (minimum). Commercial: Dumpsters (2+ cubic yards) or Poly-Carts (4 max per pickup)",
+      "auto_renew": true,
+      "notice_period_days": 90,
+      "days_until_expiration": 3385,
+      "notice_deadline": "2034-11-03",
+      "alert_level": "INFO",
+      "price_escalation_clauses": "Annual CPI Adjustment effective 12 months from contract date, capped at 5% maximum per year. Cumulative increases cannot exceed 5% for any single adjustment period. Extraordinary Increases allowed for fees/expenses not covered by Annual Increase - requires Town Manager approval or Town Council decision. Three-component formula: CPI (74% residential trash, 68% FEL trash, 88% recycle), CNG Fuel (3-4%), and Disposal (23-29% based on Camelot Landfill gate rate). Adjustment based on Consumer Price Index for Dallas-Fort Worth area and Henry Hub Natural Gas prices.",
+      "overage_charge_rates": "Residential extra pickup varies by service type. Commercial contamination fees, overloaded dumpster fees apply per Exhibit A rate schedule. Liquidated damages apply for missed collections: $50 per address for 2+ missed collections in 90 days, $20-$100 for spillage/leakage cleanup, $150 for route completion failures.",
+      "special_terms": "EXCLUSIVE 10-year municipal contract replacing prior contract expiring 1/31/2025. Town pays contractor monthly based on active customer count. Contractor bills commercial customers directly and remits 15% franchise fee to Town quarterly. Performance standards with liquidated damages for service failures. 60% recycle revenue sharing minimum for Town. Clean & Green events 2x/year included. Free service to all Town-owned facilities. $500,000 performance bond required. Contractor must maintain office in Little Elm with local phone. Educational flyers ($1,500/year minimum). Effective date: midnight February 1, 2025. Venue: Denton County, Texas."
+    },
+    {
+      "filename": "McKinney Frontier Trash Agreement.pdf",
+      "property_name": "Orion McKinney (2580 Collin McKinney Pkwy)",
+      "vendor": "Frontier Waste Solutions - McKinney",
+      "start_date": "2024-10-01",
+      "end_date": null,
+      "monthly_cost": 5767.72,
+      "service_frequency": "3x per week",
+      "container_specs": "8x 8-yard FL trash service containers, 2x 10-yard FL trash service containers, 8x commercial enclosures, 2x commercial enclosures, 1x admin fee",
+      "auto_renew": true,
+      "notice_period_days": 90,
+      "days_until_expiration": null,
+      "notice_deadline": null,
+      "alert_level": "INFO",
+      "price_escalation_clauses": "Frontier reserves right to adjust rates based on: (1) increases in landfill rates and/or increased transportation costs to alternate landfill, (2) increases in fuel prices, (3) increases in other operating costs necessarily incurred. Rate acceptance evidenced by practices and actions of parties. Frontier will endeavor to notify Customer of rate adjustments.",
+      "overage_charge_rates": "8-yard service: $2,157.84/month service + $1,789.44/month disposal. 10-yard service: $770.06/month service + $529.38/month disposal. Enclosure fees: $416/month (8 units), $104/month (2 units). Admin fee: $1/month. Extra pickups charged additionally. Late payment fee: 1.5% per month or maximum allowed by law.",
+      "special_terms": "Month-to-month agreement with indefinite renewal in monthly increments unless 90-day certified mail notice prior to anniversary. Service address: 2580 Collin McKinney Pkwy, McKinney, TX. Agreement ID: 39262. Customer: Orion McKinney, PO Box 3608, Oak Brook IL 60522. Contact: Alexis Garza (361) 289-5588. Plus city's 5% franchise fee and taxes. Liquidated damages: 6x average of past 12 months' invoices (or 6x most recent monthly charge if <12 months service) for early termination. Exclusive service rights. Customer liable for equipment damage, overloading prohibited. Overweight roll-off fines pass-through to customer. Texas-based, locally owned company."
+    }
+  ],
+  "alerts": [
+    {
+      "level": "CRITICAL",
+      "property": "Bella Mirage (Greystar)",
+      "message": "CONTRACT EXPIRED - Contract ended on 2023-04-08 (912 days ago). Operating under auto-renewal or new terms. Immediate review recommended."
+    },
+    {
+      "level": "WARNING",
+      "property": "The Club at Millenia",
+      "message": "No defined contract end date - ongoing service agreement from 2017. No auto-renewal or notice terms specified. Review contract status and negotiate updated terms."
+    },
+    {
+      "level": "WARNING",
+      "property": "McKinney Frontier Trash Agreement",
+      "message": "Month-to-month agreement with no defined end date. Requires 90-day notice to terminate. Consider negotiating fixed-term pricing to lock in rates."
+    },
+    {
+      "level": "INFO",
+      "property": "Town of Little Elm",
+      "message": "Long-term municipal contract - 3,385 days until expiration (2035-02-01). Notice deadline: 2034-11-03 (90 days prior). Contract in good standing with 9+ years remaining."
+    }
+  ],
+  "summary": {
+    "total_contracts_processed": 4,
+    "total_monthly_costs": 10813.72,
+    "contracts_expiring_within_90_days": 0,
+    "expired_contracts": 1,
+    "contracts_with_auto_renewal": 3,
+    "average_notice_period_days": 90,
+    "properties_by_vendor": {
+      "Waste Connections of Florida": 1,
+      "Waste Management of Arizona": 1,
+      "Community Waste Disposal": 1,
+      "Frontier Waste Solutions": 1
+    },
+    "key_findings": [
+      "Bella Mirage contract expired in April 2023 and requires immediate attention",
+      "Little Elm has excellent long-term coverage through 2035 with built-in escalation caps (5% max)",
+      "The Club at Millenia has no defined contract term - operating on indefinite basis since 2017",
+      "McKinney Frontier is month-to-month with rate adjustment rights - consider locking in multi-year terms",
+      "All contracts include price escalation clauses tied to CPI, fuel costs, and/or disposal fees",
+      "Total monthly spend across portfolio: $10,813.72 (excludes Little Elm municipal contract which varies by customer count)"
+    ]
+  }
+}

@@ -1,0 +1,421 @@
+{
+  "extraction_metadata": {
+    "extraction_date": "2025-10-26",
+    "extraction_method": "Claude Code direct PDF reading",
+    "samples_extracted": 4,
+    "confidence_level": "high"
+  },
+  "sample_invoices": [
+    {
+      "source_file": "Frontier Waste-16275266_01-2025.pdf",
+      "document_type": "invoice",
+      "property_name": "Orion McKinney",
+      "property_address": "2580 Collin McKinney Pkwy, McKinney, TX 75070",
+      "vendor_name": "Frontier Waste Solutions - McKinney",
+      "vendor_address": "PO Box 260310, Corpus Christi, TX 78426",
+      "vendor_account_number": "239522",
+      "billing_period": {
+        "start_date": "2025-01-01",
+        "end_date": "2025-01-31"
+      },
+      "invoice": {
+        "invoice_number": "4741394",
+        "invoice_date": "2025-01-15",
+        "due_date": "Upon Receipt",
+        "amount_due": "5839.14",
+        "subtotal": "5394.11",
+        "tax": "445.03",
+        "quick_pay_code": "98392",
+        "line_items": [
+          {
+            "description": "08 Yard FL Trash Service",
+            "quantity": 8.00,
+            "unit_rate": "269.73",
+            "extended_amount": "2157.84",
+            "category": "base"
+          },
+          {
+            "description": "08 Yard Trash Disposal 3XW",
+            "quantity": 8.00,
+            "unit_rate": "223.68",
+            "extended_amount": "1789.44",
+            "category": "base"
+          },
+          {
+            "description": "10 Yard FL Trash Service",
+            "quantity": 2.00,
+            "unit_rate": "385.03",
+            "extended_amount": "770.06",
+            "category": "base"
+          },
+          {
+            "description": "10 Yard Trash Disposal 3XW",
+            "quantity": 2.00,
+            "unit_rate": "264.69",
+            "extended_amount": "529.38",
+            "category": "base"
+          },
+          {
+            "description": "Admin Fee",
+            "quantity": 1.00,
+            "unit_rate": "1.00",
+            "extended_amount": "1.00",
+            "category": "admin"
+          },
+          {
+            "description": "McKinney Franchise Fee",
+            "quantity": 1.00,
+            "unit_rate": "146.39",
+            "extended_amount": "146.39",
+            "category": "franchise_fee"
+          }
+        ]
+      },
+      "validation": {
+        "line_items_sum": 5394.11,
+        "tax_calculated": 445.03,
+        "total_matches": true,
+        "confidence": 1.0
+      }
+    },
+    {
+      "source_file": "Republic Services-16282934_01-2025.pdf",
+      "document_type": "invoice",
+      "property_name": "Orion Prosper",
+      "property_address": "980 S Coit Rd, Prosper, TX",
+      "vendor_name": "Republic Services",
+      "vendor_address": "551 Huffines Blvd, Lewisville TX 75057",
+      "vendor_account_number": "3-0615-0156865",
+      "billing_period": {
+        "start_date": "2025-01-01",
+        "end_date": "2025-01-31"
+      },
+      "invoice": {
+        "invoice_number": "0615-002262594",
+        "invoice_date": "2025-01-25",
+        "due_date": "2025-02-14",
+        "amount_due": "2655.07",
+        "previous_balance": "2791.48",
+        "payments_adjustments": "-2791.48",
+        "current_charges": "2655.07",
+        "line_items": [
+          {
+            "description": "Waste/Recycling Overage 12/30",
+            "quantity": 1.0,
+            "unit_rate": "42.00",
+            "extended_amount": "42.00",
+            "category": "overage"
+          },
+          {
+            "description": "Pickup Service 01/01-01/31",
+            "quantity": 4.0,
+            "unit_rate": "602.68",
+            "extended_amount": "2410.72",
+            "category": "base"
+          },
+          {
+            "description": "Total City Sales Tax",
+            "quantity": null,
+            "unit_rate": null,
+            "extended_amount": "49.05",
+            "category": "tax"
+          },
+          {
+            "description": "Total State Sales Tax",
+            "quantity": null,
+            "unit_rate": null,
+            "extended_amount": "153.30",
+            "category": "tax"
+          }
+        ]
+      },
+      "contract_reference": "Contract: 156443 (C2)",
+      "service_description": "4 Front Load 10 Yd, 12 Lifts Per Week",
+      "validation": {
+        "current_charges_match": true,
+        "confidence": 0.95
+      }
+    },
+    {
+      "source_file": "Community Waste Disposal, LP-16239646_01-2025.pdf",
+      "document_type": "invoice",
+      "property_name": "Orion McCord Park",
+      "property_address": "2050 FM 423, Little Elm, TX 75068",
+      "vendor_name": "Community Waste Disposal, LP",
+      "vendor_address": "PO Box 208939, Dallas, TX 75320-8939",
+      "vendor_account_number": "105004",
+      "billing_period": {
+        "start_date": "2025-01-01",
+        "end_date": "2025-01-31"
+      },
+      "invoice": {
+        "invoice_number": "1636694",
+        "invoice_date": "2025-01-01",
+        "due_date": "Upon Receipt",
+        "amount_due": "9734.09",
+        "line_items": [
+          {
+            "date": "2025-01-01",
+            "description": "FRONT LOAD REFUSE SERVICE",
+            "quantity": 13.0,
+            "unit_rate": "670.270",
+            "extended_amount": "8713.51",
+            "category": "base"
+          },
+          {
+            "date": "2025-01-01",
+            "description": "SALES TAX",
+            "quantity": 13.0,
+            "unit_rate": "55.300",
+            "extended_amount": "718.87",
+            "category": "tax"
+          },
+          {
+            "date": "2025-01-01",
+            "description": "APARTMENT RECYCLE PROGRAM",
+            "quantity": 416.0,
+            "unit_rate": "0.670",
+            "extended_amount": "278.72",
+            "category": "base"
+          },
+          {
+            "date": "2025-01-01",
+            "description": "SALES TAX",
+            "quantity": 416.0,
+            "unit_rate": "0.060",
+            "extended_amount": "22.99",
+            "category": "tax"
+          }
+        ]
+      },
+      "validation": {
+        "invoice_total": 9734.09,
+        "line_items_sum": 9734.09,
+        "total_matches": true,
+        "confidence": 1.0
+      }
+    },
+    {
+      "source_file": "TCAM 4.15.25.pdf",
+      "document_type": "invoice",
+      "property_name": "The Club at Millenia",
+      "property_address": "5826 PGA Blvd, Orlando, FL",
+      "vendor_name": "Waste Connections of Florida - Orlando Hauling",
+      "vendor_address": "1099 Miller Drive, Altamonte Springs, FL 32701-2069",
+      "vendor_account_number": "6460-131941",
+      "billing_period": {
+        "start_date": "2025-04-01",
+        "end_date": "2025-04-30"
+      },
+      "invoice": {
+        "invoice_number": "1549125W460",
+        "invoice_date": "2025-04-30",
+        "due_date": "2025-05-06",
+        "amount_due": "11426.50",
+        "contract_number": "06242017",
+        "line_items": [
+          {
+            "date": "2025-04-01",
+            "description": "RO DUMP & RETURN 1.00 30.00YD C",
+            "quantity": 1.0,
+            "unit_rate": "406.64",
+            "extended_amount": "406.64",
+            "category": "extra_pickup"
+          },
+          {
+            "date": "2025-04-01",
+            "description": "ICI WASTE 5.49TN TF 0643020",
+            "quantity": 5.49,
+            "unit_rate": "92.80",
+            "extended_amount": "509.47",
+            "category": "base"
+          },
+          {
+            "date": "2025-04-04",
+            "description": "RO DUMP & RETURN 1.00 30.00YD C",
+            "quantity": 1.0,
+            "unit_rate": "406.64",
+            "extended_amount": "406.64",
+            "category": "extra_pickup"
+          },
+          {
+            "date": "2025-04-04",
+            "description": "ICI WASTE 4.88TN TF 0644041",
+            "quantity": 4.88,
+            "unit_rate": "92.80",
+            "extended_amount": "452.86",
+            "category": "base"
+          },
+          {
+            "date": "2025-04-08",
+            "description": "RO DUMP & RETURN 1.00 30.00YD C",
+            "quantity": 1.0,
+            "unit_rate": "406.64",
+            "extended_amount": "406.64",
+            "category": "extra_pickup"
+          },
+          {
+            "date": "2025-04-08",
+            "description": "ICI WASTE 5.22TN TF 0644684",
+            "quantity": 5.22,
+            "unit_rate": "92.80",
+            "extended_amount": "484.42",
+            "category": "base"
+          },
+          {
+            "date": "2025-04-08",
+            "description": "RO DUMP & RETURN 1.00 30.00YD C",
+            "quantity": 1.0,
+            "unit_rate": "406.64",
+            "extended_amount": "406.64",
+            "category": "extra_pickup"
+          },
+          {
+            "date": "2025-04-08",
+            "description": "ICI WASTE 2.27TN TF 0644733",
+            "quantity": 2.27,
+            "unit_rate": "92.80",
+            "extended_amount": "210.66",
+            "category": "base"
+          },
+          {
+            "date": "2025-04-11",
+            "description": "RO DUMP & RETURN 1.00 30.00YD C",
+            "quantity": 1.0,
+            "unit_rate": "406.64",
+            "extended_amount": "406.64",
+            "category": "extra_pickup"
+          },
+          {
+            "date": "2025-04-11",
+            "description": "ICI WASTE 4.16TN TF 0645598",
+            "quantity": 4.16,
+            "unit_rate": "92.80",
+            "extended_amount": "386.05",
+            "category": "base"
+          },
+          {
+            "date": "2025-04-15",
+            "description": "RO DUMP & RETURN 1.00 30.00YD C",
+            "quantity": 1.0,
+            "unit_rate": "406.64",
+            "extended_amount": "406.64",
+            "category": "extra_pickup"
+          },
+          {
+            "date": "2025-04-15",
+            "description": "ICI WASTE 4.42TN TF 0646291",
+            "quantity": 4.42,
+            "unit_rate": "92.80",
+            "extended_amount": "410.18",
+            "category": "base"
+          },
+          {
+            "date": "2025-04-21",
+            "description": "RO DUMP & RETURN 1.00 30.00YD C",
+            "quantity": 1.0,
+            "unit_rate": "406.64",
+            "extended_amount": "406.64",
+            "category": "extra_pickup"
+          },
+          {
+            "date": "2025-04-21",
+            "description": "ICI WASTE 8.10TN TF 0647711",
+            "quantity": 8.10,
+            "unit_rate": "92.80",
+            "extended_amount": "751.68",
+            "category": "base"
+          },
+          {
+            "date": "2025-04-23",
+            "description": "RO DUMP & RETURN 1.00 30.00YD C",
+            "quantity": 1.0,
+            "unit_rate": "406.64",
+            "extended_amount": "406.64",
+            "category": "extra_pickup"
+          },
+          {
+            "date": "2025-04-23",
+            "description": "ICI WASTE 4.73TN TF 0648265",
+            "quantity": 4.73,
+            "unit_rate": "92.80",
+            "extended_amount": "438.94",
+            "category": "base"
+          },
+          {
+            "date": "2025-04-28",
+            "description": "RO DUMP & RETURN 1.00 30.00YD C",
+            "quantity": 1.0,
+            "unit_rate": "406.64",
+            "extended_amount": "406.64",
+            "category": "extra_pickup"
+          },
+          {
+            "date": "2025-04-28",
+            "description": "ICI WASTE 8.42TN TF 0649341",
+            "quantity": 8.42,
+            "unit_rate": "92.80",
+            "extended_amount": "781.38",
+            "category": "base"
+          },
+          {
+            "date": "2025-04-29",
+            "description": "RO DUMP & RETURN 1.00 30.00YD C",
+            "quantity": 1.0,
+            "unit_rate": "406.64",
+            "extended_amount": "406.64",
+            "category": "extra_pickup"
+          },
+          {
+            "date": "2025-04-29",
+            "description": "ICI WASTE 1.72TN TF 0649699",
+            "quantity": 1.72,
+            "unit_rate": "92.80",
+            "extended_amount": "159.62",
+            "category": "base"
+          },
+          {
+            "date": "2025-04-30",
+            "description": "BASIC CONTAINER CHARGE 1.00 30.00YD C 4/1/2025-4/30/2025",
+            "quantity": 1.0,
+            "unit_rate": "849.50",
+            "extended_amount": "849.50",
+            "category": "base"
+          },
+          {
+            "date": "2025-04-30",
+            "description": "BASIC CONTAINER CHARGE 1.00 30.00YD C 4/1/2025-4/30/2025",
+            "quantity": 1.0,
+            "unit_rate": "856.30",
+            "extended_amount": "856.30",
+            "category": "base"
+          },
+          {
+            "date": "2025-04-30",
+            "description": "BULK SVC 1.00 1.00YD 4/1/2025-4/30/2025",
+            "quantity": 1.0,
+            "unit_rate": "1069.04",
+            "extended_amount": "1069.04",
+            "category": "base"
+          }
+        ]
+      },
+      "service_notes": "Roll-off dump and return service with tonnage-based disposal fees",
+      "total_dumps": 10,
+      "total_tonnage": 49.41,
+      "validation": {
+        "invoice_total": 11426.50,
+        "line_items_sum": 11426.50,
+        "total_matches": true,
+        "confidence": 1.0
+      }
+    }
+  ],
+  "extraction_summary": {
+    "total_amount_sampled": "29654.80",
+    "average_invoice_amount": "7413.70",
+    "properties_sampled": 4,
+    "vendors_represented": 4,
+    "extraction_quality": "High - All critical fields captured"
+  }
+}

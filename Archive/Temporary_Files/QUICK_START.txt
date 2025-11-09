@@ -1,0 +1,145 @@
+================================================================================
+ORION PORTFOLIO WASTE MANAGEMENT - QUICK START
+================================================================================
+
+MAIN FILE: Extraction_Output/MASTER_Property_Waste_Data.xlsx
+
+4 SIMPLE TABS:
+1. Property Master List - All 10 properties, units, vendors
+2. Service Details - Container sizes/counts (Arizona complete, TX/FL TBD)
+3. Spend Summary - Total spend, monthly avg, cost per door
+4. Contract Summary - Contract status for all properties
+
+================================================================================
+PORTFOLIO SUMMARY
+================================================================================
+
+Total Properties: 10
+Total Units: 3,578
+Total Spend: $662,174.85
+Average CPD: $21.60/month
+
+TEXAS (3 properties):
+- Orion Prosper: 312 units, $15.87 CPD
+- Orion Prosper Lakes: 308 units, $17.02 CPD
+- Orion McKinney: 453 units, $15.84 CPD
+
+FLORIDA (2 properties):
+- McCord Park FL: 416 units, $26.58 CPD
+- The Club at Millenia: 560 units, $24.89 CPD
+
+ARIZONA (4 properties):
+- Bella Mirage: 715 units, $10.54 CPD (BEST)
+- Mandarina: 180 units, $16.65 CPD
+- Pavilions at Arrowhead: 248 units, $15.51 CPD
+- Springs at Alta Mesa: 200 units, $87.31 CPD (INVESTIGATE)
+- Tempe Vista: 186 units, $16.53 CPD
+
+================================================================================
+ARIZONA 4-PACK SERVICE DETAILS (COMPLETE)
+================================================================================
+
+TEMPE VISTA (186 units):
+- 6x 4-yard dumpsters, 3x/week
+- 1x 6-yard dumpster, 3x/week
+- 1x 8-yard dumpster, 3x/week
+- Total: 38 yards
+
+MANDARINA (180 units):
+- 2x 6-yard compactors, 3x/week
+- Total: 12 yards
+
+SPRINGS AT ALTA MESA (200 units):
+- 5x 6-yard dumpsters, 3x/week
+- 4x 4-yard dumpsters, 3x/week
+- 7x 90-gallon carts, 3x/week
+- Bulk service every Thursday
+- Total: 46 yards
+
+PAVILIONS AT ARROWHEAD (248 units):
+- 4x 4-yard dumpsters, 2x/week
+- Bulk service every Thursday ($365/month)
+- Total: 16 yards
+
+================================================================================
+URGENT ITEMS
+================================================================================
+
+1. SPRINGS AT ALTA MESA - $87.31 CPD (4x portfolio average)
+   Action: Investigate City of Mesa billing
+
+2. EXPIRED CONTRACTS (2 properties)
+   - The Club at Millenia (expired 05/25/2024)
+   - Bella Mirage (expired 04/20/2023)
+   Action: Get updated contracts
+
+3. MISSING CONTRACTS (3 properties)
+   - Orion Prosper (Republic Services - hard to get)
+   - Orion Prosper Lakes (Republic Services - hard to get)
+   - Mandarina (needs review)
+   Action: Obtain contracts
+
+4. SERVICE DETAILS NEEDED (6 properties)
+   - All Texas properties (3)
+   - All Florida properties (2)
+   - Bella Mirage (1)
+   Action: Survey property managers for container details
+
+================================================================================
+CONTRACT STATUS
+================================================================================
+
+ON FILE:
+- Orion McKinney (Frontier Waste Solutions)
+- McCord Park FL (CWD - Master Agreement with City of Little Elm)
+- Tempe Vista (Waste Management)
+
+EXPIRED:
+- The Club at Millenia (05/25/2024)
+- Bella Mirage (04/20/2023)
+
+MISSING/NEEDED:
+- Orion Prosper (Republic - difficult to obtain)
+- Orion Prosper Lakes (Republic - difficult to obtain)
+- Mandarina (review needed)
+- Pavilions at Arrowhead (review needed)
+- Springs at Alta Mesa (review needed)
+
+================================================================================
+HOW TO UPDATE THE FILE
+================================================================================
+
+To add service details for Texas/Florida properties:
+1. Open Tab 2 (Service Details)
+2. Find property row with "TBD"
+3. Fill in: Container Type, Size, Quantity, Frequency
+4. Update Notes to "Confirmed"
+
+To update contract info:
+1. Open Tab 4 (Contract Summary)
+2. Update Contract Status and Notes
+
+================================================================================
+NEXT STEPS
+================================================================================
+
+IMMEDIATE:
+1. Investigate Springs at Alta Mesa high cost
+2. Get updated contracts for 2 expired properties
+3. Request service details from TX/FL property managers
+
+SHORT-TERM:
+1. Obtain missing contracts (3 properties)
+2. Review Arizona contracts (3 properties)
+3. Fill in all service details
+
+ONGOING:
+1. Monitor cost per door monthly
+2. Track contract renewal dates
+3. Update service details when changes occur
+
+================================================================================
+
+Last Updated: November 6, 2025
+File: Extraction_Output/MASTER_Property_Waste_Data.xlsx
+Status: READY TO USE - Easy to update as info becomes available

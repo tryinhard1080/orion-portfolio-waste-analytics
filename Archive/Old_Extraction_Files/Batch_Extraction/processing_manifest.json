@@ -1,0 +1,112 @@
+{
+  "extraction_date": "2025-10-26T08:12:51.737376",
+  "total_invoices": 66,
+  "properties": {
+    "Orion McKinney": {
+      "vendor": "Frontier Waste",
+      "units": 453,
+      "container_size": "30yd",
+      "invoice_count": 16,
+      "invoice_files": [
+        "Frontier Waste-16275266_01-2025.pdf",
+        "CITY OF MCKINNEY-16338246_02-2025.pdf",
+        "Frontier Waste-16355627_02-2025.pdf",
+        "CITY OF MCKINNEY-16433228_03-2025.pdf",
+        "CITY OF MCKINNEY-16433232_03-2025.pdf",
+        "Frontier Waste-16456324_03-2025.pdf",
+        "Frontier Waste-16540280_04-2025.pdf",
+        "Frontier Waste-16628129_05-2025.pdf",
+        "Frontier Waste-16710557_06-2025.pdf",
+        "Frontier Waste-16814039_06-2025.pdf",
+        "CITY OF MCKINNEY-16788617_07-2025.pdf",
+        "CITY OF MCKINNEY-16788622_07-2025.pdf",
+        "CITY OF MCKINNEY-16788626_07-2025.pdf",
+        "Frontier Waste-16806053_07-2025.pdf",
+        "Frontier Waste-16869509_07-2025.pdf",
+        "Frontier Waste-16897062_08-2025.pdf"
+      ]
+    },
+    "Orion Prosper": {
+      "vendor": "Republic Services",
+      "units": 312,
+      "container_size": "30yd",
+      "invoice_count": 16,
+      "invoice_files": [
+        "Republic Services-16282934_01-2025.pdf",
+        "Republic Services-16282935_01-2025.pdf",
+        "Republic Services-16375230_02-2025.pdf",
+        "Republic Services-16375231_02-2025.pdf",
+        "Republic Services-16465536_03-2025.pdf",
+        "Republic Services-16465537_03-2025.pdf",
+        "Republic Services-16551031_04-2025.pdf",
+        "Republic Services-16551032_04-2025.pdf",
+        "Republic Services-16640472_05-2025.pdf",
+        "Republic Services-16640473_05-2025.pdf",
+        "Republic Services-16730675_06-2025.pdf",
+        "Republic Services-16730676_06-2025.pdf",
+        "Republic Services-16817842_07-2025.pdf",
+        "Republic Services-16817843_07-2025.pdf",
+        "Republic Services-16904288_08-2025.pdf",
+        "Republic Services-16904289_08-2025.pdf"
+      ]
+    },
+    "Orion Prosper Lakes": {
+      "vendor": "Republic Services",
+      "units": 308,
+      "container_size": "30yd",
+      "invoice_count": 10,
+      "invoice_files": [
+        "Republic Services-16302837_01-2025.pdf",
+        "Republic Services-16338020_02-2025.pdf",
+        "Republic Services-16390081_02-2025.pdf",
+        "Republic Services-16396172_03-2025.pdf",
+        "Republic Services-16512062_04-2025.pdf",
+        "Republic Services-16569213_04-2025.pdf",
+        "Republic Services-16605042_05-2025.pdf",
+        "Republic Services-16660697_05-2025.pdf",
+        "Republic Services-16750431_06-2025.pdf",
+        "Republic Services-16834748_07-2025.pdf"
+      ]
+    },
+    "Orion McCord Park": {
+      "vendor": "Community Waste Disposal",
+      "units": null,
+      "container_size": null,
+      "invoice_count": 8,
+      "invoice_files": [
+        "Community Waste Disposal, LP-16239646_01-2025.pdf",
+        "Community Waste Disposal, LP-16325555_02-2025.pdf",
+        "Community Waste Disposal, LP-16423855_03-2025.pdf",
+        "Community Waste Disposal, LP-16502663_04-2025.pdf",
+        "Community Waste Disposal, LP-16589192_05-2025.pdf",
+        "Community Waste Disposal, LP-16681937_06-2025.pdf",
+        "Community Waste Disposal, LP-16777493_07-2025.pdf",
+        "Community Waste Disposal, LP-16856537_08-2025.pdf"
+      ]
+    },
+    "The Club at Millenia": {
+      "vendor": "Various",
+      "units": 560,
+      "container_size": "40yd",
+      "invoice_count": 16,
+      "invoice_files": [
+        "invoice (1).pdf",
+        "invoice (10).pdf",
+        "invoice (2).pdf",
+        "invoice (3).pdf",
+        "invoice (4).pdf",
+        "invoice (5).pdf",
+        "invoice (6).pdf",
+        "invoice (7).pdf",
+        "invoice (8).pdf",
+        "invoice (9).pdf",
+        "TCAM 4.15.25.pdf",
+        "TCAM 5.15.25.pdf",
+        "TCAM 6.15.25.pdf",
+        "TCAM 7.15.25 (1).pdf",
+        "TCAM 8.15.25.pdf",
+        "TCAM 9.15.25.pdf"
+      ]
+    }
+  }
+}

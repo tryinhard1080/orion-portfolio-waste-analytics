@@ -1,0 +1,60 @@
+{
+  "extraction_date": "2025-10-26T08:14:20.932657",
+  "extraction_method": "Filename pattern analysis + manual review required",
+  "total_invoices_processed": 66,
+  "successful_extractions": 66,
+  "properties": {
+    "Orion McKinney": {
+      "vendor": "Frontier Waste",
+      "units": 453,
+      "invoices": 16,
+      "invoices_processed": 16,
+      "needs_full_extraction": true,
+      "extraction_status": "Metadata only - PDF review required"
+    },
+    "Orion Prosper": {
+      "vendor": "Republic Services",
+      "units": 312,
+      "invoices": 16,
+      "invoices_processed": 16,
+      "needs_full_extraction": true,
+      "extraction_status": "Metadata only - PDF review required"
+    },
+    "Orion Prosper Lakes": {
+      "vendor": "Republic Services",
+      "units": 308,
+      "invoices": 10,
+      "invoices_processed": 10,
+      "needs_full_extraction": true,
+      "extraction_status": "Metadata only - PDF review required"
+    },
+    "Orion McCord Park": {
+      "vendor": "Community Waste Disposal",
+      "units": null,
+      "invoices": 8,
+      "invoices_processed": 8,
+      "needs_full_extraction": true,
+      "extraction_status": "Metadata only - PDF review required"
+    },
+    "The Club at Millenia": {
+      "vendor": "Various",
+      "units": 560,
+      "invoices": 16,
+      "invoices_processed": 16,
+      "needs_full_extraction": true,
+      "extraction_status": "Metadata only - PDF review required"
+    }
+  },
+  "flags": {
+    "critical": 0,
+    "needs_review": 66,
+    "validate": 66
+  },
+  "next_steps": [
+    "Full PDF extraction using Claude Vision API required for:",
+    "- Invoice amounts and totals",
+    "- Line item details",
+    "- Service dates and descriptions",
+    "- Tax and fee breakdowns"
+  ]
+}
