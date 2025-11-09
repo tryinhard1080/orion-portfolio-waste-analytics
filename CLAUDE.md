@@ -6,6 +6,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 **Orion Portfolio Waste Management Analytics System (Version 3.0 - Property-Centric Structure)** - A fact-based waste management performance monitoring and reporting platform for 10 garden-style apartment properties (6 in TX/FL, 4 in AZ). The system extracts real data from invoices and contracts, consolidates it into a master Excel file, and generates performance reports based on actual spend and service utilization.
 
+**Portfolio Context:** This is an Orion portfolio managed by Greystar, one of the largest multifamily property management companies. The waste management optimization approach follows Greystar's operational standards and industry best practices.
+
 **Key Technologies:**
 - Python 3.8+ for data extraction and report generation
 - Excel as single source of truth for all property data
@@ -110,15 +112,15 @@ cp .env.example .env
 ### Core Report Generation
 **`generate_reports_from_sheets.py`**
 - Main report generator
-- Reads from Google Sheets API or hardcoded data fallback
-- Generates 7 HTML reports (1 portfolio + 6 properties)
+- Reads from Excel master file: `Portfolio_Reports/MASTER_Portfolio_Complete_Data.xlsx`
+- Generates HTML reports for all 10 properties
 - Uses Jinja2 templates in `Code/templates/`
 - Output: `Reports/{PropertyName}Analysis.html`
 
 **`generate_reports_from_sheets_data.py`**
-- Contains hardcoded property data fallback
-- Used when Google Sheets API unavailable
-- Must be manually updated when data changes
+- Legacy fallback script (deprecated)
+- Previously used when Google Sheets API unavailable
+- Use Excel master file instead
 
 **`generate_contract_reports.py`**
 - Generates contract comparison analysis for each property
@@ -133,7 +135,7 @@ cp .env.example .env
 
 **`comprehensive_validation.py`**
 - Extended validation across all data sources
-- Cross-references invoice data with Google Sheets
+- Cross-references invoice data with Excel master file
 
 **`validate_extracted_data.py`**
 - Validates extracted invoice data quality
@@ -155,9 +157,9 @@ cp .env.example .env
 - Validation prompts
 
 **`update_google_sheets.py`**
-- Updates Google Sheets with extracted invoice data
-- Batch upload capability
-- Validates before uploading
+- Legacy script - updates Google Sheets (if still used for syncing)
+- Primarily update Excel master file directly now
+- Batch upload capability, validates before uploading
 
 ### PDF Conversion
 **`convert_to_pdf_puppeteer.py`**
@@ -191,8 +193,9 @@ python Code/orchestrate_extraction.py
 # 2. Validate extracted data
 python Code/validate_extracted_data.py
 
-# 3. Update Google Sheets with validated data
-python Code/update_google_sheets.py
+# 3. Update Excel master file with validated data
+# Manually update Portfolio_Reports/MASTER_Portfolio_Complete_Data.xlsx
+# Or use update_google_sheets.py if syncing to Google Sheets
 
 # 4. Regenerate reports with new data
 python Code/generate_reports_from_sheets.py
@@ -383,10 +386,10 @@ Property Score = (YPD Score × 35%) + (CPD Score × 40%) + (Overage Score × 25%
 ### Data Validation
 
 **Required Checks:**
-- Unit counts match Google Sheets
+- Unit counts match Excel master file data
 - CPD calculations accurate (Monthly Cost ÷ Units)
 - Performance scores within 0-100 range
-- All 6 properties included in portfolio summary
+- All 10 properties included in portfolio summary
 - Portfolio totals calculated correctly
 
 ## Invoice Extraction Workflow
@@ -395,10 +398,10 @@ The system uses AI subagents to extract invoice data. See `Documentation/SUBAGEN
 
 ### Quick Start
 
-1. **Place invoices** in `Invoices/{PropertyName}/` folder
+1. **Place invoices** in `Properties/{PropertyName}/Invoices/` folder
 2. **Run extraction** using `python Code/orchestrate_extraction.py`
 3. **Validate data** using `python Code/validate_extracted_data.py`
-4. **Update Google Sheets** using `python Code/update_google_sheets.py`
+4. **Update Excel master file** - manually add data to `Portfolio_Reports/MASTER_Portfolio_Complete_Data.xlsx`
 5. **Regenerate reports** using `python Code/generate_reports_from_sheets.py`
 
 ### Extraction Strategy
@@ -509,8 +512,8 @@ python Code/convert_to_pdf_puppeteer.py
 
 3. **Update Data Source**
    ```bash
-   python Code/update_google_sheets.py
-   # OR manually update Google Sheets
+   # Manually update Excel master file: Portfolio_Reports/MASTER_Portfolio_Complete_Data.xlsx
+   # Add extracted invoice data to appropriate property tab
    ```
 
 4. **Regenerate All Reports**
@@ -529,16 +532,18 @@ python Code/convert_to_pdf_puppeteer.py
 ### Updating Property Data
 
 **To Update Property Information:**
-1. Open Google Sheets spreadsheet
-2. Navigate to "Property Details" sheet
-3. Update relevant cells (units, costs, metrics)
-4. Regenerate reports: `python Code/generate_reports_from_sheets.py`
+1. Open Excel master file: `Portfolio_Reports/MASTER_Portfolio_Complete_Data.xlsx`
+2. Navigate to appropriate tab (Property Overview or specific property tab)
+3. Update relevant cells (units, costs, service details, invoice line items)
+4. Save Excel file
+5. Regenerate reports: `python Code/generate_reports_from_sheets.py`
 
 **Example: Update Unit Count**
-- Find property row in "Property Details" sheet
-- Update Column B (Unit Count)
-- CPD will auto-recalculate if using formulas
-- Regenerate reports to reflect changes
+- Open MASTER_Portfolio_Complete_Data.xlsx
+- Find property in "Property Overview" tab
+- Update unit count in appropriate column
+- Recalculate YPD/CPD formulas if needed
+- Save file and regenerate reports
 
 ## Troubleshooting
 
@@ -550,21 +555,21 @@ python Code/convert_to_pdf_puppeteer.py
 - **Check:** Working directory is correct
 
 **Problem:** Reports not updating
-- **Check:** Google Sheets data is current
+- **Check:** Excel master file has been saved with latest data
 - **Check:** Script completed without errors
 - **Check:** Reports saved to `Reports/` folder
 
-**Problem:** Data doesn't match Google Sheets
-- **Check:** `Code/generate_reports_from_sheets_data.py` has latest data
-- **Check:** Script is reading from correct spreadsheet ID
-- **Check:** Property names match exactly
+**Problem:** Data doesn't match expectations
+- **Check:** Excel master file `MASTER_Portfolio_Complete_Data.xlsx` has latest data
+- **Check:** Script is reading from correct Excel file path
+- **Check:** Property names match exactly between Excel tabs and script
 
-### Google Sheets Access
+### Excel File Access
 
-**Problem:** Cannot access spreadsheet
-- **Check:** Spreadsheet ID is correct
-- **Check:** Sharing permissions allow access
-- **Check:** Google Sheets API credentials configured (if using API mode)
+**Problem:** Cannot open or read Excel file
+- **Check:** File path is correct: `Portfolio_Reports/MASTER_Portfolio_Complete_Data.xlsx`
+- **Check:** File is not currently open in Excel (can cause read locks)
+- **Check:** Required Python packages installed (pandas, openpyxl)
 
 ### Invoice Extraction Issues
 
@@ -612,32 +617,6 @@ python Code/convert_to_pdf_puppeteer.py
 # - Contracts: Contracts/
 # - Templates: Code/templates/
 ```
-
-## Version Information
-
-**Current Version:** 3.0 (Clean Build)
-**Last Updated:** October 25, 2025
-**Status:** PRODUCTION READY
-**Data Source:** Google Sheets (Single Source of Truth)
-
-**Key Features:**
-- Clean folder structure with logical organization
-- Google Sheets integration (primary data source)
-- AI-powered invoice extraction using subagents
-- Automated report generation with validation
-- Contract comparison analysis
-- HTML to PDF conversion
-
-## Critical Reminders
-
-1. **Single Source of Truth:** Google Sheets spreadsheet (ID: 1oy-F3p_CPpJaGGmGUMcjQMubRIRi7p4IID7mfpNLZJQ)
-2. **Language Validation:** Never use "cost savings" or similar terms in reports
-3. **Always Validate:** Run `validate_reports.py` before distributing to clients
-4. **Clean Structure:** All active code in `Code/`, all docs in `Documentation/`
-5. **Invoice Organization:** Invoices organized by property in `Invoices/{property_name}/`
-6. **Subagent Extraction:** Use AI-powered extraction for consistency and accuracy
-7. **Data Accuracy:** Verify all property data before report generation
-8. **Data Integrity:** Never hallucinate data - flag missing fields for user review
 
 ## Data Integrity Philosophy
 
