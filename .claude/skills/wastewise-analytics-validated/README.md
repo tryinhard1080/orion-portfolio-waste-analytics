@@ -175,12 +175,16 @@ Bulk Subscription:
 
 ### 3. Formula Accuracy Enforcement
 ```
-Compactors MUST use:
-  Yards per door = (Tons × 14.49) / Units
+Compactors MUST use (per official project standards):
+  Yards per door = (Tons × 2000 / 138) / Units
+  * 138 lbs/yd³ = EPA/ENERGY STAR standard for loose MSW
+  * Already accounts for 3:1 compaction ratio
 
 Standard Dumpsters MUST use:
-  Yards per door = (Qty × Size × Freq × 4.33) / Units
+  Yards per door = (Container Size × Num Containers × Pickups/Week × 4.33) / Units
+  * 4.33 = weeks per month (52/12)
 
+Reference: Documentation/CONTAINER_SPECIFICATIONS_AND_CALCULATION_STANDARDS.md
 ❌ Wrong formula = validation FAILS
 ```
 

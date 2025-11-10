@@ -45,12 +45,18 @@ Before generating the final workbook, this skill runs a **mandatory validation s
 
 ### 3. Formula Validation
 ```
-☐ Yards per door: Correct formula for equipment type
-   - Compactors: (Total Tons × 14.49) / Units
-   - Dumpsters: (Qty × Size × Freq × 4.33) / Units
+☐ Yards per door: Correct formula for equipment type (per CONTAINER_SPECIFICATIONS_AND_CALCULATION_STANDARDS.md)
+   - Compactors: (Total Tons × 2000 / 138) / Units
+     * 138 lbs/yd³ is EPA/ENERGY STAR standard for loose MSW
+     * Already accounts for 3:1 compaction ratio
+   - Dumpsters: (Container Size × Num Containers × Pickups/Week × 4.33) / Units
+     * 4.33 = weeks per month (52/12)
 ☐ Cost per door: Total Monthly Cost / Units
 ☐ Capacity utilization: (Tons Per Haul / Target Tons) × 100%
 ☐ Days between pickups: 30 / (Hauls Per Month)
+
+**CRITICAL:** All formulas must comply with official project standards documented in:
+Documentation/CONTAINER_SPECIFICATIONS_AND_CALCULATION_STANDARDS.md
 ```
 
 ### 4. Sheet Structure Validation

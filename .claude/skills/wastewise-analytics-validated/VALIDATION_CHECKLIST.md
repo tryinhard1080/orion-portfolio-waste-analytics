@@ -228,31 +228,39 @@ Yards Per Door = (Qty × Size × Freq × 4.33) / Units
 
 ### 3.2 Yards Per Door - Compactors (CRITICAL)
 
-**Formula:**
+**Formula (OFFICIAL - per CONTAINER_SPECIFICATIONS_AND_CALCULATION_STANDARDS.md):**
 ```
-Yards Per Door = (Total Tons × 14.49) / Units
+Yards Per Door = (Total Tons × 2000 / 138) / Units
 ```
 
-**The 14.49 Factor:**
-```
-tons × 2,000 lbs/ton / 138 lbs/yd³ = 14.49 yards per ton
-```
+**Formula Components:**
+- **Total Tons:** Sum of all compactor hauls in the month (from scale tickets)
+- **2000:** Pounds per ton conversion factor
+- **138:** EPA/ENERGY STAR standard density for loose MSW (lbs/yd³)
+  * This already accounts for typical 3:1 compaction ratio
+  * Converts compacted tonnage to loose cubic yards
+- **Units:** Total residential units at property
+
+**Note:** The factor 14.49 (simplified from 2000/138) may be used for mental math, but official calculations must show the full formula for clarity and auditability.
 
 **Validation:**
 - [ ] Service type identified as "compactor"
-- [ ] Tonnage data extracted from invoice
+- [ ] Tonnage data extracted from invoice scale tickets
 - [ ] Formula uses tonnage (NOT container size)
-- [ ] Calculation matches formula
+- [ ] Uses 138 lbs/yd³ density factor (NOT 225 or other values)
+- [ ] Calculation matches official formula
 
 **FAILURE CRITERIA:**
 ```
 ❌ Compactor calculation uses container size instead of tonnage
-❌ Formula doesn't use 14.49 conversion factor
+❌ Formula uses incorrect density factor (not 138 lbs/yd³)
+❌ Formula doesn't convert tons to pounds (missing × 2000)
 ```
 
 **Example Valid:**
 ```
-10 tons × 14.49 / 200 units = 0.72 yards/door ✅
+10 tons collected in month for 200-unit property:
+(10 tons × 2000 lbs/ton / 138 lbs/yd³) / 200 units = 0.72 yards/door ✅
 ```
 
 **Example Invalid:**

@@ -27,6 +27,34 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - **894 Invoice Line Items:** Complete extraction from all invoices
 - **17 Tabs:** 7 summary tabs + 10 property-specific tabs
 
+## CALCULATION STANDARDS (MANDATORY)
+
+**CRITICAL:** All waste management calculations MUST comply with official project standards.
+
+**Reference Document:** `Documentation/CONTAINER_SPECIFICATIONS_AND_CALCULATION_STANDARDS.md`
+
+**Official Formulas:**
+
+**Yards Per Door (Dumpster Service):**
+```
+YPD = (Container Size × Num Containers × Pickups/Week × 4.33) / Units
+```
+
+**Yards Per Door (Compactor Service):**
+```
+YPD = (Total Tons × 2000 / 138) / Units
+```
+- **138 lbs/yd³:** EPA/ENERGY STAR standard density for loose MSW
+- **Already accounts for 3:1 compaction ratio**
+- **DO NOT use 225 lbs/yd³ or 14.49 shortcut in official calculations**
+
+**Industry Benchmarks:**
+- Garden-style: 2.0-2.5 yards/door/month (existing), 2.0-2.25 (new build)
+- Mid-rise: 1.5-2.0 yards/door/month (existing), ~1.5 (new build)
+- High-rise: 1.0-1.5 yards/door/month (existing & new build)
+
+**All scripts, skills, and workbooks must reference these standards.**
+
 ## Folder Structure (Property-Centric Organization)
 
 ```
