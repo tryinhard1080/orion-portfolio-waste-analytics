@@ -1,0 +1,588 @@
+{
+  "audit_date": "2025-11-13T06:54:42.934821",
+  "master_file": "C:\\Users\\Richard\\Downloads\\Orion Data Part 2\\Portfolio_Reports\\MASTER_Portfolio_Complete_Data.xlsx",
+  "properties": {
+    "Bella Mirage": {
+      "property_name": "Bella Mirage",
+      "units": 715,
+      "service_type": "Compactor",
+      "status": "PASSED",
+      "issues": [],
+      "warnings": [
+        "Vendor name variations detected: [\"WM/Waste Management: ['Waste Management National Services, Inc.', 'Waste Management', 'WM National Services, Inc.']\"]",
+        "102 potential duplicate invoice records"
+      ],
+      "metrics": {
+        "total_records": 102,
+        "columns": [
+          "Property",
+          "Source File",
+          "Vendor",
+          "Account Number",
+          "Invoice Number",
+          "Invoice Date",
+          "Invoice Amount",
+          "Due Date",
+          "Service Date",
+          "Description",
+          "Category",
+          "Quantity",
+          "Unit Rate",
+          "Extended Amount",
+          "Container Size",
+          "Container Type",
+          "Frequency/Week",
+          "Data Source",
+          "Notes",
+          "UOM",
+          "Container Count",
+          "Service Frequency",
+          "Service Days",
+          "Total Yards",
+          "YPD",
+          "Service Notes"
+        ],
+        "missing_invoice_numbers": 0,
+        "unique_vendors": [
+          "Waste Management National Services, Inc.",
+          "Waste Management",
+          "WM National Services, Inc."
+        ],
+        "vendor_count": 3,
+        "date_range": {
+          "start": "2024-11-15",
+          "end": "2025-08-14",
+          "months_covered": 10
+        },
+        "total_spend": 67324.17,
+        "avg_monthly_spend": 6732.4169999999995
+      },
+      "data_pattern": "A - Full Invoice Breakdown (Extended Amount)",
+      "amount_field": "Extended Amount",
+      "requires_compactor_handling": true
+    },
+    "Pavilions at Arrowhead": {
+      "property_name": "Pavilions at Arrowhead",
+      "units": 248,
+      "service_type": "Dumpster",
+      "status": "PASSED",
+      "issues": [],
+      "warnings": [
+        "36 records (76.6%) missing invoice numbers"
+      ],
+      "metrics": {
+        "total_records": 47,
+        "columns": [
+          "Property",
+          "Source File",
+          "Vendor",
+          "Account Number",
+          "Invoice Number",
+          "Invoice Date",
+          "Invoice Amount",
+          "Billing Period",
+          "Description",
+          "Service Type",
+          "Data Source",
+          "Container Count",
+          "Container Size",
+          "Container Type",
+          "Service Frequency",
+          "Service Days",
+          "Total Yards",
+          "YPD",
+          "Service Notes"
+        ],
+        "missing_invoice_numbers": 36,
+        "unique_vendors": [
+          "Ally Waste",
+          "City of Glendale"
+        ],
+        "vendor_count": 2,
+        "date_range": {
+          "start": "2024-11-01",
+          "end": "2025-10-02",
+          "months_covered": 12
+        },
+        "total_spend": 42323.46000000001,
+        "avg_monthly_spend": 3526.9550000000004
+      },
+      "data_pattern": "C - Invoice Amount Only",
+      "amount_field": "Invoice Amount",
+      "requires_compactor_handling": false
+    },
+    "Springs at Alta Mesa": {
+      "property_name": "Springs at Alta Mesa",
+      "units": 200,
+      "service_type": "Mixed",
+      "status": "PASSED",
+      "issues": [],
+      "warnings": [
+        "192 records (94.6%) missing invoice numbers"
+      ],
+      "metrics": {
+        "total_records": 203,
+        "columns": [
+          "Property",
+          "Source File",
+          "Vendor",
+          "Account Number",
+          "Invoice Number",
+          "Invoice Date",
+          "Invoice Amount",
+          "Billing Period",
+          "Description",
+          "Service Type",
+          "Data Source",
+          "Container Count",
+          "Container Size",
+          "Container Type",
+          "Service Frequency",
+          "Service Days",
+          "Total Yards",
+          "YPD",
+          "Service Notes"
+        ],
+        "missing_invoice_numbers": 192,
+        "unique_vendors": [
+          "Ally Waste",
+          "City of Mesa"
+        ],
+        "vendor_count": 2,
+        "date_range": {
+          "start": "2024-10-30",
+          "end": "2025-09-30",
+          "months_covered": 12
+        },
+        "total_spend": 192171.15,
+        "avg_monthly_spend": 16014.262499999999
+      },
+      "data_pattern": "C - Invoice Amount Only",
+      "amount_field": "Invoice Amount",
+      "requires_compactor_handling": false
+    },
+    "Mandarina": {
+      "property_name": "Mandarina",
+      "units": 180,
+      "service_type": "Dumpster",
+      "status": "PASSED",
+      "issues": [],
+      "warnings": [
+        "4 records (10.8%) missing invoice numbers",
+        "Vendor name variations detected: [\"WM/Waste Management: ['Waste Management - Compactor', 'Waste Management - Hauling']\"]"
+      ],
+      "metrics": {
+        "total_records": 37,
+        "columns": [
+          "Property",
+          "Source File",
+          "Vendor",
+          "Account Number",
+          "Invoice Number",
+          "Invoice Date",
+          "Invoice Amount",
+          "Billing Period",
+          "Description",
+          "Service Type",
+          "Data Source",
+          "Container Count",
+          "Container Size",
+          "Container Type",
+          "Service Frequency",
+          "Service Days",
+          "Total Yards",
+          "YPD",
+          "Service Notes"
+        ],
+        "missing_invoice_numbers": 4,
+        "unique_vendors": [
+          "Ally Waste",
+          "Waste Management - Compactor",
+          "Waste Management - Hauling"
+        ],
+        "vendor_count": 3,
+        "date_range": {
+          "start": "2024-10-15",
+          "end": "2025-09-30",
+          "months_covered": 12
+        },
+        "total_spend": 34460.72,
+        "avg_monthly_spend": 2871.726666666667
+      },
+      "data_pattern": "C - Invoice Amount Only",
+      "amount_field": "Invoice Amount",
+      "requires_compactor_handling": false
+    },
+    "Tempe Vista": {
+      "property_name": "Tempe Vista",
+      "units": 186,
+      "service_type": "Dumpster",
+      "status": "PASSED",
+      "issues": [],
+      "warnings": [],
+      "metrics": {
+        "total_records": 23,
+        "columns": [
+          "Property",
+          "Source File",
+          "Vendor",
+          "Account Number",
+          "Invoice Number",
+          "Invoice Date",
+          "Invoice Amount",
+          "Billing Period",
+          "Description",
+          "Service Type",
+          "Data Source",
+          "Container Count",
+          "Container Size",
+          "Container Type",
+          "Service Frequency",
+          "Service Days",
+          "Total Yards",
+          "YPD",
+          "Service Notes"
+        ],
+        "missing_invoice_numbers": 0,
+        "unique_vendors": [
+          "Ally Waste",
+          "Waste Management - Hauling"
+        ],
+        "vendor_count": 2,
+        "date_range": {
+          "start": "2024-10-31",
+          "end": "2025-09-30",
+          "months_covered": 12
+        },
+        "total_spend": 33738.18,
+        "avg_monthly_spend": 2811.515
+      },
+      "data_pattern": "C - Invoice Amount Only",
+      "amount_field": "Invoice Amount",
+      "requires_compactor_handling": false
+    },
+    "The Club at Millenia": {
+      "property_name": "The Club at Millenia",
+      "units": 560,
+      "service_type": "Compactor",
+      "status": "PASSED",
+      "issues": [],
+      "warnings": [
+        "146 potential duplicate invoice records"
+      ],
+      "metrics": {
+        "total_records": 146,
+        "columns": [
+          "Property",
+          "Source File",
+          "Vendor",
+          "Account Number",
+          "Invoice Number",
+          "Invoice Date",
+          "Due Date",
+          "Service Period Start",
+          "Service Period End",
+          "Description",
+          "Service Type",
+          "Quantity",
+          "Unit Rate",
+          "Line Item Amount",
+          "Previous Balance",
+          "Payments",
+          "Total Amount",
+          "Validation Flags",
+          "Extraction Confidence",
+          "Container Count",
+          "Container Size",
+          "Container Type",
+          "Service Frequency",
+          "Service Days",
+          "Total Yards",
+          "YPD",
+          "Service Notes"
+        ],
+        "missing_invoice_numbers": 0,
+        "unique_vendors": [
+          "WASTE CONNECTIONS OF FLORIDA ORLANDO HAULING",
+          "WASTE CONNECTIONS OF FLORIDA"
+        ],
+        "vendor_count": 2,
+        "date_range": {
+          "start": "2025-04-30",
+          "end": "2025-09-30",
+          "months_covered": 6
+        },
+        "total_spend": 1710159.38,
+        "avg_monthly_spend": 285026.5633333333
+      },
+      "data_pattern": "B - Total Amount with Line Items",
+      "amount_field": "Total Amount",
+      "requires_compactor_handling": true
+    },
+    "Orion Prosper Lakes": {
+      "property_name": "Orion Prosper Lakes",
+      "units": 308,
+      "service_type": "Compactor",
+      "status": "PASSED",
+      "issues": [],
+      "warnings": [
+        "104 potential duplicate invoice records"
+      ],
+      "metrics": {
+        "total_records": 104,
+        "columns": [
+          "Property",
+          "Source File",
+          "Vendor",
+          "Account Number",
+          "Invoice Number",
+          "Invoice Date",
+          "Invoice Amount",
+          "Service Date",
+          "Billing Period",
+          "Description",
+          "Category",
+          "Quantity",
+          "Unit Rate",
+          "Extended Amount",
+          "Container Count",
+          "Container Size",
+          "Container Type",
+          "Service Frequency",
+          "Service Days",
+          "Total Yards",
+          "YPD",
+          "Service Notes"
+        ],
+        "missing_invoice_numbers": 0,
+        "unique_vendors": [
+          "Republic Services"
+        ],
+        "vendor_count": 1,
+        "date_range": {
+          "start": "2025-01-31",
+          "end": "2025-07-31",
+          "months_covered": 7
+        },
+        "total_spend": 20816.170000000002,
+        "avg_monthly_spend": 2973.7385714285715
+      },
+      "data_pattern": "A - Full Invoice Breakdown (Extended Amount)",
+      "amount_field": "Extended Amount",
+      "requires_compactor_handling": true
+    },
+    "McCord Park FL": {
+      "property_name": "McCord Park FL",
+      "units": 416,
+      "service_type": "Dumpster",
+      "status": "PASSED",
+      "issues": [],
+      "warnings": [
+        "Potential 1 month gaps in data",
+        "42 potential duplicate invoice records"
+      ],
+      "metrics": {
+        "total_records": 42,
+        "columns": [
+          "Property",
+          "Source File",
+          "Vendor",
+          "Account Number",
+          "Invoice Number",
+          "Invoice Date",
+          "Invoice Amount",
+          "Due Date",
+          "Service Date",
+          "Description",
+          "Category",
+          "Quantity",
+          "Unit Rate",
+          "Extended Amount",
+          "Container Size",
+          "Container Type",
+          "Frequency/Week",
+          "Data Source",
+          "Notes",
+          "UOM",
+          "Container Count",
+          "Service Frequency",
+          "Service Days",
+          "Total Yards",
+          "YPD",
+          "Service Notes"
+        ],
+        "missing_invoice_numbers": 0,
+        "unique_vendors": [
+          "Community Waste Disposal, LP",
+          "Community Waste Disposal"
+        ],
+        "vendor_count": 2,
+        "date_range": {
+          "start": "2025-01-01",
+          "end": "2025-10-01",
+          "months_covered": 10
+        },
+        "total_spend": 99158.68000000001,
+        "avg_monthly_spend": 9915.868
+      },
+      "data_pattern": "A - Full Invoice Breakdown (Extended Amount)",
+      "amount_field": "Extended Amount",
+      "requires_compactor_handling": false
+    },
+    "Orion McKinney": {
+      "property_name": "Orion McKinney",
+      "units": 453,
+      "service_type": "Mixed",
+      "status": "PASSED",
+      "issues": [],
+      "warnings": [
+        "9 records (9.5%) missing invoice numbers",
+        "Vendor name variations detected: [\"Frontier: ['Frontier Waste Solutions', 'FRONTIER WASTE - MCKINNEY', 'FRONTIER WASTE SOLUTIONS', 'Frontier Waste - McKinney']\"]",
+        "86 potential duplicate invoice records"
+      ],
+      "metrics": {
+        "total_records": 95,
+        "columns": [
+          "Property",
+          "Source File",
+          "Vendor",
+          "Account Number",
+          "Invoice Number",
+          "Invoice Date",
+          "Invoice Amount",
+          "Due Date",
+          "Service Date",
+          "Description",
+          "Category",
+          "Quantity",
+          "Unit Rate",
+          "Extended Amount",
+          "Container Size",
+          "Container Type",
+          "Frequency/Week",
+          "Data Source",
+          "Notes",
+          "UOM",
+          "Container Count",
+          "Service Frequency",
+          "Service Days",
+          "Total Yards",
+          "YPD",
+          "Service Notes"
+        ],
+        "missing_invoice_numbers": 9,
+        "unique_vendors": [
+          "Frontier Waste Solutions",
+          "CITY OF MCKINNEY",
+          "FRONTIER WASTE - MCKINNEY",
+          "FRONTIER WASTE SOLUTIONS",
+          "Frontier Waste - McKinney"
+        ],
+        "vendor_count": 5,
+        "date_range": {
+          "start": "2025-01-15",
+          "end": "2025-09-15",
+          "months_covered": 9
+        },
+        "total_spend": 59222.85,
+        "avg_monthly_spend": 6580.316666666667
+      },
+      "data_pattern": "A - Full Invoice Breakdown (Extended Amount)",
+      "amount_field": "Extended Amount",
+      "requires_compactor_handling": false
+    },
+    "Orion Prosper": {
+      "property_name": "Orion Prosper",
+      "units": 312,
+      "service_type": "Compactor",
+      "status": "PASSED",
+      "issues": [],
+      "warnings": [
+        "95 potential duplicate invoice records"
+      ],
+      "metrics": {
+        "total_records": 95,
+        "columns": [
+          "Property",
+          "Source File",
+          "Vendor",
+          "Account Number",
+          "Invoice Number",
+          "Invoice Date",
+          "Invoice Amount",
+          "Service Date",
+          "Billing Period",
+          "Description",
+          "Category",
+          "Quantity",
+          "Unit Rate",
+          "Extended Amount",
+          "Container Count",
+          "Container Size",
+          "Container Type",
+          "Service Frequency",
+          "Service Days",
+          "Total Yards",
+          "YPD",
+          "Service Notes"
+        ],
+        "missing_invoice_numbers": 0,
+        "unique_vendors": [
+          "Republic Services"
+        ],
+        "vendor_count": 1,
+        "date_range": {
+          "start": "2025-01-25",
+          "end": "2025-08-25",
+          "months_covered": 8
+        },
+        "total_spend": 30200.559999999994,
+        "avg_monthly_spend": 3775.0699999999993
+      },
+      "data_pattern": "A - Full Invoice Breakdown (Extended Amount)",
+      "amount_field": "Extended Amount",
+      "requires_compactor_handling": true
+    }
+  },
+  "overall_status": "PASSED",
+  "critical_issues": [],
+  "warnings": [
+    "Pavilions at Arrowhead: 36 missing invoice numbers",
+    "Springs at Alta Mesa: 192 missing invoice numbers",
+    "Mandarina: 4 missing invoice numbers",
+    "Orion McKinney: 9 missing invoice numbers"
+  ],
+  "summary": {
+    "total_properties": 10,
+    "properties_passed": 10,
+    "properties_failed": 0,
+    "properties_error": 0,
+    "total_records": 894,
+    "total_spend": 2289575.3200000003,
+    "compactor_properties": [
+      "Bella Mirage",
+      "The Club at Millenia",
+      "Orion Prosper Lakes",
+      "Orion Prosper"
+    ],
+    "missing_invoice_numbers_total": 241,
+    "data_patterns": {
+      "A - Full Invoice Breakdown (Extended Amount)": [
+        "Bella Mirage",
+        "Orion Prosper Lakes",
+        "McCord Park FL",
+        "Orion McKinney",
+        "Orion Prosper"
+      ],
+      "C - Invoice Amount Only": [
+        "Pavilions at Arrowhead",
+        "Springs at Alta Mesa",
+        "Mandarina",
+        "Tempe Vista"
+      ],
+      "B - Total Amount with Line Items": [
+        "The Club at Millenia"
+      ]
+    }
+  }
+}

@@ -307,10 +307,10 @@ class WasteWiseValidator:
             
             # Check yards per door calculation
             if 'compactor' in service_type:
-                # Must use tonnage-based calculation
+                # Must use tonnage-based calculation (per CONTAINER_SPECIFICATIONS_AND_CALCULATION_STANDARDS.md)
                 if 'tonnage' in invoice:
                     tons = invoice['tonnage']
-                    expected_yards = (tons * 14.49) / units
+                    expected_yards = (tons * 2000 / 138) / units  # EPA/ENERGY STAR standard: 138 lbs/yd³
                     actual_yards = invoice.get('yards_per_door', 0)
                     
                     if abs(expected_yards - actual_yards) > 0.01:

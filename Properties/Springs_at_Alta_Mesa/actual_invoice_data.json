@@ -1,0 +1,147 @@
+{
+  "mesa_monthly": {
+    "2025-09": 2099.97,
+    "2025-08": 2099.97,
+    "2025-07": 2099.97,
+    "2025-06": 2099.97,
+    "2025-05": 2099.97,
+    "2025-04": 2099.97,
+    "2025-03": 2129.97,
+    "2025-02": 2129.97,
+    "2025-01": 2138.49,
+    "2024-12": 1925.41,
+    "2024-11": 1985.41,
+    "2024-10": 1927.73
+  },
+  "ally_monthly": {
+    "2025-09": 495.0,
+    "2025-08": 495.0,
+    "2025-07": 495.0,
+    "2025-06": 495.0,
+    "2025-05": 495.0,
+    "2025-04": 495.0,
+    "2025-03": 495.0,
+    "2025-02": 495.0,
+    "2025-01": 495.0,
+    "2024-12": 552.21,
+    "2024-11": 357.21
+  },
+  "combined_monthly": [
+    {
+      "month": "Sep 2025",
+      "mesa_amount": 2099.97,
+      "ally_amount": 495.0,
+      "total": 2594.97,
+      "cpd": 12.974849999999998,
+      "notes": "",
+      "ytd_total": 30201.220000000005
+    },
+    {
+      "month": "Aug 2025",
+      "mesa_amount": 2099.97,
+      "ally_amount": 495.0,
+      "total": 2594.97,
+      "cpd": 12.974849999999998,
+      "notes": "",
+      "ytd_total": 27606.250000000004
+    },
+    {
+      "month": "Jul 2025",
+      "mesa_amount": 2099.97,
+      "ally_amount": 495.0,
+      "total": 2594.97,
+      "cpd": 12.974849999999998,
+      "notes": "",
+      "ytd_total": 25011.280000000002
+    },
+    {
+      "month": "Jun 2025",
+      "mesa_amount": 2099.97,
+      "ally_amount": 495.0,
+      "total": 2594.97,
+      "cpd": 12.974849999999998,
+      "notes": "",
+      "ytd_total": 22416.31
+    },
+    {
+      "month": "May 2025",
+      "mesa_amount": 2099.97,
+      "ally_amount": 495.0,
+      "total": 2594.97,
+      "cpd": 12.974849999999998,
+      "notes": "",
+      "ytd_total": 19821.34
+    },
+    {
+      "month": "Apr 2025",
+      "mesa_amount": 2099.97,
+      "ally_amount": 495.0,
+      "total": 2594.97,
+      "cpd": 12.974849999999998,
+      "notes": "",
+      "ytd_total": 17226.37
+    },
+    {
+      "month": "Mar 2025",
+      "mesa_amount": 2129.97,
+      "ally_amount": 495.0,
+      "total": 2624.97,
+      "cpd": 13.124849999999999,
+      "notes": "",
+      "ytd_total": 14631.399999999998
+    },
+    {
+      "month": "Feb 2025",
+      "mesa_amount": 2129.97,
+      "ally_amount": 495.0,
+      "total": 2624.97,
+      "cpd": 13.124849999999999,
+      "notes": "",
+      "ytd_total": 12006.429999999998
+    },
+    {
+      "month": "Jan 2025",
+      "mesa_amount": 2138.49,
+      "ally_amount": 495.0,
+      "total": 2633.49,
+      "cpd": 13.167449999999999,
+      "notes": "",
+      "ytd_total": 9381.46
+    },
+    {
+      "month": "Dec 2024",
+      "mesa_amount": 1925.41,
+      "ally_amount": 552.21,
+      "total": 2477.62,
+      "cpd": 12.3881,
+      "notes": "Holiday surcharge (Ally Waste)",
+      "ytd_total": 6747.97
+    },
+    {
+      "month": "Nov 2024",
+      "mesa_amount": 1985.41,
+      "ally_amount": 357.21,
+      "total": 2342.62,
+      "cpd": 11.713099999999999,
+      "notes": "Partial month (Ally Waste startup)",
+      "ytd_total": 4270.35
+    },
+    {
+      "month": "Oct 2024",
+      "mesa_amount": 1927.73,
+      "ally_amount": 0,
+      "total": 1927.73,
+      "cpd": 9.63865,
+      "notes": "Missing Ally Waste data",
+      "ytd_total": 1927.73
+    }
+  ],
+  "summary": {
+    "total_mesa": 24836.8,
+    "total_ally": 5364.42,
+    "grand_total": 30201.22,
+    "num_months": 12,
+    "avg_monthly": 2516.7683333333334,
+    "avg_cpd": 12.583841666666666
+  }
+}

@@ -241,7 +241,7 @@ Yards Per Door = (Total Tons × 2000 / 138) / Units
   * Converts compacted tonnage to loose cubic yards
 - **Units:** Total residential units at property
 
-**Note:** The factor 14.49 (simplified from 2000/138) may be used for mental math, but official calculations must show the full formula for clarity and auditability.
+**Note:** While 14.49 is mathematically equivalent (2000÷138), official calculations **must** show the full formula `(Tons × 2000 / 138) / Units` for transparency and auditability per project standards.
 
 **Validation:**
 - [ ] Service type identified as "compactor"

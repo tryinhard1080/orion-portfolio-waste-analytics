@@ -1,0 +1,79 @@
+{
+  "total_properties": 10,
+  "successful": 10,
+  "failed": 0,
+  "properties": {
+    "Orion Prosper": {
+      "status": "SUCCESS",
+      "output_path": "Properties/Orion_Prosper/Orion_Prosper_WasteAnalysis_Validated.xlsx",
+      "data_quality": "PASSED",
+      "opportunities_count": 1,
+      "has_compactor": false
+    },
+    "Orion Prosper Lakes": {
+      "status": "SUCCESS",
+      "output_path": "Properties/Orion_Prosper_Lakes/Orion_Prosper_Lakes_WasteAnalysis_Validated.xlsx",
+      "data_quality": "PASSED",
+      "opportunities_count": 1,
+      "has_compactor": false
+    },
+    "Orion McKinney": {
+      "status": "SUCCESS",
+      "output_path": "Properties/Orion_McKinney/Orion_McKinney_WasteAnalysis_Validated.xlsx",
+      "data_quality": "PASSED",
+      "opportunities_count": 0,
+      "has_compactor": false
+    },
+    "McCord Park FL": {
+      "status": "SUCCESS",
+      "output_path": "Properties/McCord_Park_FL/McCord_Park_FL_WasteAnalysis_Validated.xlsx",
+      "data_quality": "PASSED",
+      "opportunities_count": 0,
+      "has_compactor": false
+    },
+    "The Club at Millenia": {
+      "status": "SUCCESS",
+      "output_path": "Properties/The_Club_at_Millenia/The_Club_at_Millenia_WasteAnalysis_Validated.xlsx",
+      "data_quality": "PASSED",
+      "opportunities_count": 0,
+      "has_compactor": false
+    },
+    "Bella Mirage": {
+      "status": "SUCCESS",
+      "output_path": "Properties/Bella_Mirage/Bella_Mirage_WasteAnalysis_Validated.xlsx",
+      "data_quality": "PASSED",
+      "opportunities_count": 0,
+      "has_compactor": false
+    },
+    "Mandarina": {
+      "status": "SUCCESS",
+      "output_path": "Properties/Mandarina/Mandarina_WasteAnalysis_Validated.xlsx",
+      "data_quality": "PASSED",
+      "opportunities_count": 0,
+      "has_compactor": false
+    },
+    "Pavilions at Arrowhead": {
+      "status": "SUCCESS",
+      "output_path": "Properties/Pavilions_at_Arrowhead/Pavilions_at_Arrowhead_WasteAnalysis_Validated.xlsx",
+      "data_quality": "PASSED",
+      "opportunities_count": 0,
+      "has_compactor": false
+    },
+    "Springs at Alta Mesa": {
+      "status": "SUCCESS",
+      "output_path": "Properties/Springs_at_Alta_Mesa/Springs_at_Alta_Mesa_WasteAnalysis_Validated.xlsx",
+      "data_quality": "PASSED",
+      "opportunities_count": 0,
+      "has_compactor": false
+    },
+    "Tempe Vista": {
+      "status": "SUCCESS",
+      "output_path": "Properties/Tempe_Vista/Tempe_Vista_WasteAnalysis_Validated.xlsx",
+      "data_quality": "PASSED",
+      "opportunities_count": 0,
+      "has_compactor": false
+    }
+  },
+  "start_time": "2025-11-10T20:26:33.328272",
+  "end_time": "2025-11-10T20:26:35.230310"
+}

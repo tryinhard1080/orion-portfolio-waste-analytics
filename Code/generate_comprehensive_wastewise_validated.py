@@ -187,12 +187,14 @@ class WasteWiseValidator:
 
         # Validate YPD calculation based on service type
         if 'Compactor' in property_info['service_type']:
-            # Compactor: (Tons × 14.49) / Units
-            required_formula = "Compactor YPD = (Total Tons × 14.49) / Units"
+            # Compactor: (Tons × 2000 / 138) / Units
+            # Reference: Documentation/CONTAINER_SPECIFICATIONS_AND_CALCULATION_STANDARDS.md
+            required_formula = "Compactor YPD = (Total Tons × 2000 / 138) / Units"
             self.validation_results['formula_validation']['ypd_formula'] = required_formula
 
             if 'total_tons' in analysis_data:
-                calculated_ypd = (analysis_data['total_tons'] * 14.49) / property_info['units']
+                # Use official EPA/ENERGY STAR standard: 138 lbs/yd³ for loose MSW
+                calculated_ypd = (analysis_data['total_tons'] * 2000 / 138) / property_info['units']
                 self.validation_results['formula_validation']['calculated_ypd'] = round(calculated_ypd, 2)
 
         else:

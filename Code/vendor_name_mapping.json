@@ -1,0 +1,48 @@
+{
+  "description": "Vendor name standardization mapping for expense reports",
+  "created_date": "2025-11-13",
+  "mapping": {
+    "Bella Mirage": {
+      "Waste Management National Services, Inc.": "Waste Management",
+      "WM National Services, Inc.": "Waste Management",
+      "Waste Management": "Waste Management"
+    },
+    "Mandarina": {
+      "Waste Management - Compactor": "Waste Management",
+      "Waste Management - Hauling": "Waste Management"
+    },
+    "Orion McKinney": {
+      "FRONTIER WASTE - MCKINNEY": "Frontier Waste Solutions",
+      "FRONTIER WASTE SOLUTIONS": "Frontier Waste Solutions",
+      "Frontier Waste - McKinney": "Frontier Waste Solutions",
+      "Frontier Waste Solutions": "Frontier Waste Solutions",
+      "CITY OF MCKINNEY": "City of McKinney"
+    },
+    "McCord Park FL": {
+      "Community Waste Disposal, LP": "Community Waste Disposal",
+      "Community Waste Disposal": "Community Waste Disposal"
+    },
+    "The Club at Millenia": {
+      "WASTE CONNECTIONS OF FLORIDA ORLANDO HAULING": "Waste Connections of Florida",
+      "WASTE CONNECTIONS OF FLORIDA": "Waste Connections of Florida"
+    },
+    "Springs at Alta Mesa": {
+      "Ally Waste": "Ally Waste",
+      "City of Mesa": "City of Mesa"
+    },
+    "Tempe Vista": {
+      "Ally Waste": "Ally Waste",
+      "Waste Management - Hauling": "Waste Management"
+    },
+    "Pavilions at Arrowhead": {
+      "Ally Waste": "Ally Waste",
+      "City of Glendale": "City of Glendale"
+    },
+    "Orion Prosper": {
+      "Republic Services": "Republic Services"
+    },
+    "Orion Prosper Lakes": {
+      "Republic Services": "Republic Services"
+    }
+  }
+}

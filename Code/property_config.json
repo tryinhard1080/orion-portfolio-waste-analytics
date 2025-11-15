@@ -1,0 +1,237 @@
+{
+  "description": "Property configuration for expense report generation",
+  "created_date": "2025-11-13",
+  "source": "Property Reference Sheet + Master File Audit",
+  "properties": {
+    "Orion Prosper": {
+      "units": 312,
+      "state": "TX",
+      "city": "Prosper",
+      "property_type": "Garden Style",
+      "service_type": "Compactor",
+      "data_pattern": "A",
+      "amount_field": "Extended Amount",
+      "requires_compactor_handling": true,
+      "compactor_density": 138,
+      "has_invoice_numbers": true,
+      "unique_vendors": 1,
+      "date_range": {
+        "start": "2025-01",
+        "end": "2025-08",
+        "months_covered": 8
+      },
+      "total_records": 95,
+      "total_spend": 30200.56,
+      "avg_monthly_spend": 3775.07
+    },
+    "Orion Prosper Lakes": {
+      "units": 308,
+      "state": "TX",
+      "city": "Prosper",
+      "property_type": "Garden Style",
+      "service_type": "Compactor",
+      "data_pattern": "A",
+      "amount_field": "Extended Amount",
+      "requires_compactor_handling": true,
+      "compactor_density": 138,
+      "has_invoice_numbers": true,
+      "unique_vendors": 1,
+      "date_range": {
+        "start": "2025-01",
+        "end": "2025-07",
+        "months_covered": 7
+      },
+      "total_records": 104,
+      "total_spend": 20816.17,
+      "avg_monthly_spend": 2973.74
+    },
+    "Orion McKinney": {
+      "units": 453,
+      "state": "TX",
+      "city": "McKinney",
+      "property_type": "Garden Style",
+      "service_type": "Mixed",
+      "data_pattern": "A",
+      "amount_field": "Extended Amount",
+      "requires_compactor_handling": false,
+      "has_invoice_numbers": true,
+      "missing_invoice_numbers": 9,
+      "unique_vendors": 5,
+      "vendor_variations": true,
+      "date_range": {
+        "start": "2025-01",
+        "end": "2025-09",
+        "months_covered": 9
+      },
+      "total_records": 95,
+      "total_spend": 59222.85,
+      "avg_monthly_spend": 6580.32
+    },
+    "McCord Park FL": {
+      "units": 416,
+      "state": "TX",
+      "city": "Little Elm",
+      "property_type": "Garden Style",
+      "service_type": "Dumpster",
+      "data_pattern": "A",
+      "amount_field": "Extended Amount",
+      "requires_compactor_handling": false,
+      "has_invoice_numbers": true,
+      "unique_vendors": 2,
+      "vendor_variations": true,
+      "date_range": {
+        "start": "2025-01",
+        "end": "2025-10",
+        "months_covered": 9
+      },
+      "total_records": 42,
+      "total_spend": 99158.68,
+      "avg_monthly_spend": 11017.63,
+      "notes": "September 2025 data missing - confirmed 1 month gap"
+    },
+    "The Club at Millenia": {
+      "units": 560,
+      "state": "FL",
+      "city": "Orlando",
+      "property_type": "Garden Style",
+      "service_type": "Compactor",
+      "data_pattern": "B",
+      "amount_field": "Total Amount",
+      "requires_compactor_handling": true,
+      "compactor_density": 138,
+      "has_invoice_numbers": true,
+      "unique_vendors": 2,
+      "date_range": {
+        "start": "2025-04",
+        "end": "2025-09",
+        "months_covered": 6
+      },
+      "total_records": 146,
+      "total_spend": 70061.16,
+      "avg_monthly_spend": 11676.86,
+      "notes": "Pattern B - Use Total Amount from first record per invoice (6 invoices, 146 line items)"
+    },
+    "Bella Mirage": {
+      "units": 715,
+      "state": "AZ",
+      "city": "Avondale",
+      "property_type": "Garden Style",
+      "service_type": "Compactor",
+      "data_pattern": "A",
+      "amount_field": "Extended Amount",
+      "requires_compactor_handling": true,
+      "compactor_density": 138,
+      "has_invoice_numbers": true,
+      "unique_vendors": 3,
+      "vendor_variations": true,
+      "date_range": {
+        "start": "2024-11",
+        "end": "2025-08",
+        "months_covered": 10
+      },
+      "total_records": 102,
+      "total_spend": 67324.17,
+      "avg_monthly_spend": 6732.42
+    },
+    "Mandarina": {
+      "units": 180,
+      "state": "AZ",
+      "city": "Phoenix",
+      "property_type": "Garden Style",
+      "service_type": "Dumpster",
+      "data_pattern": "C",
+      "amount_field": "Invoice Amount",
+      "requires_compactor_handling": false,
+      "has_invoice_numbers": true,
+      "missing_invoice_numbers": 4,
+      "unique_vendors": 3,
+      "vendor_variations": true,
+      "date_range": {
+        "start": "2024-10",
+        "end": "2025-09",
+        "months_covered": 12
+      },
+      "total_records": 37,
+      "total_spend": 34460.72,
+      "avg_monthly_spend": 2871.73
+    },
+    "Pavilions at Arrowhead": {
+      "units": 248,
+      "state": "AZ",
+      "city": "Glendale",
+      "property_type": "Garden Style",
+      "service_type": "Dumpster",
+      "data_pattern": "C",
+      "amount_field": "Invoice Amount",
+      "requires_compactor_handling": false,
+      "has_invoice_numbers": false,
+      "missing_invoice_numbers": 36,
+      "unique_vendors": 2,
+      "date_range": {
+        "start": "2024-11",
+        "end": "2025-10",
+        "months_covered": 12
+      },
+      "total_records": 47,
+      "total_spend": 42323.46,
+      "avg_monthly_spend": 3526.96,
+      "notes": "76.6% records missing invoice numbers - use monthly aggregation"
+    },
+    "Springs at Alta Mesa": {
+      "units": 200,
+      "state": "AZ",
+      "city": "Mesa",
+      "property_type": "Garden Style",
+      "service_type": "Mixed",
+      "data_pattern": "C",
+      "amount_field": "Invoice Amount",
+      "requires_compactor_handling": false,
+      "has_invoice_numbers": false,
+      "missing_invoice_numbers": 192,
+      "unique_vendors": 2,
+      "date_range": {
+        "start": "2024-10",
+        "end": "2025-09",
+        "months_covered": 12
+      },
+      "total_records": 203,
+      "total_spend": 192171.15,
+      "avg_monthly_spend": 16014.26,
+      "notes": "94.6% records missing invoice numbers - use monthly aggregation. Reference property with completed analysis."
+    },
+    "Tempe Vista": {
+      "units": 186,
+      "state": "AZ",
+      "city": "Tempe",
+      "property_type": "Garden Style",
+      "service_type": "Dumpster",
+      "data_pattern": "C",
+      "amount_field": "Invoice Amount",
+      "requires_compactor_handling": false,
+      "has_invoice_numbers": true,
+      "unique_vendors": 2,
+      "date_range": {
+        "start": "2024-10",
+        "end": "2025-09",
+        "months_covered": 12
+      },
+      "total_records": 23,
+      "total_spend": 33738.18,
+      "avg_monthly_spend": 2811.51
+    }
+  },
+  "portfolio_summary": {
+    "total_properties": 10,
+    "total_units": 3578,
+    "total_records": 894,
+    "total_spend": 2289575.32,
+    "data_patterns": {
+      "A": 5,
+      "B": 1,
+      "C": 4
+    },
+    "compactor_properties": 4,
+    "properties_with_vendor_variations": 5,
+    "properties_missing_invoice_numbers": 4
+  }
+}

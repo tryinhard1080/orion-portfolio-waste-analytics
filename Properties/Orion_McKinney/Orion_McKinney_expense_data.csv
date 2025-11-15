@@ -1,0 +1,10 @@
+Month,Invoice Number,Invoice Date,Vendor,Amount,Category,Cost_Per_Door,YTD_Total,YTD_Avg_CPD,Notes
+2025-01,4741394,2025-01-15,Frontier Waste Solutions,5839.14,"base, admin, franchise_fee, tax",12.889933774834438,5839.14,5839.14,
+2025-02,"4970200, W260404100214259-021425",2025-02-15,"Frontier Waste Solutions, City of McKinney",6878.99,"base, admin, franchise_fee, tax, base, tax",15.18540838852097,12718.130000000001,6359.0650000000005,
+2025-03,"5290736, W268185090318259-031825, W268185130318259-031825",2025-03-15,"Frontier Waste Solutions, City of McKinney",7424.84,"base, admin, franchise_fee, tax, base, tax",16.39037527593819,20142.97,6714.323333333333,
+2025-04,5636037,2025-04-15,Frontier Waste Solutions,5839.14,"base, admin, franchise_fee, tax",12.889933774834438,25982.11,6495.5275,Cost decreased 21.4% from prior month
+2025-05,5900586,2025-05-15,Frontier Waste Solutions,5839.14,"base, admin, franchise_fee, tax",12.889933774834438,31821.25,6364.25,
+2025-06,"6231838, 6582950",2025-06-15,"Frontier Waste Solutions, Frontier Waste Solutions",5952.820000000001,"base, admin, franchise_fee, tax, overage, franchise_fee, tax",13.140883002207508,37774.07,6295.678333333333,Overage charges present
+2025-07,"6731304, 6921049, MONTHLY-CITY OF MCKINNEY-2025-07",2025-07-15,"Frontier Waste Solutions, Frontier Waste Solutions, City of McKinney",8558.42,"base, admin, franchise_fee, tax, overage, franchise_fee, tax, base, tax",18.892759381898454,46332.49,6618.927142857143,Cost increased 43.8% from prior month; Overage charges present
+2025-08,7013249,2025-08-15,Frontier Waste Solutions,6460.17,"base, admin, franchise_fee, tax",14.260860927152319,52792.659999999996,6599.0824999999995,Cost decreased 24.5% from prior month
+2025-09,7380673,2025-09-15,Frontier Waste Solutions,6430.1900000000005,"base, admin, franchise_fee, tax",14.19467991169978,59222.85,6580.316666666667,

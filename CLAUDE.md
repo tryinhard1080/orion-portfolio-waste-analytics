@@ -27,31 +27,193 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - **894 Invoice Line Items:** Complete extraction from all invoices
 - **17 Tabs:** 7 summary tabs + 10 property-specific tabs
 
+## ANALYSIS PHILOSOPHY & STANDARDS (MANDATORY)
+
+**CRITICAL:** All waste management analysis, reporting, and recommendations MUST follow these principles.
+
+### Core Principles
+
+**1. Substantiated Savings Only**
+- All savings opportunities MUST be based on verifiable data and industry benchmarks
+- **Do NOT** arbitrarily reduce service frequency (e.g., "reduce from 3x to 2x weekly")
+- **DO** compare properties against established baselines and benchmark ranges
+- Only recommend changes when data clearly supports the opportunity
+
+**2. Benchmark-Driven Analysis**
+- Process all locations against industry-standard yards per door benchmarks
+- Identify properties that fall outside expected ranges
+- Provide context for why a property may be over or under benchmark
+
+**3. Compactor Optimization Opportunities**
+- Recommend compactor monitoring when **average tons per haul < 6 tons**
+- This optimization **increases load size** and **reduces pickup frequency**
+- Results in **actual, projectable savings** through fewer hauls
+- Must show clear ROI calculation with monitoring costs included
+
+**4. Quality Over Quantity**
+- Focus on **real insights**, not "savings for savings' sake"
+- Avoid complex algorithms or overly technical analysis
+- Keep reports **insightful and actionable**
+
+**5. Accuracy & Detail Requirements**
+- Use **actual invoice numbers** in all expense reviews
+- Provide **detailed cost per door** month-over-month for budgeting
+- Cross-reference all data against source invoices
+- Never estimate or project unless clearly labeled as such
+
+**6. Accessible Communication**
+- Write for **property managers** (non-waste professionals)
+- Use clear, concise language
+- Avoid industry jargon without explanation
+- Make reports digestible, not overwhelming
+
+**7. Explain All Recommendations**
+- Every recommendation MUST include clear reasoning
+- Explain the "why" behind each insight
+- Provide context for how you arrived at the conclusion
+- Enable end users to understand and act on guidance
+
+**8. Use Actual Expense Data (CRITICAL)**
+- **ALWAYS** extract month-by-month expense amounts from actual invoice data or Excel files
+- **NEVER** use averages or assumptions for monthly cost tables
+- **NEVER** repeat the same cost across all months unless invoices truly show identical amounts
+- Calculate averages FROM the actual data, not before extracting it
+- Show real cost fluctuations: seasonal surcharges, rate changes, partial months, holiday fees
+- Users need to see actual spending patterns for accurate budgeting and variance analysis
+- Example: If Dec shows $552.21 and other months show $495.00, display the actual amounts
+- This ensures transparency and allows users to identify cost anomalies and billing errors
+
+---
+
 ## CALCULATION STANDARDS (MANDATORY)
 
-**CRITICAL:** All waste management calculations MUST comply with official project standards.
+**CRITICAL:** All waste management calculations MUST comply with these official project standards universally.
 
 **Reference Document:** `Documentation/CONTAINER_SPECIFICATIONS_AND_CALCULATION_STANDARDS.md`
 
-**Official Formulas:**
+### Volume Conversion Quick Reference
+
+**Gallons to Cubic Yards:**
+- 1 cubic yard = 201.97 gallons
+- 64-gallon tote ≈ 0.32 cubic yards
+- 96-gallon tote ≈ 0.48 cubic yards
+
+**Common multifamily equivalents:**
+- One 2-yard dumpster ≈ thirty-one 64-gallon totes
+- One 8-yard dumpster ≈ 125 64-gallon totes
+
+---
+
+### Service Volume Formulas
 
 **Yards Per Door (Dumpster Service):**
+
+**Formula:**
 ```
-YPD = (Container Size × Num Containers × Pickups/Week × 4.33) / Units
+Yards per Door = (Container Size × Number of Containers × Pickups per Week × 4.33) / Number of Units
 ```
+
+**Components:**
+- **Container Size:** Cubic yards of a single container
+- **Number of Containers:** Total count of containers at the property
+- **Pickups per Week:** Service frequency (how many times per week containers are emptied)
+- **4.33:** Weeks per month multiplier (52 weeks ÷ 12 months)
+- **Number of Units:** Total residential units at the property
+
+**Example 1: Garden-style apartment**
+- 200-unit property
+- Three 8-yard dumpsters
+- Serviced 3 times per week
+
+```
+(8 yd³ × 3 containers × 3 pickups/week × 4.33) / 200 units = 1.56 yards per door
+```
+
+**Example 2: Mid-rise property**
+- 150-unit property
+- Two 6-yard dumpsters
+- Serviced 4 times per week
+
+```
+(6 yd³ × 2 containers × 4 pickups/week × 4.33) / 150 units = 1.38 yards per door
+```
+
+---
 
 **Yards Per Door (Compactor Service):**
-```
-YPD = (Total Tons × 2000 / 138) / Units
-```
-- **138 lbs/yd³:** EPA/ENERGY STAR standard density for loose MSW
-- **Already accounts for 3:1 compaction ratio**
-- **DO NOT use 225 lbs/yd³ or 14.49 shortcut in official calculations**
 
-**Industry Benchmarks:**
-- Garden-style: 2.0-2.5 yards/door/month (existing), 2.0-2.25 (new build)
-- Mid-rise: 1.5-2.0 yards/door/month (existing), ~1.5 (new build)
-- High-rise: 1.0-1.5 yards/door/month (existing & new build)
+**Step 1: Convert Tons to Yards (per haul)**
+
+**Formula:**
+```
+Yards = (Tons × 2000) / 138
+```
+
+**Components:**
+- **Tons:** Weight of compacted waste from scale ticket
+- **2000:** Pounds per ton conversion factor
+- **138:** Standard density factor (lbs/yd³) for loose MSW
+- **Already accounts for 3:1 compaction ratio**
+- **DO NOT use 225 lbs/yd³ or 14.49 shortcut**
+
+**Example: Single compactor haul**
+- Compactor picked up 5.4 tons of material
+
+```
+(5.4 tons × 2000) / 138 = 78.3 yards of service
+```
+
+**Why 138 lbs/yd³?**
+This EPA/ENERGY STAR standard density factor represents loose MSW and already accounts for typical 3:1 compaction ratios. The formula converts compacted tonnage directly to loose cubic yards, which is the standard measurement for consumption rates.
+
+---
+
+**Step 2: Calculate Monthly Yards Per Door**
+
+**Formula:**
+```
+Yards per Door = (Total Monthly Tonnage × 2000 / 138) / Number of Units
+```
+
+**Process:**
+1. Add all tonnage from each haul for the month
+2. Convert total monthly tonnage to yards using formula
+3. Divide by number of units at property
+
+**Example: Monthly calculation**
+- 300-unit property
+- Four compactor hauls during the month:
+  - Haul 1: 5.4 tons
+  - Haul 2: 6.1 tons
+  - Haul 3: 5.8 tons
+  - Haul 4: 6.3 tons
+- **Total monthly tonnage:** 23.6 tons
+
+```
+Step 1: Convert to yards
+(23.6 tons × 2000) / 138 = 342.0 yards
+
+Step 2: Calculate per door
+342.0 yards / 300 units = 1.14 yards per door
+```
+
+---
+
+### Industry Benchmarks: Yards Per Door Per Month
+
+**These benchmarks apply universally to property performance analysis, regardless of service type (dumpster or compactor).**
+
+**Existing Locations:**
+- **Garden-style apartments:** 2.0 to 2.5 yards/door/month
+- **Mid-rise/Mixed-use:** 1.5 to 2.0 yards/door/month
+- **High-rise:** 1.0 to 1.5 yards/door/month
+
+**New Build Locations:**
+- **Garden-style apartments:** 2.0 to 2.25 yards/door/month
+- **Mid-rise/Mixed-use:** ~1.5 yards/door/month
+- **High-rise:** 1.0 to 1.5 yards/door/month
+
+**Usage:** Range-based benchmarks for evaluating property performance. Properties significantly above the upper range may have optimization opportunities through frequency adjustments or container right-sizing. These ranges apply to both dumpster and compactor properties since both are measured in yards per door per month.
 
 **All scripts, skills, and workbooks must reference these standards.**
 
@@ -453,13 +615,17 @@ The project has access to specialized Claude skills for waste management analysi
 - Quality-scored evaluation with validation report
 - Use for standard waste management analysis with quality assurance
 
-**2. wastewise-regulatory** ⭐ NEW
-- Enhanced WasteWise analysis + automated regulatory compliance research
-- Researches local waste/recycling/organics ordinances
+**2. wastewise-regulatory-lite v2.0** ⭐ ENHANCED
+- Enhanced WasteWise analysis with regulatory compliance + comprehensive cost per door budgeting
+- **New in v2.0:** Enhanced expense analysis with budget projections, benchmark comparisons (garden-style vs high-rise)
+- Researches local waste/recycling/organics ordinances (2-3 targeted searches maximum)
 - Documents penalties, enforcement, licensed haulers
 - Generates property-specific compliance checklists
 - Confidence scoring (HIGH/MEDIUM/LOW) for research quality
-- Use when you need waste analysis AND regulatory compliance documentation
+- **8 Standardized Sheets:** Summary, Expense Analysis, Haul Log, Optimization, Contract Terms, Regulatory Compliance, Quality Check, Documentation
+- **Annual Projections:** Monthly/quarterly/annual budgets per unit with variance analysis
+- Optimized for Claude.ai token limits (target <2,000 tokens output)
+- Use when you need waste analysis AND regulatory compliance documentation AND budget planning
 
 **3. compactor-optimization**
 - Specialized compactor performance analysis (NOT open tops)
@@ -484,16 +650,20 @@ The project has access to specialized Claude skills for waste management analysi
 
 ### When to Use Skills
 
-**Use wastewise-regulatory when:**
+**Use wastewise-regulatory-lite v2.0 when:**
 - Property needs regulatory compliance documentation
 - Local ordinances (recycling/composting mandates) apply
 - Client wants to verify compliance with city/county requirements
 - Need licensed hauler directory for location
+- **Budget planning:** Need annual cost projections and cost per door analysis
+- **Benchmarking:** Want to compare against garden-style ($20/door) or high-rise ($35/door) targets
+- **Comprehensive analysis:** Need all 8 standardized sheets with expense tracking, optimization, and compliance
 
 **Use wastewise-analytics-validated when:**
 - Standard waste analysis without regulatory research
 - Quality assurance is critical
 - Need validation report for client confidence
+- Don't need budget projections or regulatory compliance
 
 **Use specialized skills (compactor-optimization, etc.) when:**
 - Focused analysis of specific service type
@@ -784,8 +954,8 @@ See `Documentation/DATA_INTEGRITY_GUIDE.md` for complete validation rules.
 
 ## Version Information
 
-**Current Version:** 3.0 (Property-Centric Structure)
-**Last Updated:** November 9, 2025
+**Current Version:** 3.1 (Enhanced Analysis Standards)
+**Last Updated:** November 11, 2025
 **Status:** PRODUCTION READY
 **Data Source:** Excel Master File (Single Source of Truth)
 
@@ -795,8 +965,19 @@ See `Documentation/DATA_INTEGRITY_GUIDE.md` for complete validation rules.
 - AI-powered invoice extraction
 - Fact-based reporting (no projections)
 - Validated calculations and benchmarks
+- **NEW:** Comprehensive analysis philosophy with 7 core principles
+- **NEW:** Detailed calculation standards with examples
+- **NEW:** Enhanced wastewise-regulatory-lite v2.0 skill with budget projections
 
-**Recent Changes (v3.0):**
+**Recent Changes (v3.1 - November 11, 2025):**
+- Added "ANALYSIS PHILOSOPHY & STANDARDS" section with 7 core principles
+- Expanded calculation standards with volume conversions and step-by-step examples
+- Updated wastewise-regulatory-lite to v2.0 with enhanced cost per door budgeting
+- Added detailed compactor optimization criteria (avg tons < 6 tons per haul)
+- Clarified accessible communication requirements for property managers
+- Enhanced Critical Reminders to reference new analysis philosophy
+
+**Previous Changes (v3.0):**
 - Reorganized into property-centric structure
 - Created Properties/ folder with 10 property subfolders
 - Consolidated master data file: MASTER_Portfolio_Complete_Data.xlsx
@@ -806,10 +987,13 @@ See `Documentation/DATA_INTEGRITY_GUIDE.md` for complete validation rules.
 
 ## Critical Reminders
 
-1. **Single Source of Truth:** `Portfolio_Reports/MASTER_Portfolio_Complete_Data.xlsx`
-2. **Property-Centric Structure:** All files organized by property in `Properties/` folder
-3. **Fact-Based Reporting:** No projections, optimizations, or unrealistic savings claims
-4. **Language Validation:** Never use "cost savings" or similar terms in reports
-5. **Always Validate:** Run validation before distributing reports
-6. **Data Integrity:** Never hallucinate data - flag missing fields for user review
-7. **Real Data Only:** All insights based on actual invoice and contract data
+1. **Analysis Philosophy:** Follow the 7 Core Principles in "ANALYSIS PHILOSOPHY & STANDARDS" section - substantiated savings only, benchmark-driven, accessible communication
+2. **Calculation Standards:** Use official formulas (138 lbs/yd³ for compactor service, 4.33 weeks/month multiplier) - no shortcuts or alternate methods
+3. **Single Source of Truth:** `Portfolio_Reports/MASTER_Portfolio_Complete_Data.xlsx`
+4. **Property-Centric Structure:** All files organized by property in `Properties/` folder
+5. **Fact-Based Reporting:** No projections, optimizations, or unrealistic savings claims
+6. **Language Validation:** Never use "cost savings" or similar terms in reports
+7. **Always Validate:** Run validation before distributing reports
+8. **Data Integrity:** Never hallucinate data - flag missing fields for user review
+9. **Real Data Only:** All insights based on actual invoice and contract data
+10. **Accessible Reports:** Write for property managers (non-waste professionals) with clear explanations for all recommendations

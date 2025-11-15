@@ -1,0 +1,28 @@
+{
+  "property": "Garden Style",
+  "status": "PASSED",
+  "checks": {
+    "total_spend": {
+      "extracted": 59222.850000000006,
+      "expected": 59222.85,
+      "difference": 7.275957614183426e-12,
+      "tolerance": 1.0,
+      "passed": true
+    },
+    "month_count": {
+      "extracted": 9,
+      "expected": 9,
+      "passed": true
+    },
+    "date_range": {
+      "extracted_start": "2025-01",
+      "extracted_end": "2025-09",
+      "expected_start": "2025-01",
+      "expected_end": "2025-09",
+      "passed": true
+    }
+  },
+  "extraction_date": "2025-11-13T07:36:46.861009",
+  "property_name": "Orion McKinney",
+  "record_count": 9
+}

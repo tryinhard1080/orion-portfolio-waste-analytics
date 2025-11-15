@@ -1,0 +1,28 @@
+{
+  "property": "Garden Style",
+  "status": "PASSED",
+  "checks": {
+    "total_spend": {
+      "extracted": 67324.17,
+      "expected": 67324.17,
+      "difference": 0.0,
+      "tolerance": 1.0,
+      "passed": true
+    },
+    "month_count": {
+      "extracted": 10,
+      "expected": 10,
+      "passed": true
+    },
+    "date_range": {
+      "extracted_start": "2024-11",
+      "extracted_end": "2025-08",
+      "expected_start": "2024-11",
+      "expected_end": "2025-08",
+      "passed": true
+    }
+  },
+  "extraction_date": "2025-11-13T07:35:00.093905",
+  "property_name": "Bella Mirage",
+  "record_count": 10
+}

@@ -1,0 +1,299 @@
+{
+  "qa_date": "2025-11-13T07:39:33.098888",
+  "portfolio_summary": {
+    "total_months": 97,
+    "total_spend": 649477.1,
+    "total_units": 0,
+    "workbooks_generated": 10,
+    "csv_files": 10,
+    "validation_files": 10
+  },
+  "properties": [
+    {
+      "property_name": "Springs at Alta Mesa",
+      "status": "PASSED",
+      "checks": {
+        "validation_status": {
+          "status": "PASSED",
+          "passed": true
+        },
+        "master_file_match": {
+          "extracted": 192171.15000000002,
+          "master": 192171.15,
+          "difference": 2.9103830456733704e-11,
+          "passed": true
+        }
+      },
+      "files_found": {
+        "workbook": true,
+        "csv": true,
+        "validation": true
+      },
+      "metrics": {
+        "months": 12,
+        "total_spend": 192171.15000000002,
+        "avg_monthly": 16014.262500000003,
+        "avg_cpd": 80.0713125,
+        "workbook_size_kb": 10.9072265625
+      }
+    },
+    {
+      "property_name": "Orion Prosper",
+      "status": "PASSED",
+      "checks": {
+        "validation_status": {
+          "status": "PASSED",
+          "passed": true
+        },
+        "master_file_match": {
+          "extracted": 30200.560000000005,
+          "master": 30200.559999999994,
+          "difference": 1.0913936421275139e-11,
+          "passed": true
+        }
+      },
+      "files_found": {
+        "workbook": true,
+        "csv": true,
+        "validation": true
+      },
+      "metrics": {
+        "months": 8,
+        "total_spend": 30200.560000000005,
+        "avg_monthly": 3775.0700000000006,
+        "avg_cpd": 12.099583333333335,
+        "workbook_size_kb": 10.3818359375
+      }
+    },
+    {
+      "property_name": "The Club at Millenia",
+      "status": "PASSED",
+      "checks": {
+        "validation_status": {
+          "status": "PASSED",
+          "passed": true
+        },
+        "master_file_match": {
+          "extracted": 70061.16,
+          "master": 70061.16,
+          "difference": 0.0,
+          "passed": true
+        }
+      },
+      "files_found": {
+        "workbook": true,
+        "csv": true,
+        "validation": true
+      },
+      "metrics": {
+        "months": 6,
+        "total_spend": 70061.16,
+        "avg_monthly": 11676.86,
+        "avg_cpd": 20.851535714285713,
+        "workbook_size_kb": 9.994140625
+      }
+    },
+    {
+      "property_name": "Bella Mirage",
+      "status": "PASSED",
+      "checks": {
+        "validation_status": {
+          "status": "PASSED",
+          "passed": true
+        },
+        "master_file_match": {
+          "extracted": 67324.17,
+          "master": 67324.17,
+          "difference": 0.0,
+          "passed": true
+        }
+      },
+      "files_found": {
+        "workbook": true,
+        "csv": true,
+        "validation": true
+      },
+      "metrics": {
+        "months": 10,
+        "total_spend": 67324.17,
+        "avg_monthly": 6732.4169999999995,
+        "avg_cpd": 9.415967832167832,
+        "workbook_size_kb": 10.3359375
+      }
+    },
+    {
+      "property_name": "Mandarina",
+      "status": "PASSED",
+      "checks": {
+        "validation_status": {
+          "status": "PASSED",
+          "passed": true
+        },
+        "master_file_match": {
+          "extracted": 34460.72,
+          "master": 34460.72,
+          "difference": 0.0,
+          "passed": true
+        }
+      },
+      "files_found": {
+        "workbook": true,
+        "csv": true,
+        "validation": true
+      },
+      "metrics": {
+        "months": 12,
+        "total_spend": 34460.72,
+        "avg_monthly": 2871.726666666667,
+        "avg_cpd": 15.95403703703704,
+        "workbook_size_kb": 10.525390625
+      }
+    },
+    {
+      "property_name": "Pavilions at Arrowhead",
+      "status": "PASSED",
+      "checks": {
+        "validation_status": {
+          "status": "PASSED",
+          "passed": true
+        },
+        "master_file_match": {
+          "extracted": 42323.46,
+          "master": 42323.46000000001,
+          "difference": 7.275957614183426e-12,
+          "passed": true
+        }
+      },
+      "files_found": {
+        "workbook": true,
+        "csv": true,
+        "validation": true
+      },
+      "metrics": {
+        "months": 12,
+        "total_spend": 42323.46,
+        "avg_monthly": 3526.955,
+        "avg_cpd": 14.221592741935483,
+        "workbook_size_kb": 10.4404296875
+      }
+    },
+    {
+      "property_name": "Tempe Vista",
+      "status": "PASSED",
+      "checks": {
+        "validation_status": {
+          "status": "PASSED",
+          "passed": true
+        },
+        "master_file_match": {
+          "extracted": 33738.18,
+          "master": 33738.18,
+          "difference": 0.0,
+          "passed": true
+        }
+      },
+      "files_found": {
+        "workbook": true,
+        "csv": true,
+        "validation": true
+      },
+      "metrics": {
+        "months": 12,
+        "total_spend": 33738.18,
+        "avg_monthly": 2811.515,
+        "avg_cpd": 15.115672043010752,
+        "workbook_size_kb": 10.384765625
+      }
+    },
+    {
+      "property_name": "Orion Prosper Lakes",
+      "status": "PASSED",
+      "checks": {
+        "validation_status": {
+          "status": "PASSED",
+          "passed": true
+        },
+        "master_file_match": {
+          "extracted": 20816.170000000002,
+          "master": 20816.170000000002,
+          "difference": 0.0,
+          "passed": true
+        }
+      },
+      "files_found": {
+        "workbook": true,
+        "csv": true,
+        "validation": true
+      },
+      "metrics": {
+        "months": 7,
+        "total_spend": 20816.170000000002,
+        "avg_monthly": 2973.7385714285715,
+        "avg_cpd": 9.654995361781076,
+        "workbook_size_kb": 10.38671875
+      }
+    },
+    {
+      "property_name": "McCord Park FL",
+      "status": "PASSED",
+      "checks": {
+        "validation_status": {
+          "status": "PASSED",
+          "passed": true
+        },
+        "master_file_match": {
+          "extracted": 99158.68000000001,
+          "master": 99158.68000000001,
+          "difference": 0.0,
+          "passed": true
+        }
+      },
+      "files_found": {
+        "workbook": true,
+        "csv": true,
+        "validation": true
+      },
+      "metrics": {
+        "months": 9,
+        "total_spend": 99158.68000000001,
+        "avg_monthly": 11017.631111111112,
+        "avg_cpd": 26.48469017094017,
+        "workbook_size_kb": 10.1650390625
+      }
+    },
+    {
+      "property_name": "Orion McKinney",
+      "status": "PASSED",
+      "checks": {
+        "validation_status": {
+          "status": "PASSED",
+          "passed": true
+        },
+        "master_file_match": {
+          "extracted": 59222.850000000006,
+          "master": 59222.85,
+          "difference": 7.275957614183426e-12,
+          "passed": true
+        }
+      },
+      "files_found": {
+        "workbook": true,
+        "csv": true,
+        "validation": true
+      },
+      "metrics": {
+        "months": 9,
+        "total_spend": 59222.850000000006,
+        "avg_monthly": 6580.3166666666675,
+        "avg_cpd": 14.52608535688006,
+        "workbook_size_kb": 10.46875
+      }
+    }
+  ],
+  "validation_summary": {
+    "total_properties": 10,
+    "passed": 10,
+    "failed": 0,
+    "warnings": 0
+  }
+}

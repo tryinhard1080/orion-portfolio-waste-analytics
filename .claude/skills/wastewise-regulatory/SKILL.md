@@ -54,8 +54,8 @@ Before generating the final workbook, this skill runs a **mandatory validation s
 
 ### 3. Formula Validation
 ```
-☐ Yards per door: Correct formula for equipment type
-   - Compactors: (Total Tons × 14.49) / Units
+☐ Yards per door: Correct formula for equipment type (per CONTAINER_SPECIFICATIONS_AND_CALCULATION_STANDARDS.md)
+   - Compactors: (Total Tons × 2000 / 138) / Units
    - Dumpsters: (Qty × Size × Freq × 4.33) / Units
 ☐ Cost per door: Total Monthly Cost / Units
 ☐ Capacity utilization: (Tons Per Haul / Target Tons) × 100%
@@ -558,165 +558,323 @@ class WasteWiseValidator:
         return all_passed, self.generate_validation_report()
 ```
 
+## EXPENSE_ANALYSIS Sheet Structure
+
+**CRITICAL FORMAT REQUIREMENT:** Expense analysis must be displayed in detailed monthly groupings with line-item breakdowns and subtotals for each month.
+
+### Required Column Headers
+```
+Month | Vendor | Service Type | Invoice Number | Amount | Cost/Door | Notes
+```
+
+### Format Rules
+
+1. **Month Grouping:**
+   - Group all line items by month (e.g., "October 2024")
+   - Each month section contains multiple rows (one per line item)
+   - Month name appears in first column of first row only
+
+2. **Line Item Rows:**
+   - Each service/invoice gets its own row
+   - Format: `Month | Vendor | Service Type | Invoice Number | $Amount | $CPD | Description`
+   - Example: `October 2024 | Ally Waste | Bulk Trash Removal | 41953 | $909.33 | $5.05 | Monthly bulk trash removal service`
+
+3. **Monthly Subtotal Row:**
+   - Immediately follows last line item for that month
+   - Format: `[MONTH YEAR] TOTAL: | [blank] | [blank] | [blank] | $X,XXX.XX | $XX.XX | Monthly budget: $XX.XX/door`
+   - Example: `October 2024 TOTAL: | | | | $909.33 | $5.05 | Monthly budget: $5.05/door`
+   - Leave vendor, service type, and invoice columns blank
+   - Include descriptive text: "Monthly budget: $X.XX/door"
+
+4. **Grand Total Row:**
+   - Appears at end of all months
+   - Format: `GRAND TOTAL: | [blank] | [blank] | [blank] | $XXX,XXX.XX | $XX.XX | Avg monthly budget: $XX.XX/door`
+   - Summarizes entire analysis period
+   - Shows average cost per door across all months
+
+5. **Amount Formatting:**
+   - All dollar amounts with comma separators: `$1,234.56`
+   - Cost per door rounded to 2 decimals: `$12.34`
+
+6. **Notes Column:**
+   - Line items: Descriptive service information
+   - Subtotals: "Monthly budget: $XX.XX/door"
+   - Grand total: "Avg monthly budget: $XX.XX/door"
+
+### Example Output Structure
+
+```
+DETAILED MONTHLY EXPENSE ANALYSIS
+
+Month              Vendor              Service Type           Invoice Number    Amount        Cost/Door    Notes
+October 2024       Ally Waste          Bulk Trash Removal     41953            $909.33       $5.05        Monthly bulk trash removal service
+                   October 2024 TOTAL:                                         $909.33       $5.05        Monthly budget: $5.05/door
+
+November 2024      Waste Management    Dumpster Hauling       5998169-1571-5   $1,388.51     $7.71        Regular waste hauling service
+November 2024      Waste Management    Compactor Service      RI1370230        $500.44       $2.78        Compactor maintenance and service fees
+November 2024      Ally Waste          Bulk Trash Removal     43819            $368.55       $2.05        Monthly bulk trash removal service
+                   November 2024 TOTAL:                                        $2,257.50     $12.54       Monthly budget: $12.54/door
+
+December 2024      Waste Management    Compactor Service      RI1376420        $506.87       $2.82        Compactor maintenance and service fees
+December 2024      Ally Waste          Bulk Trash Removal     46450            $563.55       $3.13        Monthly bulk trash removal service
+December 2024      Waste Management    Dumpster Hauling       N/A              $506.87       $2.82        Regular waste hauling service
+December 2024      Waste Management    Dumpster Hauling       N/A              $1,825.12     $10.14       Regular waste hauling service
+                   December 2024 TOTAL:                                        $3,402.41     $18.90       Monthly budget: $18.90/door
+
+                   GRAND TOTAL:                                                $34,460.72    $14.73       Avg monthly budget: $14.73/door
+```
+
+### Visual Presentation Requirements
+
+1. **Clear Month Boundaries:**
+   - Blank row between months (optional but recommended)
+   - Month subtotal row visually distinct (can use bold or borders)
+
+2. **Alignment:**
+   - Month/Vendor/Service Type: Left-aligned
+   - Amounts: Right-aligned with consistent decimal places
+   - Invoice numbers: Left-aligned
+
+3. **Data Source:**
+   - Use ACTUAL invoice data from CSV files
+   - Each row represents a real invoice line item
+   - Month totals are SUM of line items for that month
+   - Grand total is SUM of all monthly totals
+
+4. **Sorting:**
+   - Primary: Chronological by month
+   - Secondary: By vendor within each month (alphabetical)
+   - Tertiary: By service type within vendor
+
+### Validation Checks for EXPENSE_ANALYSIS
+
+```
+☐ Each month has at least one line item
+☐ Monthly subtotal equals sum of line items for that month
+☐ Grand total equals sum of all monthly subtotals
+☐ Cost per door = Amount / Unit count (consistent across all rows)
+☐ All amounts formatted with $ and commas
+☐ No missing months in date range
+☐ Invoice numbers present (or "N/A" if not available)
+☐ Service types are descriptive and consistent
+☐ Notes column provides context for each line item
+☐ Monthly budget notation included in subtotal rows
+```
+
+**IMPORTANT:** This format shows ACTUAL monthly expenses with real cost fluctuations. Do NOT use averages or repeat the same amount across months. Users need to see seasonal surcharges, rate changes, partial months, and holiday fees to identify billing anomalies and cost trends.
+
 ## REGULATORY_COMPLIANCE Sheet Structure
 
-### Section 1: Jurisdiction Overview
+**CRITICAL FORMAT REQUIREMENT:** Regulatory compliance section must be presented in a structured, table-based format with clear sections and actionable checklists.
+
+### Section 1: Header and Ordinance Status
+
 ```
-SECTION 1: REGULATORY COMPLIANCE - [City, State]
+[CITY/JURISDICTION] RECYCLING/WASTE ORDINANCE COMPLIANCE
 
-Governing Ordinances:
-- [City Code Chapter X-Y: Full Name]
-- [County Code Section X: Full Name]
-- [State Law/Statute: Full Name]
+Property: [Property Name] ([X] units)
 
-Property Classification: [Based on unit count/size threshold]
-Regulatory Summary: [1-2 sentences on key mandates]
-```
+Ordinance Status: ✅ APPLICABLE / ⚠️ NOT APPLICABLE / 📋 UNDER REVIEW
+    - [Brief explanation of applicability based on unit threshold]
 
-### Section 2: Waste Collection Requirements
-```
-Municipal Service: Available / Not Available
-Private Hauler Requirement: ✅ MANDATORY / ⚠️ OPTIONAL
-
-Key Requirements:
-- Licensed hauler required: Yes/No
-- Minimum service frequency: [X times per week]
-- Container requirements: [Size, type specifications]
-- Placement restrictions: [Details]
-
-Licensed Hauler Directory: [URL]
+Compliance Deadline: [Date] ([property size threshold])
 ```
 
-### Section 3: Recycling Requirements
+### Section 2: Ordinance Overview
+
 ```
-MANDATORY STATUS: ✅ MANDATORY / ⚠️ VOLUNTARY
+ORDINANCE OVERVIEW
 
-Capacity Requirements:
-- Minimum capacity: [Specific measurement]
-- Based on: [Formula or standard]
+[2-3 sentence summary of the ordinance, including jurisdiction's waste reduction goals]
 
-Service Requirements:
-- Minimum frequency: [Specific]
-- Accepted materials: [List]
-
-Container Specifications:
-- Size/type: [Details]
-- Color requirements: [If any]
-- Placement: [Requirements]
-
-Signage Requirements:
-- Languages: [Required languages]
-- Required symbols: [Details]
-- Content: [Required information]
-
-Compliance Checklist:
-✅ [Specific requirement with measurable standard]
-✅ [Specific requirement with measurable standard]
-⚠️ [Requirement needing attention]
+Key Dates:
+• [Date 1]: [Milestone or threshold requirement]
+• [Date 2]: [Milestone or threshold requirement]
+• [Date 3]: [Milestone or threshold requirement]
 ```
 
-### Section 4: Composting/Organics Requirements
+### Section 3: Mandatory Requirements Table
+
+**Table Format:**
+
+| Requirement | Description | Verification Status |
+|-------------|-------------|-------------------|
+| [Requirement 1] | [Detailed description] | VERIFY ON-SITE / VERIFY WITH VENDOR / VERIFY SUBMISSION |
+| [Requirement 2] | [Detailed description] | VERIFY ON-SITE / VERIFY WITH VENDOR / VERIFY SUBMISSION |
+| [Requirement 3] | [Detailed description] | VERIFY ON-SITE / VERIFY WITH VENDOR / VERIFY SUBMISSION |
+
+**Example:**
+| Requirement | Description | Verification Status |
+|-------------|-------------|-------------------|
+| Recycling Container | Must provide dedicated recycling container(s) accessible to all residents | VERIFY ON-SITE |
+| Collection Service | Must arrange for regular collection of recyclable materials | VERIFY WITH VENDOR |
+| Verification Records | Must maintain and submit verification records to the city annually | VERIFY SUBMISSION |
+| Container Signage | Containers must have clear signage indicating recyclable materials | VERIFY ON-SITE |
+| Resident Access | Recycling must be as convenient as trash disposal | VERIFY ON-SITE |
+
+### Section 4: Compliance Checklist Table
+
+**Table Format:**
+
+| Item | Status | Priority | Action Required |
+|------|--------|----------|----------------|
+| [Compliance item 1] | ✅ COMPLIANT / ⚠️ VERIFY / ❌ NON-COMPLIANT / 📋 RECOMMENDED | HIGH / MEDIUM / LOW | [Specific action needed] |
+| [Compliance item 2] | ✅ COMPLIANT / ⚠️ VERIFY / ❌ NON-COMPLIANT / 📋 RECOMMENDED | HIGH / MEDIUM / LOW | [Specific action needed] |
+
+**Status Icons:**
+- ✅ COMPLIANT: Verified as meeting requirement
+- ⚠️ VERIFY: Requires site inspection or documentation review
+- ❌ NON-COMPLIANT: Confirmed violation requiring immediate action
+- 📋 RECOMMENDED: Best practice, not mandatory
+
+**Priority Levels:**
+- HIGH: Mandatory requirement with enforcement
+- MEDIUM: Required but with grace period or lower enforcement priority
+- LOW: Recommended best practice
+
+**Example:**
+| Item | Status | Priority | Action Required |
+|------|--------|----------|----------------|
+| Recycling container provided | ⚠️ VERIFY | HIGH | Schedule site inspection and verify compliance |
+| Collection service arranged | ⚠️ VERIFY | HIGH | Confirm active recycling service with vendor |
+| Verification records submitted | ⚠️ VERIFY | MEDIUM | Review city submission requirements and deadlines |
+| Container locations comply | ⚠️ VERIFY | MEDIUM | Verify placement meets accessibility requirements |
+| Resident education program | 📋 RECOMMENDED | LOW | Consider implementing resident education materials |
+
+### Section 5: Licensed Haulers Table
+
+**Table Format:**
+
+| Company | Phone | Services | Website |
+|---------|-------|----------|---------|
+| [Company Name 1] | [Phone] | [Service types] | [URL] |
+| [Company Name 2] | [Phone] | [Service types] | [URL] |
+| [Company Name 3] | [Phone] | [Service types] | [URL] |
+
+**Service Types:** Waste & Recycling, Commercial Waste & Recycling, Compactor Service, Composting/Organics
+
+**Example:**
+| Company | Phone | Services | Website |
+|---------|-------|----------|---------|
+| Waste Connections of Florida | 407-261-5000 | Waste & Recycling | www.wasteconnections.com/orlando |
+| Waste Management | 407-857-5500 | Commercial Waste & Recycling | www.wm.com |
+| Haulla Waste Services | (contact via website) | Commercial Waste & Recycling | www.haulla.com |
+| City of Orlando Solid Waste | 407-246-2314 | Residential & Commercial Options | www.orlando.gov/trash-recycling |
+
+### Section 6: Penalties & Enforcement
+
 ```
-⚠️ IMPORTANT: [Note if recent requirement]
+PENALTIES & ENFORCEMENT
 
-MANDATORY STATUS: ✅ MANDATORY / ⚠️ VOLUNTARY
-Effective Date: [If applicable]
+Classification: [Municipal code violation / Civil infraction / Misdemeanor]
 
-Capacity Requirements:
-- Minimum capacity: [Specific measurement]
-- Formula: [If provided]
-
-Service Requirements:
-- Minimum frequency: [Specific]
-- Accepted materials:
-  ✓ Food scraps
-  ✓ Food-soiled paper
-  ✓ Yard waste [if applicable]
-  ✓ BPI-certified compostables [if accepted]
-
-Container Specifications:
-- Size: [Details]
-- Type: [Details]
-- Features: [Locking lids, color, etc.]
-
-Resident Education:
-- Required materials: [Details]
-- Language requirements: [Details]
-
-Compliance Checklist:
-✅ [Specific requirement]
-⚠️ [Requirement needing attention]
-❌ [Requirement not met]
-```
-
-### Section 5: Penalties & Enforcement
-```
-Violation Type: [Classification]
+Enforcement Agency: [Full agency name]
+Contact: [Name, Title] | [Phone] | [Email]
 
 Fine Structure:
-- Per offense: Up to $[amount]
-- Per day: Up to $[amount] per day
-- Maximum: $[amount] total
-
-Enforcement:
-- Agency: [Name]
-- Contact: [Phone and email]
-
-Example Violations:
-- [List common violations]
+    [Description of fine structure - per offense, per day, maximum amounts]
+    [If not publicly specified, note that enforcement is through compliance verification]
 ```
 
-### Section 6: Licensed Haulers
+**Example:**
 ```
-FULL-SERVICE PROVIDERS:
+PENALTIES & ENFORCEMENT
 
-1. [Company Name]
-   Phone: [Number]
-   Website: [URL]
-   Services: Waste, recycling, composting, compactor hauls
+Classification: Municipal code violation
 
-2. [Company Name]
-   Phone: [Number]
-   Website: [URL]
-   Services: [List]
+Enforcement Agency: City of Orlando Solid Waste Management Division
+Contact: Joseph England, Sustainability Project Manager | 407-246-2314 | joseph.england@orlando.gov
 
-[Additional haulers...]
-
-Official Hauler Directory: [URL]
+Fine Structure:
+    Not publicly specified - enforcement through compliance verification
 ```
 
-### Section 7: Regulatory Contacts
+### Section 7: Sources Consulted
+
+**Numbered List Format:**
+
 ```
-PRIMARY AGENCY:
-Agency: [Full name]
-Phone: [Number]
-Email: [Address]
-Website: [URL]
+SOURCES CONSULTED
 
-COMPLIANCE QUESTIONS:
-Contact: [Name or department]
-Phone: [Number]
-Email: [Address]
+1. [Official source 1 title and link]
+2. [Official source 2 title and link]
+3. [Official source 3 title and link]
+4. [Additional source 4 title and link]
 ```
 
-### Section 8: Research Confidence Assessment
+**Source Priority:**
+1. Official government ordinances and codes (.gov)
+2. Municipal department policy pages
+3. State environmental agency guidance
+4. Industry publications covering ordinance implementation
+
+**Example:**
 ```
-RESEARCH QUALITY ASSESSMENT
+SOURCES CONSULTED
 
-Confidence Level: [HIGH / MEDIUM / LOW]
+1. City of Orlando Commercial & Multifamily Recycling Policy
+2. Orlando Ordinance 2019-08
+3. Waste Dive: Orlando mandating commercial and multi-unit residential recycling
+4. The Recycling Partnership: Expanding Equitable Recycling Access in Orlando
+```
 
-Quality Metrics:
-- Government sources consulted: [Number]
-- Official ordinances cited: [Number]
-- Licensed haulers identified: [Number]
-- Specificity issues: [Number]
+### Visual Formatting Requirements
 
-[If LOW confidence:]
-⚠️ HUMAN REVIEW REQUIRED
-This research requires manual verification due to:
-- [List specific concerns]
-- [Conflicting information found]
-- [Recent regulatory changes unconfirmed]
+1. **Use Clear Section Headers:** All-caps for main sections
+2. **Table Formatting:** Clean borders, header row with bold text
+3. **Status Icons:** Use emoji indicators (✅ ⚠️ ❌ 📋) consistently
+4. **Contact Information:** Name | Phone | Email format with pipe separators
+5. **Bullet Points:** Use bullet points (•) for lists within sections
+6. **Hyperlinks:** Include full URLs for all web references
+
+### Validation Checks for REGULATORY_COMPLIANCE
+
+```
+☐ Property name and unit count displayed in header
+☐ Ordinance applicability clearly stated with reasoning
+☐ Compliance deadline specified (if applicable)
+☐ Ordinance overview includes jurisdiction's waste goals
+☐ Key dates listed chronologically
+☐ Mandatory requirements table includes 3-5 key items
+☐ All requirements have verification status assigned
+☐ Compliance checklist includes 5-8 actionable items
+☐ Each checklist item has status, priority, and action
+☐ Licensed haulers table includes minimum 3-4 providers
+☐ All hauler entries have phone and services listed
+☐ Enforcement agency and contact person identified
+☐ Fine structure or enforcement approach documented
+☐ Minimum 3-4 sources consulted and cited
+☐ At least 1 official .gov source included
+```
+
+### Research Quality Requirements
+
+**HIGH Confidence:**
+- Official ordinance text cited with chapter/section numbers
+- All requirements verified against primary sources (.gov)
+- 4+ licensed haulers identified with complete contact info
+- Enforcement penalties documented with specific amounts
+- Recent regulatory changes (2023-2025) confirmed
+
+**MEDIUM Confidence:**
+- Core requirements found but some details incomplete
+- 2-3 official sources consulted
+- 3+ licensed haulers identified
+- Enforcement approach described (even if fines not specified)
+
+**LOW Confidence - FLAG FOR MANUAL REVIEW:**
+- Limited official information available
+- Conflicting sources found
+- Fewer than 3 licensed haulers identified
+- Key requirements vague or missing
+- Recent changes unconfirmed
+
+**IMPORTANT:** If research confidence is LOW, include a warning box at the top of the regulatory section:
+
+```
+⚠️ MANUAL VERIFICATION REQUIRED
+This regulatory research requires human review due to [list specific issues].
+Recommend contacting [Agency Name] at [phone] for verification.
 ```
 
 ## Complete Workflow with Regulatory Compliance

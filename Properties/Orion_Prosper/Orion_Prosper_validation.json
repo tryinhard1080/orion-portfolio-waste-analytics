@@ -1,0 +1,28 @@
+{
+  "property": "Garden Style",
+  "status": "PASSED",
+  "checks": {
+    "total_spend": {
+      "extracted": 30200.560000000005,
+      "expected": 30200.56,
+      "difference": 3.637978807091713e-12,
+      "tolerance": 1.0,
+      "passed": true
+    },
+    "month_count": {
+      "extracted": 8,
+      "expected": 8,
+      "passed": true
+    },
+    "date_range": {
+      "extracted_start": "2025-01",
+      "extracted_end": "2025-08",
+      "expected_start": "2025-01",
+      "expected_end": "2025-08",
+      "passed": true
+    }
+  },
+  "extraction_date": "2025-11-13T07:21:49.377310",
+  "property_name": "Orion Prosper",
+  "record_count": 8
+}

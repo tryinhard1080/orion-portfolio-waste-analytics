@@ -106,8 +106,8 @@ Each property has a comprehensive Excel workbook with **7 tabs** including:
 ### 6 Validation Categories
 
 **1. Formula Validation**
-- ✅ Yards per door calculated correctly based on equipment type
-  - Compactors: (Tons × 14.49) / Units
+- ✅ Yards per door calculated correctly based on equipment type (per CONTAINER_SPECIFICATIONS_AND_CALCULATION_STANDARDS.md)
+  - Compactors: (Tons × 2000 / 138) / Units
   - Dumpsters: (Qty × Size × Freq × 4.33) / Units
 - ✅ Cost per door: Total Monthly Cost / Units
 - ✅ Capacity utilization validated

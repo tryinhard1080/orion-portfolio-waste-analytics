@@ -1,0 +1,70 @@
+{
+  "validation_date": "2025-11-13T07:38:18.418577",
+  "properties": [
+    {
+      "property_name": "Orion McKinney",
+      "workbook_path": "C:\\Users\\Richard\\Downloads\\Orion Data Part 2\\Properties\\Orion_McKinney\\Orion_McKinney_Expense_Report.xlsx",
+      "validation_date": "2025-11-13T07:38:18.394508",
+      "status": "PASSED",
+      "checks": {
+        "tabs": {
+          "expected": [
+            "Executive Summary",
+            "Monthly Expense Detail",
+            "Budget Projection",
+            "Service Details",
+            "Validation"
+          ],
+          "found": [
+            "Executive Summary",
+            "Monthly Expense Detail",
+            "Budget Projection",
+            "Service Details",
+            "Validation"
+          ],
+          "missing": [],
+          "passed": true
+        },
+        "row_count": {
+          "expected": 9,
+          "found": 9,
+          "passed": true
+        },
+        "total_spend": {
+          "expected": 59222.850000000006,
+          "found": 59222.850000000006,
+          "difference": 0.0,
+          "passed": true
+        },
+        "formulas": {
+          "expected": [
+            "SUM",
+            "AVERAGE"
+          ],
+          "found": [
+            "SUM",
+            "AVERAGE"
+          ],
+          "passed": true
+        },
+        "formatting": {
+          "header_fill": true,
+          "header_bold": true,
+          "passed": true
+        },
+        "blank_values": {
+          "blank_cells": [],
+          "count": 0,
+          "passed": true
+        }
+      },
+      "errors": [],
+      "warnings": []
+    }
+  ],
+  "summary": {
+    "total": 1,
+    "passed": 1,
+    "failed": 0
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "property": "Garden Style",
+  "status": "PASSED",
+  "checks": {
+    "total_spend": {
+      "extracted": 192171.15000000002,
+      "expected": 192171.15,
+      "difference": 2.9103830456733704e-11,
+      "tolerance": 1.0,
+      "passed": true
+    },
+    "month_count": {
+      "extracted": 12,
+      "expected": 12,
+      "passed": true
+    },
+    "date_range": {
+      "extracted_start": "2024-10",
+      "extracted_end": "2025-09",
+      "expected_start": "2024-10",
+      "expected_end": "2025-09",
+      "passed": true
+    }
+  },
+  "extraction_date": "2025-11-13T07:20:44.509671",
+  "property_name": "Springs at Alta Mesa",
+  "record_count": 12
+}

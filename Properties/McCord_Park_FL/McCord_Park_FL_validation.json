@@ -1,0 +1,28 @@
+{
+  "property": "Garden Style",
+  "status": "PASSED",
+  "checks": {
+    "total_spend": {
+      "extracted": 99158.68000000001,
+      "expected": 99158.68,
+      "difference": 1.4551915228366852e-11,
+      "tolerance": 1.0,
+      "passed": true
+    },
+    "month_count": {
+      "extracted": 9,
+      "expected": 9,
+      "passed": true
+    },
+    "date_range": {
+      "extracted_start": "2025-01",
+      "extracted_end": "2025-10",
+      "expected_start": "2025-01",
+      "expected_end": "2025-10",
+      "passed": true
+    }
+  },
+  "extraction_date": "2025-11-13T07:36:35.082600",
+  "property_name": "McCord Park FL",
+  "record_count": 9
+}

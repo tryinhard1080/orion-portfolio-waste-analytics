@@ -1,0 +1,13 @@
+Month,Invoice Number,Invoice Date,Vendor,Amount,Category,Cost_Per_Door,YTD_Total,YTD_Avg_CPD,Notes
+2024-10,MONTHLY-City-of-Mesa-2024-10,2024-10-30,City of Mesa,13270.77,Service,66.35385000000001,13270.77,13270.77,
+2024-11,42519.0,2024-11-01,Ally Waste,357.21,Service,1.78605,13627.98,6813.99,Cost decreased 97.3% from prior month
+2024-12,"45072.0, MONTHLY-City-of-Mesa-2024-12",2024-12-01,"Ally Waste, City of Mesa",22087.55,Service,110.43775,35715.53,11905.176666666666,Cost increased 6083.4% from prior month
+2025-01,"48422.0, MONTHLY-City-of-Mesa-2025-01",2025-01-01,"Ally Waste, City of Mesa",28554.88,Service,142.7744,64270.41,16067.6025,Cost increased 29.3% from prior month
+2025-02,51176.0,2025-02-01,Ally Waste,495.0,Service,2.475,64765.41,12953.082,Cost decreased 98.3% from prior month
+2025-03,"54713.0, MONTHLY-City-of-Mesa-2025-03",2025-03-01,"Ally Waste, City of Mesa",14068.68,Service,70.3434,78834.09,13139.015,Cost increased 2742.2% from prior month
+2025-04,"57206.0, MONTHLY-City-of-Mesa-2025-04",2025-04-01,"Ally Waste, City of Mesa",27680.399999999998,Service,138.402,106514.48999999999,15216.355714285713,Cost increased 96.8% from prior month
+2025-05,"59041.0, MONTHLY-City-of-Mesa-2025-05",2025-05-01,"Ally Waste, City of Mesa",18690.64,Service,93.4532,125205.12999999999,15650.641249999999,Cost decreased 32.5% from prior month
+2025-06,62351.0,2025-06-01,Ally Waste,495.0,Service,2.475,125700.12999999999,13966.68111111111,Cost decreased 97.4% from prior month
+2025-07,"65439.0, MONTHLY-City-of-Mesa-2025-07",2025-07-01,"Ally Waste, City of Mesa",33631.14,Service,168.1557,159331.27,15933.126999999999,Cost increased 6694.2% from prior month
+2025-08,"68309.0, MONTHLY-City-of-Mesa-2025-08",2025-08-01,"Ally Waste, City of Mesa",16661.260000000002,Service,83.30630000000001,175992.53,15999.32090909091,Cost decreased 50.5% from prior month
+2025-09,"71251.0, MONTHLY-City-of-Mesa-2025-09",2025-09-01,"Ally Waste, City of Mesa",16178.62,Service,80.8931,192171.15,16014.262499999999,
